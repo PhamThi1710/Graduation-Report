@@ -1,0 +1,169 @@
+\chapter{Hệ thống đề xuất}
+\section{Mô tả hệ thống}
+
+\par Hệ thống học tập trực tuyến thông minh được thiết kế để phục vụ cho sinh viên ngành công nghệ thông tin và những người có nhu cầu học lập trình. Mục tiêu chính của hệ thống là cung cấp trải nghiệm học tập cá nhân hóa thông qua việc ứng dụng các mô hình ngôn ngữ lớn (LLM – Large Language Model), nhằm tối ưu hóa quá trình học tập một cách linh hoạt, hiệu quả và phù hợp với nhu cầu riêng biệt của từng người học.
+
+\par Hệ thống tập trung vào sự tương tác giữa người học và trí tuệ nhân tạo (AI), tạo ra một môi trường học tập thông minh. Cụ thể, hệ thống hỗ trợ giảng viên dễ dàng tạo, chỉnh sửa và quản lý nội dung học tập. Các chức năng chính của hệ thống bao gồm:
+
+\begin{itemize}
+    \item \textbf{Quản lý khóa học:} Giảng viên có thể cung cấp thông tin chi tiết về khóa học, bao gồm tên khóa học, mô tả, mục tiêu học tập, và đối tượng học viên. Các tài liệu học tập có thể được tải lên hoặc liên kết đến các tài nguyên bổ sung.
+    
+    \item \textbf{Quản lý nội dung học:} Khóa học được chia thành các module hoặc bài học nhỏ với mục tiêu học tập cụ thể và thời gian hoàn thành dự kiến. Mỗi module hoặc bài học sẽ có mục tiêu học tập rõ ràng để sinh viên biết họ cần đạt được những kỹ năng hoặc kiến thức nào sau khi hoàn thành.
+    
+    \item \textbf{Lộ trình học tập cá nhân hóa:} Lộ trình học tập của mỗi sinh viên sẽ được cá nhân hóa thông qua các đề xuất learning item (bao gồm khóa học, module, bài học) dựa trên mục tiêu học tập, nền tảng kiến thức, và hành vi học tập của người dùng (như điểm số, thời gian hoàn thành bài học). Hệ thống sẽ linh hoạt đề xuất các item phù hợp với trình độ hiện tại của người học. Các bài học và module sẽ được điều chỉnh dần theo độ khó tăng lên, giúp người học tiếp cận kiến thức mới một cách hợp lý và tiến bộ liên tục.
+    
+    \item \textbf{Gia sư AI hỗ trợ lập trình:} Một trong những tính năng nổi bật của hệ thống là gia sư AI, đóng vai trò như một trợ lý thông minh trong việc giám sát quá trình học của người học. Gia sư AI có khả năng cung cấp các giải thích chi tiết về mã nguồn, gợi ý cách viết mã tối ưu, hỗ trợ sửa lỗi (debug), và đưa ra phản hồi về chất lượng mã lệnh. Tính năng này không chỉ giúp người học nâng cao kỹ năng lập trình mà còn giúp cải thiện hiệu quả học tập thông qua việc tiếp thu kiến thức một cách nhanh chóng và dễ hiểu.
+    
+    \item \textbf{Hệ thống tạo bài tập tự động:} Hệ thống có khả năng tự động tạo ra các bài tập lập trình theo chủ đề mà người học mong muốn. Bộ test case cho bài tập sẽ được sinh ra tự động tùy thuộc vào mức độ khó và yêu cầu của bài tập. Người học có thể yêu cầu hệ thống tạo bài tập ở các cấp độ khác nhau (từ cơ bản đến nâng cao) hoặc nhập vào một câu hỏi lập trình cụ thể để hệ thống tạo bộ test case phù hợp.
+    
+    \item \textbf{Bài tập sẽ được điều chỉnh linh hoạt:} Bài tập sẽ được điều chỉnh linh hoạt để phù hợp với năng lực và tiến độ học tập của người học. Hệ thống sẽ theo dõi và đánh giá kết quả bài tập dựa trên thời gian giải quyết, độ chính xác, và điểm số, từ đó điều chỉnh lộ trình học tập của người học.
+    
+    \item \textbf{Theo dõi tiến độ và báo cáo học tập:} Hệ thống cung cấp công cụ theo dõi tiến độ học tập chi tiết. Sinh viên có thể xem lại thời gian học, số lượng bài tập đã hoàn thành và kết quả của các bài kiểm tra. Hệ thống sẽ cung cấp báo cáo chi tiết về quá trình học tập của sinh viên, bao gồm các bài học đã hoàn thành, kết quả đạt được và các gợi ý từ hệ thống cho bước học tiếp theo. Dựa trên các chỉ số này, hệ thống sẽ đánh giá mức độ tiến bộ của người học và điều chỉnh lộ trình học tập một cách linh hoạt.
+\end{itemize}
+
+\section{Khảo sát yêu cầu}
+\subsection{Người dùng}
+Các người dùng liên quan trong hệ thống:  
+\begin{itemize}
+    \item Học viên.
+    \item Quản trị viên.
+    \item Giảng viên
+\end{itemize}
+\subsection{Yêu cầu chức năng}
+\subsubsection{User Management}
+\begin{enumerate}
+    \item \textbf{Đăng ký và đăng nhập:} Người dùng có thể tạo tài khoản và đăng nhập bằng thông tin cá nhân hoặc tài khoản mạng xã hội.
+\item \textbf{Hồ sơ học tập:} Mỗi người dùng có một hồ sơ học tập, lưu trữ thông tin cá nhân, tiến độ học tập, và kết quả các bài kiểm tra/bài tập.
+\item \textbf{Quản lý lịch sử học tập:} Hệ thống lưu trữ và cho phép người dùng xem lại các bài học, bài tập đã hoàn thành và kết quả đạt được.
+\item \textbf{Cấu hình cá nhân:} Người dùng có thể cập nhật thông tin cá nhân, độ tuổi.
+\end{enumerate}
+\subsubsection{Learning Resource Recommendation System}
+\begin{enumerate}
+\item \textbf{Cá nhân hóa đề xuất học tập:} Hệ thống tự động đề xuất các tài nguyên học tập (khóa học, module, bài học, bài tập, project) cho mỗi người dùng dựa trên mục tiêu học tập, độ tuổi, trình độ học vấn, phong cách học tập, và hành vi học tập, lịch sử học tập, mức độ thông thạo của người học trên một khái niệm hoặc một đầu ra học tập cụ thể.
+\item \textbf{Lựa chọn tài nguyên học tập:} Hệ thống cho phép người dùng tự chọn các learning item dựa trên sở thích hoặc mục tiêu cá nhân, cung cấp sự linh hoạt trong việc tiếp cận nội dung học tập.
+\item \textbf{Theo dõi phản hồi người dùng:} Hệ thống ghi nhận phản hồi của người dùng về các tài nguyên học tập để cải thiện đề xuất và tối ưu hóa trải nghiệm người học.
+\end{enumerate}
+\subsubsection{Exercise Generator}
+\begin{enumerate}
+    \item \textbf{Tạo bài tập theo mức độ:} Hệ thống tự động sinh ra các bài tập từ cơ bản đến nâng cao phù hợp với khả năng của người dùng.
+    \item \textbf{Tạo bài tập theo yêu cầu:} Người dùng có thể yêu cầu hệ thống tạo bài tập ở các cấp độ khác nhau hoặc nhập vào một câu hỏi lập trình cụ thể.
+\item \textbf{Tự động điều chỉnh bài tập}: Dựa trên tiến độ học tập, các bài tập sẽ được nâng cấp để phù hợp với mức độ phát triển của người dùng.
+\item \textbf{Phân tích kết quả bài tập:} Hệ thống đánh giá bài tập dựa trên thời gian giải, độ chính xác, và kết quả điểm số để điều chỉnh lộ trình học.
+\item \textbf{Tạo bộ test case tự động:} Hệ thống tự động tạo bộ test case phù hợp với yêu cầu của bài tập mà người dùng upload.
+\end{enumerate}
+\subsubsection{AI Tutor}
+\begin{enumerate}
+\item Hệ thống có tích hợp một tính năng là Smart Assistant. Khi người dùng tương tác với tài nguyên học tập, sẽ có một hệ thống chatbot hỗ trợ trả lời nội dung liên quan đến tài nguyên học tập mà người dùng đang xem.
+\item Ứng với các tài nguyên học tập đòi hỏi người dùng phải thực hành như là các bài tập lập trình, thì hệ thống cũng có tích hợp một số tính năng đi kèm như sau:
+\begin{itemize}
+    \item \textbf{Hỗ trợ giải thích code:} Người dùng có thể yêu cầu gia sư AI giải thích code hoặc hướng dẫn cách giải quyết các bài tập lập trình.
+    \item \textbf{Gợi ý hướng giải:} Khi gặp khó khăn, hệ thống sẽ đưa ra các gợi ý từ gia sư AI nhằm hỗ trợ người dùng hoàn thành bài tập.
+    \item \textbf{Đưa ra gợi ý:} Hệ thống có thể hỏi người dùng liệu họ có muốn thay đổi bài tập sang một bài dễ hơn với nội dung tương tự khi gặp vấn đề với bài hiện tại.
+    \item \textbf{Tối ưu hóa code:} Gia sư AI cung cấp gợi ý cách viết mã tối ưu hơn.
+    \item \textbf{Hỗ trợ sửa lỗi:} Gia sư AI cung cấp hỗ trợ debug khi người dùng gặp lỗi trong code.
+    \item \textbf{Đánh giá chất lượng code:} Gia sư AI cung cấp phản hồi kịp thời về chất lượng mã lệnh của người dùng.
+\end{itemize}
+\end{enumerate}
+\subsubsection{Progress Tracking}
+\begin{enumerate}
+    \item \textbf{Theo dõi tiến độ học tập:} Hệ thống ghi nhận thời gian học, số lượng bài tập hoàn thành và kết quả các bài kiểm tra.
+\item \textbf{Đánh giá tiến độ:} Dựa trên các chỉ số như tốc độ giải quyết bài tập và điểm số, hệ thống đánh giá sự tiến bộ của người dùng và điều chỉnh lộ trình học tập.
+\item \textbf{Báo cáo tiến độ:} Người dùng có thể xem báo cáo chi tiết về quá trình học tập, bao gồm các bài học đã hoàn thành, kết quả đạt được, và gợi ý từ hệ thống cho bước tiếp theo.
+\item \textbf{Phân tích dữ liệu học tập:} Hệ thống phân tích hành vi học tập của người dùng, bao gồm điểm số, thời gian hoàn thành bài tập, và tần suất yêu cầu hỗ trợ để cải thiện trải nghiệm học tập.
+\end{enumerate}
+\subsubsection{Course Management}
+\begin{enumerate}
+    \item \textbf{Tạo khóa học/module:} Giảng viên có thể tạo và thiết kế các khóa học hoặc module học tập mới. Ứng với mỗi một khóa học, giảng viên sẽ phải cung cấp các thông tin về đầu ra học tập (learning outcome), về mô tả của khóa học. Ứng với mỗi khóa học sẽ bao gồm các modules/bài học/projects tương ứng.
+\item \textbf{Quản lý nội dung:} Giảng viên có thể cập nhật, chỉnh sửa nội dung của khóa học cũng như tài nguyên học tập. Hệ thống cho phép tải lên các tài liệu học tập hoặc liên kết đến các tài nguyên bổ sung.
+\end{enumerate}
+\subsubsection{Admin Management}
+\begin{enumerate}
+    \item \textbf{Quản lý người dùng:} 
+    \begin{itemize}
+        \item Quản trị viên có thể xem danh sách người dùng, tìm kiếm, lọc, và sắp xếp theo các tiêu chí như tên, email, trạng thái tài khoản, và tiến độ học tập.
+        \item Quản trị viên có thể khóa/mở khóa tài khoản người dùng hoặc thay đổi quyền truy cập của người dùng (như chuyển từ người dùng bình thường sang giảng viên).
+    \end{itemize}
+\item \textbf{Quản lý phản hồi:}
+\begin{itemize}
+    \item Xem và xử lý các phản hồi, đánh giá của người dùng về khóa học, giảng viên, và hệ thống.
+    \item Gửi phản hồi cho người dùng về các vấn đề đã được xử lý.
+\end{itemize}
+\end{enumerate}
+\subsection{Yêu cầu phi chức năng}
+\begin{itemize}
+    \item Hiệu năng
+    \begin{itemize}
+    \item Hệ thống phải xử lý yêu cầu truy cập và tương tác của người dùng một cách nhanh chóng và hiệu quả, với thời gian phản hồi không vượt quá 2 giây cho các thao tác thông thường như đăng nhập, xem khóa học, và tải trang.
+    \item Hệ thống phải có khả năng hỗ trợ ít nhất 1000 người dùng đồng thời mà không làm giảm hiệu năng.
+    \item Thời gian phản hồi của các công cụ AI không được quá 7-8s.
+\end{itemize}
+    \item Khả năng mở rộng
+    \begin{itemize}
+    \item Hệ thống có khả năng mở rộng khi số lượng người dùng, khóa học, và bài tập tăng lên mà không ảnh hưởng đến chất lượng dịch vụ và thay đổi hệ thống quá nhiều.
+    \item Có thể thêm các chức năng phụ kết hợp với chức năng sẵn có nếu có yêu cầu mở rộng.
+\end{itemize}
+    \item Bảo mật
+    \begin{itemize}
+    \item Dữ liệu cá nhân của người dùng và kết quả học tập phải được mã hóa trong quá trình truyền tải và lưu trữ.
+\end{itemize}
+    \item Tính khả dụng
+    \begin{itemize}
+    \item Người dùng có thể dễ dàng điều hướng giữa các khóa học, theo dõi tiến trình học tập và thực hiện các bài kiểm tra mà không gặp khó khăn.
+    \item Giao diện người dùng cần trực quan, dễ sử dụng, màu sắc cơ bản.
+\end{itemize}
+    \item Tính tương thích
+    \begin{itemize}
+    \item Hệ thống phải tương thích với nhiều trình duyệt phổ biến (Chrome, Firefox, Safari, Edge) và các hệ điều hành khác nhau (Windows, macOS, Linux).
+\end{itemize}
+\end{itemize}
+\newpage
+\subsection{Yêu cầu dữ liệu}
+\subsubsection{Các thực thể và thuộc tính dữ liệu}
+\begin{enumerate}
+    \item User
+    \begin{itemize}
+        \item Thực thể: Người dùng
+        \item Thuộc tính: ID, username, password, role (student, admin, teacher)
+        \begin{itemize}
+            \item Student: Goal, Birthyear, Background.
+            \item Teacher 
+            \item Admin
+        \end{itemize}
+    \end{itemize}
+    \item Course
+    \begin{itemize}
+        \item Thực thể: Khóa học
+        \item Thuộc tính: ID, Name, Description, Type, Content.
+    \end{itemize}
+    \item LearningPath
+    \begin{itemize}
+        \item Thực thể: Lộ trình học tập
+        \item Thuộc tính: ID, ExerciseCount, Level, Time.
+    \end{itemize}
+    \item Exercise
+    \begin{itemize}
+        \item Thực thể: bài tập
+        \item Thuộc tính: ID bài tập, Document, Difficulty, Type (Quiz, Code).
+        \begin{itemize}
+            \item Quiz: ID, Content, Questions, Answer.
+            \item Code: ID, Content, Language, Testcases.
+        \end{itemize}
+    \end{itemize}
+    \item Knowledge
+    \begin{itemize}
+        \item Thực thể: Dữ liệu kiến thức
+        \item Thuộc tính: Questions and Answers, Document, ExerciseData.
+    \end{itemize}
+\end{enumerate}
+\newpage
+\subsubsection{Mối quan hệ dữ liệu}
+\begin{itemize}
+    \item Admin có thể Manage (quản lý) Course, Knowledge, và LearningPath.
+    \item Teacher có thể Upload (tải lên) Course.
+    \item Student Have (có) một hoặc nhiều LearningPath.
+    \item LearningPath bao gồm nhiều Exercise.
+    \item AI Use (sử dụng) dữ liệu từ Knowledge và Course để Generate (sinh ra) các LearningPath, Exercise.
+    \item Exercise bao gồm 2 loại bài tập là Quiz và Code.
+\end{itemize}
+\section{Kết luận}
+Chương 4 đã trình bày chi tiết về hệ thống đề xuất trong môi trường học tập trực tuyến thông minh. Hệ thống cung cấp các công cụ mạnh mẽ giúp người học có trải nghiệm học tập hiệu quả và tối ưu. Các tính năng như tạo bài tập tự động, theo dõi tiến độ học tập, và hỗ trợ từ gia sư AI giúp người học nâng cao khả năng lập trình và tiếp cận kiến thức một cách linh hoạt, hiệu quả.

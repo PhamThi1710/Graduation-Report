@@ -1,0 +1,125 @@
+\section{Kiến trúc công nghệ}
+\subsection{Công cụ xử lý ngôn ngữ tự nhiên - Framework tích hợp LLMs}
+Trong quá trình phát triển một hệ thống học tập trực tuyến thông minh dựa trên mô hình ngôn ngữ lớn (LLMs), việc lựa chọn công cụ xử lý ngôn ngữ tự nhiên phù hợp là một yếu tố quyết định đến hiệu quả và tính linh hoạt của hệ thống. Với mục tiêu tối ưu hóa trải nghiệm học tập cá nhân hóa, hệ thống cần tích hợp một framework mạnh mẽ để khai thác và xử lý dữ liệu từ nhiều nguồn. Hai công cụ nổi bật trong lĩnh vực này là LangChain và LlamaIndex, đều được thiết kế để hỗ trợ xây dựng các ứng dụng sử dụng LLMs. Báo cáo này sẽ phân tích và so sánh hai framework trên, nhằm xác định công cụ phù hợp nhất cho hệ thống học tập thông minh, dựa trên tính năng, khả năng tích hợp, và yếu tố chi phí.
+\subsubsection{LangChain}
+Langchain là một thư viện Python được thiết kế để hỗ trợ phát triển các ứng dụng dựa trên mô hình ngôn ngữ lớn (LLMs).
+\par 
+\textbf{\textit{Các tính năng chính:}}
+\begin{itemize}
+    \item Tích hợp dễ dàng với nhiều LLMs
+    \begin{itemize}
+        \item Dễ dàng tích hợp và chuyển đổi giữa các mô hình ngôn ngữ lớn khác nhau như \textbf{\textit{GPT-3, GPT-4, BERT}}, hoặc các mô hình tùy chỉnh.
+        \begin{itemize}
+            \item VD: Sử dụng \textbf{\textit{GPT-4}} cho việc tạo nội dung học tập phức tạp, trong khi sử dụng một mô hình nhẹ hơn như \textbf{\textit{BERT}} cho việc phân tích nhanh câu trả lời của học viên
+        \end{itemize}
+    \end{itemize}
+    \item Chuỗi xử lý linh hoạt cho các tác vụ phức tạp
+        \begin{itemize}
+        \item Cho phép xây dựng các chuỗi xử lý (chains) phức tạp, kết hợp nhiều bước xử lý khác nhau.
+        \begin{itemize}
+            \item VD: Trong hệ thống gia sư AI, tạo một chuỗi xử lý để phân tích code của học viên, đánh giá, và đưa ra gợi ý cải thiện. 
+        \end{itemize}
+    \end{itemize}
+    \item Hỗ trợ truy xuất thông tin và tìm kiếm ngữ nghĩa
+        \begin{itemize}
+        \item Cung cấp các công cụ để truy xuất thông tin dựa trên ngữ nghĩa, giúp tìm kiếm thông tin liên quan một cách hiệu quả
+        \begin{itemize}
+            \item VD: Khi học viên đặt câu hỏi, hệ thống có thể tìm kiếm thông tin liên quan từ cơ sở dữ liệu bài giảng bằng cách dùng \textbf{\textit{FAISS (Facebook AI Similarity Search)}} - Một thư viện hỗ trợ sử dụng vector search để tìm kiếm thông tin trong \textbf{\textit{Knowledge Base}}.
+        \end{itemize}
+    \end{itemize}
+    \item Khả năng xử lý đa dạng các loại dữ liệu
+        \begin{itemize}
+        \item Có thể làm việc với nhiều loại dữ liệu khác nhau như văn bản, PDF, hình ảnh (thông qua tích hợp với các mô hình xử lý hình ảnh).
+        \begin{itemize}
+            \item VD: Xử lý các tài liệu PDF và chuyển đổi chúng thành nội dung học tập.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+\subsubsection{LlamaIndex}
+LlamaIndex là một framework chuyên biệt cho việc xây dựng các ứng dụng AI với khả năng truy xuất dữ liệu mạnh mẽ.
+\par
+\textbf{\textit{Các tính năng chính:}}
+\begin{itemize}
+    \item Indexing và truy xuất dữ liệu hiệu quả
+        \begin{itemize}
+        \item Chuyên về việc tạo index cho dữ liệu lớn và truy xuất thông tin một cách nhanh chóng và hiệu quả.
+        \begin{itemize}
+            \item VD: Indexing toàn bộ nội dung khóa học và truy xuất thông tin liên quan.
+        \end{itemize}
+        \item Qúa trình Indexing trong LlamaIndex như sau:
+        \begin{itemize}
+            \item Data Connectors: Đây là các công cụ nhập dữ liệu từ nhiều nguồn khác nhau như API, PDF, cơ sở dữ liệu, hay các ứng dụng bên ngoài (Gmail, Notion, Airtable). Chúng chịu trách nhiệm thu thập dữ liệu và đưa vào hệ thống dưới dạng tài liệu thống nhất.
+            \item Documents/Nodes: Documents là các container chứa dữ liệu từ các nguồn khác nhau, chẳng hạn như từ PDF, API hoặc cơ sở dữ liệu. Nodes là những phần nhỏ của tài liệu, được bổ sung metadata và các mối quan hệ, giúp tăng độ chính xác trong quá trình truy xuất dữ liệu.
+            \item Data Indexes: Sau khi dữ liệu được nhập vào, LlamaIndex sẽ giúp tổ chức dữ liệu thành một định dạng có thể truy xuất. Quá trình này bao gồm việc phân tích, tạo các biểu diễn embedding, và suy luận metadata, tạo thành kho kiến thức để sử dụng sau này.
+        \end{itemize}
+        \end{itemize}
+    \item Tích hợp với nhiều nguồn dữ liệu
+            \begin{itemize}
+        \item LlamaIndex có thể làm việc với nhiều nguồn dữ liệu khác nhau như file local, API, cơ sở dữ liệu.
+        \begin{itemize}
+            \item VD: Tích hợp dữ liệu từ nhiều nguồn để tạo nội dung khóa học.
+        \end{itemize}
+        \end{itemize}
+    \item Hỗ trợ cho các truy vấn phức tạp
+            \begin{itemize}
+        \item LlamaIndex cho phép thực hiện các truy vấn phức tạp, kết hợp nhiều điều kiện và lọc kết quả.
+        \begin{itemize}
+            \item VD: Tìm kiếm bài học phù hợp dựa trên nhiều tiêu chí.
+        \end{itemize}
+        \end{itemize}
+\end{itemize}
+\subsubsection{Tổng quan}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{3.5cm}|p{6cm}|p{6cm}|}
+\hline
+\textbf{Tiêu chí} & \textbf{LangChain} & \textbf{LlamaIndex} \\ \hline
+\textbf{Overall} & Phát triển ứng dụng phức tạp linh hoạt, tích hợp LLM & Tập trung vào tìm kiếm và truy xuất thông tin từ tập dữ liệu lớn một cách nhanh chóng và chính xác \\ \hline
+\textbf{Prompts} & Hỗ trợ giao diện tiêu chuẩn cho việc tạo và quản lý prompts, giúp tùy chỉnh và sử dụng lại dễ dàng hơn trên các mô hình khác & Không hỗ trợ chi tiết \\ \hline
+\textbf{Chains} & Cung cấp giao diện mạnh mẽ để xây dựng và quản lý chuỗi, cùng với nhiều thành phần có thể tái sử dụng & Không hỗ trợ chuỗi xử lý phức tạp \\ \hline
+\textbf{Agents} & Sử dụng LLM để xác định và thực hiện các hành động dựa trên input & Không có cơ chế agent \\ \hline
+\textbf{Data Indexing} & Phương pháp indexing qua các chuỗi phức tạp & Lập chỉ mục nhanh chóng các dữ liệu không cấu trúc \\ \hline
+\textbf{Customization} & Tùy chỉnh cao cho các workflow và ứng dụng phức tạp & Tùy chỉnh hạn chế, tập trung vào lập chỉ mục và tìm kiếm \\ \hline
+\textbf{Context Retention} & Lưu giữ thông tin từ các tương tác trước đó để cho phép các cuộc hội thoại có nhận thức về ngữ cảnh và mạch lạc & Lưu giữ ngữ cảnh cơ bản, phù hợp với nhiệm vụ tìm kiếm \\ \hline
+\textbf{Use Cases} & Phù hợp cho các ứng dụng như chatbot, hỗ trợ khách hàng, tạo nội dung phức tạp & Phù hợp cho hệ thống tìm kiếm nội bộ, quản lý kiến thức \\ \hline
+\textbf{Performance} & Xử lý tốt các cấu trúc dữ liệu phức tạp & Tối ưu cho tốc độ và độ chính xác trong truy xuất thông tin \\ \hline
+\textbf{Lifecycle Management} & Cung cấp bộ đánh giá LangSmith để kiểm tra và gỡ lỗi ứng dụng LLM & Tích hợp công cụ gỡ lỗi và giám sát cho hiệu suất và độ tin cậy \\ \hline
+\end{tabular}
+\caption{So sánh giữa LangChain và LlamaIndex}
+\end{table}
+
+Với những ưu điểm trên, \textbf{LangChain} là một lựa chọn tối ưu cho hệ thống vì nó hỗ trợ mạnh mẽ về việc quản lý prompts – một yếu tố quan trọng để tạo ra các hướng dẫn cho các mô hình ngôn ngữ lớn (LLM), cho phép tuỳ chỉnh và tối ưu chức năng Adaptive Learning Path Management. Ngoài ra, tính năng memory của LangChain giúp lưu giữ và quản lý ngữ cảnh của các cuộc hội thoại trước đó, giúp các tương tác trở nên liền mạch và cá nhân hóa hơn.
+\subsection{Neo4J}
+Neo4j là một hệ quản trị cơ sở dữ liệu đồ thị (graph database) được thiết kế để xử lý và truy vấn dữ liệu có cấu trúc phức tạp dưới dạng đồ thị. Thay vì sử dụng các bảng như trong cơ sở dữ liệu quan hệ, Neo4j tổ chức dữ liệu thành các nút (nodes), cạnh (edges), và thuộc tính (properties). Điều này cho phép Neo4j mô phỏng các mối quan hệ tự nhiên giữa các thực thể và truy vấn chúng một cách hiệu quả. Dưới đây là một số tính năng chính:
+\begin{itemize}
+    \item Neo4j lưu trữ dữ liệu dưới dạng đồ thị, cho phép dễ dàng thêm, sửa đổi và xóa các nút (nodes) và mối quan hệ (relationships) mà không cần phải định hình lại toàn bộ cơ sở dữ liệu.
+    \item Ngôn ngữ truy vấn Cypher của Neo4j rất mạnh mẽ và dễ sử dụng, giúp người sử dụng truy vấn các mối quan hệ phức tạp trong dữ liệu một cách nhanh chóng, hiệu quả.
+\end{itemize}
+Sau đây là những lí do mà nhóm chọn sử dụng Neo4J cho dự án:
+\begin{itemize}
+    \item Với khả năng lưu trữ dữ liệu dưới dạng đồ thị, Neo4j cho phép mô hình hóa các khái niệm học tập, mối quan hệ giữa các khóa học, module, và người học một cách linh hoạt.
+    
+\end{itemize}
+\subsection{VueJS}
+Vue.js là một framework JavaScript linh hoạt và dễ sử dụng, được thiết kế để xây dựng giao diện người dùng và ứng dụng web một cách hiệu quả. Được phát triển bởi Evan You và ra mắt lần đầu vào năm 2014, Vue.js đã nhanh chóng trở thành một trong những framework phổ biến nhất nhờ sự đơn giản, hiệu suất cao, và dễ dàng tích hợp với các dự án hiện có.\\
+Sau đây là những lý do để nhóm chọn sử dụng công nghệ này cho dự án:
+\begin{itemize}
+    \item Vue.js có cú pháp rõ ràng, đơn giản và dễ tiếp cận, phù hợp cho cả những lập trình viên mới bắt đầu và những người có kinh nghiệm.
+    \item Vue.js dựa trên kiến trúc thành phần, cho phép lập trình viên chia nhỏ giao diện thành các phần nhỏ, dễ quản lý và tái sử dụng. Mỗi thành phần đại diện cho một phần tử giao diện và có thể được kết hợp lại với nhau để tạo ra các ứng dụng phức tạp.
+    \item Với một cộng đồng người dùng lớn, Vue.js có nhiều tài nguyên học tập và hỗ trợ từ các diễn đàn, tài liệu chính thức và các thư viện mở rộng.
+\end{itemize}
+\subsection{FastAPI}
+FastAPI là một framework web hiện đại, nhanh chóng và hiệu quả dành cho việc xây dựng các API bằng Python. Được phát triển bởi Sebastián Ramírez và ra mắt lần đầu vào năm 2018, FastAPI đã nhanh chóng thu hút được sự chú ý của cộng đồng lập trình viên nhờ vào tốc độ và khả năng phát triển ứng dụng dễ dàng.\\
+Sau đây là những lí do để nhóm hiện thực ứng dụng sử dụng FastAPI vào dự án này:
+\begin{itemize}
+    \item FastAPI hỗ trợ kiểm tra kiểu dữ liệu (type checking) và tự động xác nhận dữ liệu đầu vào (cụ thể, request body) nhờ vào Pydantic. Điều này giúp giảm thiểu lỗi và đảm bảo dữ liệu đầu vào luôn hợp lệ.
+    \item FastAPI tự động tạo ra tài liệu API chi tiết và dễ sử dụng thông qua Swagger UI và ReDoc. FastAPI sẽ tự động tạo tài liệu cho các API endpoint, giúp việc kiểm tra và sử dụng API trở nên dễ dàng hơn.
+    \item FastAPI cho phép người sử dụng dễ dàng thêm vào các thành phần mà họ cần mà không bị ép buộc phải sử dụng các công cụ hay thư viện nhất định. Điều này cho phép nhóm hiện thực tùy chỉnh ứng dụng theo nhu cầu cụ thể của dự án.
+\end{itemize}
+
+\section{Tổng kết}
+\par Chương 2 đã cung cấp một cái nhìn tổng quan về các khái niệm và lý thuyết nền tảng trong lĩnh vực giáo dục và giáo dục thông minh. Chúng ta đã tìm hiểu về khái niệm giáo dục, vai trò quan trọng của nó trong việc phát triển toàn diện con người và sự thích nghi với môi trường xã hội. Đồng thời, khái niệm giáo dục thông minh đã được làm rõ, nhấn mạnh vào sự kết hợp giữa công nghệ và các phương pháp học tập cá nhân hóa, nhằm nâng cao hiệu quả giảng dạy và học tập.
+
+\par Các khái niệm về mô hình ngôn ngữ, từ mô hình ngôn ngữ xác suất đến các mô hình ngôn ngữ lớn (LLMs), đã được trình bày chi tiết, làm nền tảng để hiểu rõ hơn về công nghệ ứng dụng trong giáo dục thông minh. Đặc biệt, những thuật ngữ quan trọng như đồ thị tri thức (Knowledge Graph), Knowledge Tracing, và các công nghệ hỗ trợ trong giáo dục như LangChain, LlamaIndex, Neo4J, và VueJS đã được giới thiệu, nhằm làm rõ các công cụ và nền tảng công nghệ cần thiết để phát triển hệ thống học tập thông minh hiện đại.
+
+\par Kết thúc chương này, ta có thể thấy rằng việc áp dụng công nghệ vào giáo dục không chỉ là một xu hướng mà còn là một yêu cầu thiết yếu để nâng cao chất lượng và hiệu quả học tập. Trong chương tiếp theo, chúng ta sẽ đi sâu vào việc thiết kế và triển khai hệ thống giáo dục thông minh, đồng thời đánh giá các yếu tố ảnh hưởng đến sự thành công của hệ thống này.

@@ -1,0 +1,160 @@
+\chapter{Phân tích và thiết kế}
+\section{Phân tích}
+\subsection{Business Process Modeling}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Images/Anh/activity.png}
+    \caption{Activity diagram}
+    \label{fig:enter-label}
+\end{figure}
+Activity diagram mô tả quy trình tương tác giữa bốn Actors: \textbf{\textit{Student (Học sinh), Teacher (Giáo viên), System (Hệ thống), và AI Tutor (Gia sư AI)}} trong hệ thống giáo dục thông minh. \par Học sinh bắt đầu bằng việc đăng nhập và tùy thuộc vào vai trò của họ (giáo viên hoặc học sinh), các hành động khác nhau sẽ diễn ra. Giáo viên có thể tạo khóa học mới hoặc chọn khóa học hiện có để quản lý, trong khi học sinh sẽ xác định mục tiêu học tập và xác nhận lộ trình học do hệ thống đề xuất. Sau đó, học sinh có thể học bài, thực hiện bài tập, và nếu cần có thể yêu cầu trợ giúp từ AI Tutor. Hệ thống cũng tự động theo dõi tiến độ học tập, điều chỉnh lộ trình và đánh giá bài nộp của học sinh. AI Tutor hỗ trợ bằng cách phân tích hành vi, giải thích mã code, và tạo bài tập phù hợp.
+\subsection{Use case diagrams}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{Images/Usecase/usecase-All.drawio.png}
+    \caption{Use case diagram}
+    \label{fig:enter-label}
+\end{figure}
+\quad Mô hình use case tổng thể cho hệ thống học tập thông minh bao gồm ba tác nhân chính: Giáo viên, Người học, Quản trị viên và Hệ thống/AI. Các use case bao gồm Quản lý khóa học, Quản lý người dùng, Quản lý lộ trình học tập thích ứng, Theo dõi tiến độ, Tạo bài tập, Quản lý hệ thống cho Quản trị viên và Gia sư AI.
+\subsubsection{Course Management}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{Images/Usecase/usecase-Course Management.drawio.png}
+    \caption{Detailed use case with id 1: Course Management}
+    \label{fig:enter-label}
+\end{figure}
+\quad Use case \textbf{\textit{Quản lý khóa học}} bao gồm ba chức năng chính: Tạo khóa học, Theo dõi kết quả học tập và Yêu cầu bài kiểm tra. Use case  \textbf{\textit{"Chỉnh sửa khóa học"}} được mở rộng từ  \textbf{\textit{"Tạo khóa học"}}, cho thấy việc chỉnh sửa là một phần mở rộng tùy chọn của quá trình tạo khóa học. Use case diagram thể hiện các trách nhiệm chính của giáo viên trong việc quản lý khóa học trong hệ thống.
+\par Ngoài ra, ở module này, Hệ thống sẽ có nhiệm vụ lưu trữ thông tin về khóa học mà giáo viên đã tạo ra. 
+\subsubsection{User Management}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{Images/Usecase/usecase-User Management.drawio.png}
+    \caption{Detailed use case with id 2: User Management}
+    \label{fig:enter-label}
+\end{figure}
+\quad Use case  \textbf{\textit{Quản lý người dùng}}, tập trung vào tác nhân Người dùng bao gồm các chức năng như Đăng nhập, Đăng xuất, Quản lý hồ sơ học tập và Xem hồ sơ. Use case diagram cho thấy  \textbf{\textit{"Đăng nhập qua third-party"}} mở rộng từ use case  \textbf{\textit{"Đăng nhập"}} cơ bản, cung cấp một phương thức đăng nhập thay thế. Ngoài ra,  \textbf{\textit{"Xem hồ sơ"}} được thể hiện như một phần mở rộng của  \textbf{\textit{"Quản lý hồ sơ học tập"}}, cho thấy đây là một hành động liên quan nhưng riêng biệt. \par Quản trị viên có quyền đăng nhập bằng tài khoản của mình, từ đó \textbf{\textit{"Xem danh sách người dùng"}} sử dụng hệ thống. Ngoài ra, quản trị viên có thể \textbf{\textit{"Tìm kiếm, Lọc và Sắp xếp theo thông tin người dùng"}}, \textbf{\textit{"Vô hiệu hóa tài khoản/Kích hoạt tài khoản"}} và \textbf{\textit{" Thay đổi quyền truy cập của người dùng"}}. Ví dụ: Thay đổi từ người học sang giảng viên. 
+\subsubsection{Learning Resource Recommendation System}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.45]{Images/Usecase/usecase-Learning Resource Recommendation System - Learner.drawio.png}
+    \caption{Detailed use case with id 3: Adaptive Learning Path Management of Learner Actor}
+    \label{fig:enter-label}
+\end{figure}
+\quad Tác nhân chính trong biểu đồ trên là người học (Learner), có thể tương tác với hệ thống để nhận các đề xuất tài nguyên học tập. Use case \textbf{\textit{"Get Personalized Learning Resource Recommendations"}} cung cấp cho người học các tài nguyên học tập phù hợp với nhu cầu và lịch sử học tập của họ. Use case \textbf{\textit{"Send Feedback"}} có mối quan hệ \textbf{\textit{"<extend>"}} với \textbf{\textit{"Get Personalized Learning Resource Recommendations"}}, vì người học có thể gửi phản hồi về các tài nguyên đã được đề xuất để cải thiện hệ thống.
+Use case \textbf{\textit{"Select Learning Resource From Recommendations"}} cũng mở rộng từ \textbf{\textit{"Get Personalized Learning Resource Recommendations"}}, cho phép người học tự chọn các tài nguyên mà họ thấy phù hợp với mục tiêu cá nhân.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.45]{Images/Usecase/usecase-Learning Resource Recommendation System - System.drawio.png}
+    \caption{Detailed use case with id 3: Learning Resource Recommendation System of System Actor}
+    \label{fig:enter-label}
+\end{figure}
+\quad Tác nhân chính là hệ thống AI, có nhiệm vụ chính là đề xuất tài nguyên học tập cá nhân hóa cho người dùng. Use case \textbf{\textit{"Recommend Learning Resources"}} bao gồm hoạt động \textbf{\textit{"Analysis Learning History"}} (phân tích lịch sử học tập), do quá trình phân tích lịch sử học tập là một phần không thể thiếu khi hệ thống tạo ra các đề xuất. Hệ thống có thể mở rộng thêm use case \textbf{\textit{"Use Feedback To Improve Recommendations"}} (sử dụng phản hồi để cải thiện đề xuất) dựa trên các phản hồi người dùng, giúp tinh chỉnh và nâng cao chất lượng đề xuất. Mối quan hệ \textbf{\textit{"<include>"}} được sử dụng giữa \textbf{\textit{"Recommend Learning Resources"}} và \textbf{\textit{"Analysis Learning History"}} vì quá trình phân tích là cần thiết. Mối quan hệ \textbf{\textit{"<extend>"}} giữa \textbf{\textit{"Recommend Learning Resources"}} và \textbf{\textit{"Use Feedback To Improve Recommendations"}} vì cải thiện đề xuất dựa trên phản hồi là một phần mở rộng có thể xảy ra tùy theo ngữ cảnh.
+
+\subsubsection{Progress Tracking}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.35]{Images/Usecase/usecase-Progress Tracking - Learner.drawio.png}
+    \caption{Detailed use case with id 4: Progress Tracking of Learner Actor}
+    \label{fig:enter-label}
+\end{figure}
+\quad Use case diagram trên thể hiện các chức năng  \textbf{\textit{Theo dõi tiến độ dành cho Người học}}. Có hai use case chính là  \textbf{\textit{"Xem lịch sử học tập"}} và  \textbf{\textit{"Xem báo cáo tiến độ"}}.  \textbf{\textit{"Xem lịch sử học tập"}} mở rộng đến  \textbf{\textit{"Xem lại các bài học trước đó"}}, cho phép người học ôn tập.  \textbf{\textit{"Xem báo cáo tiến độ"}} mở rộng đến  \textbf{\textit{"Nhận đề xuất cải thiện"}}, cung cấp hướng dẫn cá nhân hóa, nhấn mạnh việc theo dõi và phản hồi liên tục để hỗ trợ quá trình học tập của người dùng.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{Images/Usecase/usecase-Progress Tracking - System.drawio.png}
+    \caption{Detailed use case with id 4: Progress Tracking of System Actor}
+    \label{fig:enter-label}
+\end{figure}
+\quad Sơ đồ use case của hệ thống \textbf{\textit{Exercise Generator}} mô tả các tương tác giữa người dùng và hệ thống. Người học có thể yêu cầu hệ thống tạo tự động các bài tập thông qua chức năng \textbf{\textit{"Request Auto Exercise Generation"}}, và sau đó thực hiện các bài tập đó để cải thiện kỹ năng của mình thông qua \textbf{\textit{"Do Exercise"}}. Bên cạnh đó, giảng viên có thể sử dụng chức năng \textbf{\textit{"Upload Exercise"}} để tải lên các đề bài hoặc bài tập, từ đó hệ thống sẽ tự động xử lý và tạo ra các test case nhằm kiểm tra độ chính xác của bài giải thông qua \textbf{\textit{"Generate Test Cases"}}. Sau khi các test case được tạo, giảng viên có thể sử dụng chức năng \textbf{\textit{"Review Test Cases"}} để xem xét và đánh giá các test case nhằm đảm bảo chúng phù hợp với nội dung bài tập và đáp ứng được yêu cầu giảng dạy. Các chức năng này giúp hệ thống tạo ra môi trường học tập linh hoạt, hỗ trợ hiệu quả cho người học và giảng viên.
+\subsubsection{Exercise Generator}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.45]{Images/Usecase/usecase-Exercise Generator - Learner.drawio.png}
+    \caption{Detailed use case with id 5: Exercise Generator}
+    \label{fig:enter-label}
+\end{figure}
+\quad Use case diagram thể hiện các chức năng liên quan đến bài tập dành cho Người học. Có bốn use case chính:  \textbf{\textit{"Yêu cầu tạo bài tập tự động", "Làm bài tập", "Nhận phản hồi về bài tập", và "Yêu cầu bài kiểm tra"}}. Người học có thể yêu cầu hệ thống tạo bài tập tự động phù hợp với trình độ của họ. Sau khi làm bài tập, người học có thể nhận phản hồi để hiểu rõ hơn về kết quả của mình. Khả năng yêu cầu bài kiểm tra cho phép người học tự đánh giá kiến thức của mình khi cần.
+\subsubsection{AI Tutor}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{Images/Usecase/usecase-AI Tutor - Learner.drawio.png}
+    \caption{Detailed use case with id 6: AI Tutor of Learner Actor}
+    \label{fig:enter-label}
+\end{figure}
+\quad Use case diagram thể hiện các chức năng của Gia sư AI dành cho Người học. Có bốn use case chính:  \textbf{\textit{"Yêu cầu giải thích mã", "Yêu cầu gợi ý", "Yêu cầu sửa lỗi", và "Nhận phản hồi về mã".}}
+Người học có thể yêu cầu giải thích về mã nguồn để hiểu rõ hơn về cấu trúc và logic của code. Chức năng yêu cầu gợi ý có hai chức năng quan hệ \textbf{\textit{"extend"}} là \textbf{\textit{"Hỗ trợ chuyển đổi bài tập"}} dựa trên nhu cầu, học lực của người dùng và \textbf{\textit{"Cung cấp mã tối ưu hóa"}} giúp người học vượt qua các khó khăn trong quá trình học lập trình cũng như cải thiện tối đa kỹ thuật code của người dùng. Việc nhận phản hồi về mã giúp người học cải thiện kỹ năng lập trình của mình một cách liên tục.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{Images/Usecase/usecase-AI Tutor - System.drawio.png}
+    \caption{Detailed use case with id 6: AI Tutor of System Actor}
+    \label{fig:enter-label}
+\end{figure}
+\quad Use case diagram trên mô tả  \textbf{\textit{hệ thống AI Tutor}} với vai trò hỗ trợ người dùng trong việc xử lý và hiểu mã lập trình. Hệ thống có khả năng  \textbf{\textit{giải thích mã lệnh (Use case 6.1)}} và  \textbf{\textit{cung cấp gợi ý khi người dùng gặp khó khăn (Use case 6.2)}}. Từ chức năng giải thích mã, hệ thống có thể mở rộng thêm các chức năng khác như  \textbf{\textit{sửa lỗi (Use case 6.4)}} và  \textbf{\textit{tối ưu mã lệnh (Use case 6.5)}}. Hệ thống nhằm mục tiêu hỗ trợ người dùng học lập trình hiệu quả hơn thông qua các công cụ hỗ trợ trực tiếp từ AI.
+\newpage
+\section{Thiết kế}
+\input{architecture}
+\newpage
+\section{Database}
+\subsection{EER diagram}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{Images/Anh/EER.png}
+    \caption{Sơ đồ EER của hệ thống}
+    \label{fig:enter-label}
+\end{figure}
+\begin{enumerate}
+    \item User:
+    \begin{itemize}
+        \item User được chia thành 3 loại là: student, teacher, admin. Mỗi người dùng có các thuộc tính cơ bản như: ID, tên đăng nhập, email, mật khẩu và loại người dùng.
+        \item Mỗi user sẽ có một vai trò cụ thể trong hệ thống.
+    \end{itemize}
+    \item Student:
+    \begin{itemize}
+        \item Mỗi sinh viên có các thuộc tính riêng như mục tiêu học tập, năm sinh , nền tảng học vấn và báo cáo về kết quả học tập .
+        \item Mỗi sinh viên có thể có một hoặc nhiều lộ trình học tập. Mỗi lộ trình học tập có thuộc tính như các bài học , cấp độ , thời gian, mục tiêu khóa học và ID. Lộ trình này bao gồm các lesson và bài kiểm tra.
+    \end{itemize}
+    \item Teacher: Giáo viên lưu thuộc tính về nơi làm việc và có thể tải lên các khóa học.
+    \item Manager: Quản trị viên có thuộc tính về danh sách feedback, knowledgegraph để có khả năng quản lý các kiến thức, xử lí feedback và quản lí người dùng.
+    \item Course: Mỗi khóa học bao gồm các thuộc tính như: ID, tên, mô tả, loại khóa học, mục tiêu đầu ra và danh sách các bài học.
+    \item Exercise: Bài tập có các thuộc tính như câu hỏi, đáp án, tài liệu liên quan, độ khó và loại bài tập.
+    \item AI: có các thuộc tính về: rule(kiểm tra bài tập đúng chủ đề, cấp độ), câu prompt, sử dụng dữ liệu từ KnowledgeGraph để tạo ra các lộ trình học tập và bài tập (Exercise) cho sinh viên 
+\end{enumerate}
+\newpage
+\subsection{Lược đồ CSDL quan hệ ánh xạ}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{Images/Anh/mapping.png}
+    \caption{Lược đồ CSDL quan hệ ánh xạ của hệ thống}
+    \label{fig:enter-label}
+\end{figure}
+\newpage
+\subsection{Class diagram}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{Images/Anh/classdiagram.png}
+    \caption{Class diagram hiện thực của hệ thống}
+    \label{fig:enter-label}
+\end{figure}
+Class diagram được thiết kế theo mô hình MVC mô tả một hệ thống học tập thông minh với ba vai trò chính là sinh viên, giáo viên và quản trị viên, tất cả đều kế thừa từ lớp người dùng (User). Mỗi người dùng có các chức năng cơ bản như đăng nhập, đăng xuất và cập nhật hồ sơ. Sinh viên chọn theo học khóa học của giảng viên, thực hiện bài tập, và theo dõi tiến độ học tập của mình. Lộ trình học tập bao gồm bài tập được cá nhân hóa cho từng sinh viên. Giáo viên chịu trách nhiệm tạo và quản lý các khóa học, bao gồm việc thêm bài tập, theo dõi kết quả học tập của sinh viên, và tạo ra các bộ câu hỏi kiểm tra. Quản trị viên có quyền quản lý toàn bộ hệ thống, bao gồm khóa học và người dùng, cũng như giải quyết các thắc mắc từ người dùng.
+AI được sử dụng để hỗ trợ quá trình học tập thông qua việc tự động tạo lộ trình học tập và bài tập. AI dựa vào dữ liệu từ các tài liệu học tập, câu hỏi và đáp án có sẵn, cũng như các bài tập lập trình để cá nhân hóa trải nghiệm học cho người dùng.
+\subsection{Sitemap}
+\subsubsection{Sinh viên}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.8]{Images/sitemap/Student.png}
+    \caption{Sitemap cho đối tượng Sinh viên}
+    \label{fig:enter-label}
+\end{figure}
+\subsubsection{Giảng viên}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{Images/sitemap/Instructor.png}
+    \caption{Sitemap cho đối tượng Giảng viên}
+    \label{fig:enter-label}
+\end{figure}
+\subsubsection{Manager}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.55]{Images/sitemap/Manager.png}
+    \caption{Sitemap cho đối tượng Quản trị viên}
+    \label{fig:enter-label}
+\end{figure}
