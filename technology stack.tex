@@ -89,34 +89,51 @@ LlamaIndex là một framework chuyên biệt cho việc xây dựng các ứng 
 \end{table}
 
 Với những ưu điểm trên, \textbf{LangChain} là một lựa chọn tối ưu cho hệ thống vì nó hỗ trợ mạnh mẽ về việc quản lý prompts – một yếu tố quan trọng để tạo ra các hướng dẫn cho các mô hình ngôn ngữ lớn (LLM), cho phép tuỳ chỉnh và tối ưu chức năng Adaptive Learning Path Management. Ngoài ra, tính năng memory của LangChain giúp lưu giữ và quản lý ngữ cảnh của các cuộc hội thoại trước đó, giúp các tương tác trở nên liền mạch và cá nhân hóa hơn.
-\subsection{Neo4J}
-Neo4j là một hệ quản trị cơ sở dữ liệu đồ thị (graph database) được thiết kế để xử lý và truy vấn dữ liệu có cấu trúc phức tạp dưới dạng đồ thị. Thay vì sử dụng các bảng như trong cơ sở dữ liệu quan hệ, Neo4j tổ chức dữ liệu thành các nút (nodes), cạnh (edges), và thuộc tính (properties). Điều này cho phép Neo4j mô phỏng các mối quan hệ tự nhiên giữa các thực thể và truy vấn chúng một cách hiệu quả. Dưới đây là một số tính năng chính:
-\begin{itemize}
-    \item Neo4j lưu trữ dữ liệu dưới dạng đồ thị, cho phép dễ dàng thêm, sửa đổi và xóa các nút (nodes) và mối quan hệ (relationships) mà không cần phải định hình lại toàn bộ cơ sở dữ liệu.
-    \item Ngôn ngữ truy vấn Cypher của Neo4j rất mạnh mẽ và dễ sử dụng, giúp người sử dụng truy vấn các mối quan hệ phức tạp trong dữ liệu một cách nhanh chóng, hiệu quả.
-\end{itemize}
-Sau đây là những lí do mà nhóm chọn sử dụng Neo4J cho dự án:
-\begin{itemize}
-    \item Với khả năng lưu trữ dữ liệu dưới dạng đồ thị, Neo4j cho phép mô hình hóa các khái niệm học tập, mối quan hệ giữa các khóa học, module, và người học một cách linh hoạt.
-    
-\end{itemize}
-\subsection{VueJS}
-Vue.js là một framework JavaScript linh hoạt và dễ sử dụng, được thiết kế để xây dựng giao diện người dùng và ứng dụng web một cách hiệu quả. Được phát triển bởi Evan You và ra mắt lần đầu vào năm 2014, Vue.js đã nhanh chóng trở thành một trong những framework phổ biến nhất nhờ sự đơn giản, hiệu suất cao, và dễ dàng tích hợp với các dự án hiện có.\\
-Sau đây là những lý do để nhóm chọn sử dụng công nghệ này cho dự án:
-\begin{itemize}
-    \item Vue.js có cú pháp rõ ràng, đơn giản và dễ tiếp cận, phù hợp cho cả những lập trình viên mới bắt đầu và những người có kinh nghiệm.
-    \item Vue.js dựa trên kiến trúc thành phần, cho phép lập trình viên chia nhỏ giao diện thành các phần nhỏ, dễ quản lý và tái sử dụng. Mỗi thành phần đại diện cho một phần tử giao diện và có thể được kết hợp lại với nhau để tạo ra các ứng dụng phức tạp.
-    \item Với một cộng đồng người dùng lớn, Vue.js có nhiều tài nguyên học tập và hỗ trợ từ các diễn đàn, tài liệu chính thức và các thư viện mở rộng.
-\end{itemize}
-\subsection{FastAPI}
-FastAPI là một framework web hiện đại, nhanh chóng và hiệu quả dành cho việc xây dựng các API bằng Python. Được phát triển bởi Sebastián Ramírez và ra mắt lần đầu vào năm 2018, FastAPI đã nhanh chóng thu hút được sự chú ý của cộng đồng lập trình viên nhờ vào tốc độ và khả năng phát triển ứng dụng dễ dàng.\\
-Sau đây là những lí do để nhóm hiện thực ứng dụng sử dụng FastAPI vào dự án này:
-\begin{itemize}
-    \item FastAPI hỗ trợ kiểm tra kiểu dữ liệu (type checking) và tự động xác nhận dữ liệu đầu vào (cụ thể, request body) nhờ vào Pydantic. Điều này giúp giảm thiểu lỗi và đảm bảo dữ liệu đầu vào luôn hợp lệ.
-    \item FastAPI tự động tạo ra tài liệu API chi tiết và dễ sử dụng thông qua Swagger UI và ReDoc. FastAPI sẽ tự động tạo tài liệu cho các API endpoint, giúp việc kiểm tra và sử dụng API trở nên dễ dàng hơn.
-    \item FastAPI cho phép người sử dụng dễ dàng thêm vào các thành phần mà họ cần mà không bị ép buộc phải sử dụng các công cụ hay thư viện nhất định. Điều này cho phép nhóm hiện thực tùy chỉnh ứng dụng theo nhu cầu cụ thể của dự án.
-\end{itemize}
+\subsection{Hệ quản trị cơ sở dữ liệu đồ thị}
 
+Hệ quản trị cơ sở dữ liệu đồ thị (Graph Database Management Systems - GDBMS) là một loại cơ sở dữ liệu được thiết kế để lưu trữ và truy vấn dữ liệu theo dạng đồ thị, với các nút (nodes), cạnh (edges), và thuộc tính (properties) mô phỏng mối quan hệ giữa các thực thể. Hệ thống này đặc biệt hữu ích trong các trường hợp yêu cầu xử lý các mối quan hệ phức tạp và tìm kiếm các kết nối giữa dữ liệu. Một trong những công nghệ nổi bật trong lĩnh vực này là Neo4j, là một hệ quản trị cơ sở dữ liệu đồ thị mạnh mẽ và phổ biến nhất hiện nay. Báo cáo này sẽ phân tích và so sánh Neo4j với một số lựa chọn thay thế khác để xác định công cụ phù hợp nhất cho hệ thống học tập thông minh.
+
+\subsubsection{Các công nghệ khác}
+
+\begin{itemize} \item \textbf{ArangoDB}: ArangoDB là một cơ sở dữ liệu đa mô hình hỗ trợ đồ thị, tài liệu và key-value. Công cụ này mang lại sự linh hoạt khi kết hợp các mô hình dữ liệu khác nhau trong một cơ sở dữ liệu duy nhất. \item \textbf{OrientDB}: OrientDB là một cơ sở dữ liệu đồ thị đa mô hình, hỗ trợ đồ thị, tài liệu, đối tượng và mô hình key-value. Nó cung cấp các tính năng mạnh mẽ cho các hệ thống có yêu cầu phức tạp về quan hệ dữ liệu. \end{itemize}
+
+\subsubsection{So sánh giữa các công nghệ}
+
+\begin{itemize} \item \textbf{Neo4j}: Là công nghệ chuyên dụng cho cơ sở dữ liệu đồ thị, Neo4j sử dụng ngôn ngữ truy vấn Cypher, tối ưu cho việc xử lý và truy vấn các mối quan hệ phức tạp trong dữ liệu. Đây là công cụ lý tưởng cho các ứng dụng cần truy vấn đồ thị phức tạp và thực hiện các phân tích mối quan hệ giữa các thực thể. \item \textbf{ArangoDB}: ArangoDB cung cấp sự linh hoạt khi hỗ trợ các mô hình dữ liệu đa dạng. Tuy nhiên, việc kết hợp các mô hình dữ liệu có thể khiến việc làm việc với đồ thị trở nên phức tạp hơn so với Neo4j. \item \textbf{OrientDB}: Cũng hỗ trợ đa mô hình giống như ArangoDB, nhưng OrientDB không tối ưu bằng Neo4j trong việc truy vấn các mối quan hệ đồ thị phức tạp. Tuy nhiên, OrientDB có thể phù hợp với các yêu cầu phức tạp khác ngoài đồ thị. \end{itemize}
+
+\subsubsection{Lựa chọn}
+
+Với các yếu tố trên, nhóm quyết định lựa chọn Neo4j là công nghệ tối ưu cho hệ thống học tập thông minh nhờ vào khả năng tối ưu hóa dữ liệu đồ thị và hiệu suất cao trong việc truy vấn các mối quan hệ phức tạp.
+\subsection{Framework xây dựng giao diện người dùng}
+
+Framework xây dựng giao diện người dùng (UI Framework) giúp phát triển các ứng dụng web với giao diện người dùng linh hoạt và dễ dàng tương tác. Trong số các framework phổ biến hiện nay, Vue.js là một lựa chọn nổi bật nhờ vào sự đơn giản, khả năng mở rộng tốt và dễ dàng tích hợp với các dự án hiện có. Mục tiêu của hệ thống học tập thông minh yêu cầu một framework có thể xây dựng giao diện người dùng mượt mà, dễ dàng mở rộng và duy trì. Báo cáo này sẽ phân tích Vue.js và so sánh với hai lựa chọn thay thế phổ biến: React và Angular, để xác định công cụ phù hợp nhất.
+
+\subsubsection{Các công nghệ khác}
+
+\begin{itemize} \item \textbf{React}: React là một thư viện JavaScript mạnh mẽ, phát triển bởi Facebook, chuyên xây dựng giao diện người dùng qua các thành phần (components). React phù hợp với các ứng dụng có tính tương tác cao và khả năng tái sử dụng các thành phần. \item \textbf{Angular}: Angular là một framework JavaScript toàn diện, phát triển bởi Google, cung cấp một bộ công cụ đầy đủ để xây dựng các ứng dụng web phức tạp, bao gồm routing, state management và nhiều tính năng hỗ trợ khác. \end{itemize}
+
+\subsubsection{So sánh giữa các công nghệ}
+
+\begin{itemize} \item \textbf{Vue.js}: Vue.js có cú pháp dễ sử dụng, dễ tiếp cận và khả năng mở rộng tốt. Nó đặc biệt phù hợp với các ứng dụng vừa và nhỏ, dễ dàng tích hợp vào các dự án hiện có mà không làm tăng độ phức tạp. \item \textbf{React}: React là thư viện phổ biến, mạnh mẽ, đặc biệt cho các ứng dụng có tính tương tác cao. Tuy nhiên, React yêu cầu sử dụng thêm các thư viện như Redux cho việc quản lý state, điều này làm tăng độ phức tạp của dự án. \item \textbf{Angular}: Angular cung cấp nhiều công cụ mạnh mẽ nhưng có cú pháp khá phức tạp và thường yêu cầu người phát triển phải học hỏi nhiều hơn trước khi có thể tận dụng hết các tính năng. Nó phù hợp hơn cho các ứng dụng lớn, nhưng có thể gây khó khăn cho người mới bắt đầu. \end{itemize}
+
+\subsubsection{Lựa chọn}
+
+Với cú pháp dễ sử dụng, khả năng mở rộng tốt và sự dễ dàng trong việc tích hợp vào dự án hiện tại, nhóm quyết định chọn Vue.js làm framework xây dựng giao diện người dùng cho hệ thống học tập thông minh.
+\subsection{Framework phát triển API}
+
+Framework phát triển API là công cụ quan trọng trong việc xây dựng các hệ thống web hiện đại. FastAPI là một framework Python nhanh chóng, hiệu quả và dễ sử dụng, đặc biệt phù hợp với việc xây dựng các API với hiệu suất cao. Với tính năng tự động tạo tài liệu API và kiểm tra kiểu dữ liệu tự động nhờ vào Pydantic, FastAPI giúp tối ưu hóa quá trình phát triển ứng dụng. Báo cáo này sẽ phân tích FastAPI và so sánh với hai lựa chọn thay thế khác: Flask và Django, nhằm xác định công cụ phù hợp nhất cho hệ thống học tập thông minh.
+
+\subsubsection{Các công nghệ khác}
+
+\begin{itemize} \item \textbf{Flask}: Flask là một micro-framework Python đơn giản và dễ sử dụng, phù hợp cho các ứng dụng web nhỏ đến trung bình. Flask linh hoạt nhưng không cung cấp các tính năng tích hợp sẵn như FastAPI, yêu cầu người phát triển phải cấu hình thêm. \item \textbf{Django}: Django là một framework Python đầy đủ tính năng, hỗ trợ phát triển các ứng dụng web lớn với các công cụ tích hợp như ORM, hệ thống bảo mật và nhiều tính năng khác. \end{itemize}
+
+\subsubsection{So sánh giữa các công nghệ}
+
+\begin{itemize} \item \textbf{FastAPI}: FastAPI vượt trội về hiệu suất, hỗ trợ tự động tạo tài liệu API và kiểm tra kiểu dữ liệu nhờ vào Pydantic. Nó là sự lựa chọn lý tưởng cho các ứng dụng yêu cầu tốc độ cao và khả năng phát triển API dễ dàng. \item \textbf{Flask}: Flask linh hoạt và dễ sử dụng nhưng thiếu các tính năng tích hợp sẵn như FastAPI. Việc cấu hình và phát triển ứng dụng có thể cần thêm nhiều bước so với FastAPI. \item \textbf{Django}: Django cung cấp rất nhiều tính năng mạnh mẽ cho ứng dụng web lớn, nhưng đối với các API nhỏ hoặc cần sự kiểm soát chi tiết, Django có thể trở nên phức tạp và không cần thiết. \end{itemize}
+
+\subsubsection{Lựa chọn}
+
+Với hiệu suất cao, tính năng tự động tạo tài liệu API và khả năng dễ dàng tích hợp, nhóm quyết định chọn FastAPI làm framework phát triển API cho hệ thống học tập thông minh.
 \section{Tổng kết}
 \par Chương 2 đã cung cấp một cái nhìn tổng quan về các khái niệm và lý thuyết nền tảng trong lĩnh vực giáo dục và giáo dục thông minh. Chúng ta đã tìm hiểu về khái niệm giáo dục, vai trò quan trọng của nó trong việc phát triển toàn diện con người và sự thích nghi với môi trường xã hội. Đồng thời, khái niệm giáo dục thông minh đã được làm rõ, nhấn mạnh vào sự kết hợp giữa công nghệ và các phương pháp học tập cá nhân hóa, nhằm nâng cao hiệu quả giảng dạy và học tập.
 
