@@ -102,21 +102,29 @@ Người học có thể yêu cầu giải thích về mã nguồn để hiểu 
     \label{fig:enter-label}
 \end{figure}
 \begin{enumerate}
-    \item User:
+
+    \item User có ba loại con: Teacher, Manager, và Student. Mỗi loại người dùng có các mối quan hệ khác nhau với các thực thể khác trong hệ thống:
     \begin{itemize}
-        \item User được chia thành 3 loại là: student, teacher, admin. Mỗi người dùng có các thuộc tính cơ bản như: ID, tên đăng nhập, email, mật khẩu và loại người dùng.
-        \item Mỗi user sẽ có một vai trò cụ thể trong hệ thống.
+        \item Student có các mối quan hệ sau:
+        \begin{itemize}
+            \item Include một hoặc nhiều Activity.
+            \item Send nhiều Feedback cho hệ thống.
+            \item Submit nhiều Exercise để thực hành.
+            \item Join nhiều Course để tham gia các khóa học.
+            \item Bookmark nhiều Lesson để lưu trữ các bài học quan trọng.
+        \end{itemize}
+        \item Teacher có thể Upload nhiều Course vào hệ thống để giảng dạy.
+        \item Manager có thể Manage nhiều Course trong hệ thống, tức là có quyền quản lý các khóa học.
     \end{itemize}
-    \item Student:
-    \begin{itemize}
-        \item Mỗi sinh viên có các thuộc tính riêng như mục tiêu học tập, năm sinh , nền tảng học vấn và báo cáo về kết quả học tập .
-        \item Mỗi sinh viên có thể có một hoặc nhiều lộ trình học tập. Mỗi lộ trình học tập có thuộc tính như các bài học , cấp độ , thời gian, mục tiêu khóa học và ID. Lộ trình này bao gồm các lesson và bài kiểm tra.
-    \end{itemize}
-    \item Teacher: Giáo viên lưu thuộc tính về nơi làm việc và có thể tải lên các khóa học.
-    \item Manager: Quản trị viên có thuộc tính về danh sách feedback, knowledgegraph để có khả năng quản lý các kiến thức, xử lí feedback và quản lí người dùng.
-    \item Course: Mỗi khóa học bao gồm các thuộc tính như: ID, tên, mô tả, loại khóa học, mục tiêu đầu ra và danh sách các bài học.
-    \item Exercise: Bài tập có các thuộc tính như câu hỏi, đáp án, tài liệu liên quan, độ khó và loại bài tập.
-    \item AI: có các thuộc tính về: rule(kiểm tra bài tập đúng chủ đề, cấp độ), câu prompt, sử dụng dữ liệu từ KnowledgeGraph để tạo ra các lộ trình học tập và bài tập (Exercise) cho sinh viên 
+    \item Course bao gồm nhiều Lesson, và mỗi khóa học có thể Include nhiều bài học khác nhau. Mỗi học viên (Student) có thể tham gia một khóa học và cho mỗi khóa học, họ sẽ có một LearningPath riêng biệt. Mối quan hệ này thể hiện rằng mỗi học viên có một lộ trình học tập cho mỗi khóa học mà họ tham gia.
+    \item Lesson có thể Specialize thành Recommend Lesson, tức là các bài học có thể bao gồm các đề xuất học tập cho học viên. Mỗi bài học cũng có thể Include nhiều Module.
+    \item LearningPath của mỗi học viên sẽ Have nhiều Recommend Lesson. Các lộ trình học tập này sẽ dẫn dắt học viên thông qua các bài học được đề xuất trong suốt quá trình học.
+    \item Recommend Lesson có thể Include nhiều Module, tức là mỗi bài học được đề xuất có thể bao gồm nhiều mô-đun khác nhau để hỗ trợ học viên học tập một cách chi tiết hơn.
+    \item Module có thể Generate nhiều Quiz để đánh giá kết quả học tập của học viên. Mỗi mô-đun cũng có thể Generate một tài liệu (Document) duy nhất liên quan đến nội dung học.
+    \item Quiz chứa các câu hỏi và bài kiểm tra học viên, có thể bao gồm các phản hồi từ LLM Response, cung cấp thông tin về tên, độ khó, câu hỏi, câu trả lời, các lựa chọn, và hình ảnh liên quan đến bài kiểm tra.
+    \item Document có thể được tạo ra từ các mô-đun và cũng có phản hồi từ LLM Response, giúp cung cấp thêm tài liệu học tập cho học viên.
+    \item Activity bao gồm các hành động của người dùng trong hệ thống, và mỗi hoạt động có thể được Include bởi một hoặc nhiều User, đặc biệt là học viên.
+    \item Feedback là thông tin phản hồi từ học viên gửi đến hệ thống và có thể được Send từ nhiều User, đặc biệt là từ học viên để cải thiện chất lượng giảng dạy và học tập.
 \end{enumerate}
 \newpage
 \subsection{Lược đồ CSDL quan hệ ánh xạ}

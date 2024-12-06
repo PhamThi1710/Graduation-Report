@@ -21,6 +21,42 @@ Frontend được xây dựng bằng VueJS, tích hợp Vuetify và Tailwind CSS
     \caption{Cấu trúc Frontend}
 \end{figure}
 
+\subsection*{Hệ thống thiết kế (Design System)}
+
+Hệ thống thiết kế được triển khai với mục tiêu cung cấp một giao diện người dùng nhất quán, dễ sử dụng và dễ mở rộng. Hệ thống này bao gồm các thành phần chính sau:
+
+\subsubsection*{Typography}
+Typography được xây dựng trên cơ sở font chữ Public Sans, với nhiều kích cỡ và độ đậm khác nhau để phục vụ các nhu cầu hiển thị khác nhau. Font chữ này được chọn vì dễ đọc, phù hợp với các thiết kế hiện đại và hỗ trợ đa ngôn ngữ. Các cấp độ bao gồm:
+
+\begin{itemize}
+    \item \textbf{Heading}: Từ Heading 1 (48px, Bold) đến Heading 4 (24px, Semibold).
+    \item \textbf{Body Text}: Các cấp độ từ Large đến Small, sử dụng độ đậm từ Regular đến Bold, kích thước từ 10px đến 20px.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{Images/Implement/Typography.png}
+    \caption{Hệ thống Typography sử dụng trong ứng dụng}
+\end{figure}
+
+\subsubsection*{Bảng màu (Color Palette)}
+Bảng màu được thiết kế để mang lại sự nhất quán và dễ nhận biết trong giao diện người dùng. Bảng màu chính bao gồm các màu \textbf{Primary}, \textbf{Secondary}, và các trạng thái như \textbf{Error}, \textbf{Warning}, \textbf{Neutral}, \textbf{Success}. Mỗi màu được chia thành các sắc độ từ nhạt (25, 50) đến đậm (900, 950), nhằm đảm bảo khả năng hiển thị tốt trong các trường hợp sử dụng khác nhau.
+
+\begin{itemize}
+    \item \textbf{Primary}: Dùng cho các thành phần chính như nút bấm và tiêu đề.
+    \item \textbf{Secondary}: Dùng cho các chi tiết phụ hoặc nhấn mạnh nội dung.
+    \item \textbf{Error, Warning, Success}: Dùng để phản hồi trạng thái của hệ thống.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.15]{Images/Implement/Colors.jpg}
+    \caption{Bảng màu được sử dụng trong ứng dụng}
+\end{figure}
+
+Hệ thống này được tích hợp với Tailwind CSS, giúp tự động hóa việc áp dụng các quy tắc thiết kế (design tokens) vào mã nguồn. Điều này làm giảm thiểu lỗi thiết kế, đồng thời đảm bảo giao diện nhất quán trong toàn bộ ứng dụng.
+
+
 \textbf{Backend}
 
 Backend được phát triển với FastAPI, kết hợp với PostgreSQL để lưu trữ dữ liệu. Kiến trúc hệ thống được tổ chức theo các thành phần chính:
@@ -132,9 +168,6 @@ Cụ thể:
     \item Sinh viên nhập mục tiêu học tập cá nhân
     \item LLMs xử lý và đề xuất các bài học tương thích
 \end{itemize}
-
-
-Cảm ơn bạn đã chỉ ra điều đó. Dưới đây là bản sửa lại mà không nhắc đến Docker, tập trung vào việc triển khai và quản lý hệ thống trên Render:
 
 \textbf{4. Triển khai hệ thống}
 
