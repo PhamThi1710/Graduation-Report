@@ -1,27 +1,32 @@
-\section{System Analysis}
-\subsection{Business processes}
+\chapter{Đánh giá hệ thống}
 
-\subsection{Use cases}
+\section{Đánh giá tính năng và hiệu quả của hệ thống}
 
+Hệ thống hỗ trợ học tập bằng cách sử dụng LLMs (Language Models) để tự động tạo ra các bài học đề xuất cho sinh viên dựa trên các bài học có sẵn từ giảng viên. Các tính năng đã triển khai, như trang dashboard, course list, course detail, và các trang liên quan đến việc đề xuất lessons đã bước đầu cho phép sinh viên tương tác hiệu quả với hệ thống học tập.
 
-\subsection{Logical data flows}
+Trong quá trình phát triển, nhóm đã hoàn thành việc xây dựng giao diện và chức năng cơ bản, bao gồm:
 
-\newpage
-\section{System Design}
+\begin{itemize}
+    \item \textbf{Dashboard}: Cung cấp một cái nhìn tổng quan về các hoạt động học tập gần đây, tình trạng tiến độ học tập của sinh viên và các khóa học tham gia.
+    \item \textbf{Course List và Course Detail}: Cho phép sinh viên theo dõi các khóa học, xem chi tiết các bài học, và tiếp cận với các tài liệu học tập.
+    \item \textbf{Đề xuất Lessons}: Dựa trên mục tiêu học tập mà sinh viên đặt ra, hệ thống sẽ tự động tìm kiếm các bài học phù hợp từ các khóa học đã đăng tải, giúp sinh viên tiếp cận đúng bài học cần thiết.
+\end{itemize}
 
-\newpage
-\section{System Implementation}
+Các mô-đun học tập (quiz, code exercises, reading material) đã được phát triển cho phép sinh viên tham gia vào việc học theo dạng quiz, code exercises, và tài liệu đọc. Hệ thống cũng đã ghi lại quá trình học tập của sinh viên, tạo điều kiện để tiến hành báo cáo và đánh giá kết quả học tập.
 
-\newpage
+\section{Các vấn đề và khó khăn trong quá trình phát triển}
 
+Mặc dù hệ thống đã đạt được nhiều tiến triển, nhưng quá trình phát triển không thiếu thử thách. Một số vấn đề chính bao gồm:
 
-\section{System Evaluation}
+\begin{itemize}
+    \item \textbf{Khó khăn trong việc đồng bộ công nghệ}: Một số thành viên trong nhóm chưa thành thạo Docker, điều này gây khó khăn trong việc đồng bộ mã nguồn và triển khai hệ thống trên môi trường phát triển chung. Việc thiếu sự đồng thuận trong cách sử dụng các công cụ công nghệ cũng làm chậm tiến độ và dễ dẫn đến sự không nhất quán trong cấu hình hệ thống.
+    \item \textbf{Vấn đề về thời gian của các thành viên}: Một số thành viên trong nhóm có lịch trình không đồng đều, điều này dẫn đến việc không thể hoàn thành các phần việc đúng hạn. Mặc dù đội ngũ đã cố gắng chia sẻ công việc hợp lý, nhưng sự thiếu hụt nhân lực vào những giai đoạn quan trọng khiến công việc bị trễ.
+    \item \textbf{Chưa hoàn thiện phần chức năng Authentication}: Hiện tại, chức năng authentication của hệ thống chưa được hiện thực, khiến cho việc quản lý người dùng và bảo mật hệ thống chưa được đảm bảo. Điều này sẽ là một yếu tố quan trọng trong giai đoạn tiếp theo của hệ thống.
+\end{itemize}
 
-\newpage
-\section{Conclusion}
-\subsection{Achievements}
+Ngoài ra, việc tích hợp LLMs để sinh ra các đề xuất bài học và xây dựng mô-đun học tập cụ thể cũng gặp một số thách thức về hiệu suất và độ chính xác của các đề xuất. Cần cải thiện và tối ưu thuật toán để nâng cao chất lượng các bài học sinh ra.
 
-\subsection{Limitations}
-\subsection{Further improvements}
+\section{Kết chương}
 
-\newpage
+Tổng thể, hệ thống học tập đã đạt được những kết quả bước đầu đáng ghi nhận, với nhiều tính năng hữu ích cho sinh viên. Tuy nhiên, còn nhiều vấn đề cần giải quyết, đặc biệt là liên quan đến việc đồng bộ công nghệ, hoàn thiện chức năng authentication, và cải thiện các đề xuất học tập thông qua LLMs. Những vấn đề này sẽ được khắc phục trong các giai đoạn phát triển tiếp theo.
+
