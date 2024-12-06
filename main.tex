@@ -295,6 +295,10 @@
     \textbf{\Large PROTESTATION}
 \end{center}
 
+\par Bài báo cáo này được thực hiện với mục tiêu nghiên cứu và phát triển một hệ thống học tập trực tuyến thông minh, đáp ứng nhu cầu học tập cá nhân hóa và tối ưu hóa quá trình học của người dùng, đặc biệt là sinh viên ngành Khoa học máy tính. Trong quá trình thực hiện, tôi đã gặp không ít thử thách và khó khăn, từ việc nghiên cứu các mô hình ngôn ngữ lớn (LLM) cho đến việc triển khai các tính năng AI hỗ trợ trong hệ thống. Tuy nhiên, với sự nỗ lực và hỗ trợ từ nhiều phía, tôi đã hoàn thành được mục tiêu nghiên cứu và phát triển hệ thống như mong muốn.
+\par Mặc dù vậy, chúng tôi cũng nhận thức được rằng trong quá trình thực hiện vẫn còn những hạn chế và khó khăn, đặc biệt trong việc tối ưu hóa một số tính năng AI và việc tạo ra các bài tập tự động. Tuy nhiên, những thử thách này sẽ là nền tảng để tôi tiếp tục cải tiến hệ thống trong các giai đoạn phát triển tiếp theo. Chúng tôi hy vọng rằng những đóng góp của chúng tôi sẽ mang lại giá trị thực tế cho việc học tập và giảng dạy lập trình, đồng thời mở ra cơ hội ứng dụng rộng rãi hơn trong môi trường giáo dục.
+\par Chúng tôi xin cam kết rằng báo cáo này là công trình nghiên cứu độc lập của nhóm tôi. Tất cả các kết quả nghiên cứu, dữ liệu thu thập và phân tích đều được thực hiện một cách trung thực và không sao chép từ bất kỳ công trình nghiên cứu nào trước đó. Mọi nguồn tài liệu tham khảo đều được trích dẫn đầy đủ và rõ ràng trong báo cáo này. Nhóm tôi cam kết rằng những kết quả nghiên cứu trong báo cáo này phản ánh đúng những nỗ lực và công sức mà chúng tôi đã bỏ ra trong suốt quá trình thực hiện. Bất kỳ sự trợ giúp hay đóng góp nào từ bên ngoài đều được ghi nhận đầy đủ và không có sự gian lận hay sao chép.
+
 \par\hfill\textbf{Authors}\hspace{1cm}
 \par\hfill\textit{Đỗ Phương Nam}
 \par\hfill\textit{Phan Phạm Thi}\hspace{0.3cm}
@@ -305,6 +309,8 @@
     \textbf{\Large ACKNOWLEDGEMENTS}
 \end{center}
 
+\par Để hoàn thành bài báo cáo này, chúng tôi xin gửi lời cảm ơn sâu sắc đến các thầy cô, bạn bè và những người đã đồng hành cùng tôi trong suốt quá trình nghiên cứu và phát triển hệ thống. Đặc biệt, tôi xin gửi lời cảm ơn đến giáo viên hướng dẫn, người đã cung cấp cho chúng tôi những kiến thức quý báu, giúp chúng tôi hoàn thiện công trình nghiên cứu này. Sự chỉ dẫn tận tình của thầy cô đã giúp tôi hiểu rõ hơn về các phương pháp và công nghệ tiên tiến trong lĩnh vực học máy và trí tuệ nhân tạo.
+
 \par\hfill\textbf{Authors}\hspace{1cm}
 \par\hfill\textit{Đỗ Phương Nam}
 \par\hfill\textit{Phan Phạm Thi}\hspace{0.3cm}
@@ -314,6 +320,15 @@
 \begin{center}
     \textbf{\Large Abstract}
 \end{center}
+
+\par Báo cáo này trình bày thiết kế và phát triển một hệ thống học tập trực tuyến thông minh dành cho sinh viên ngành Khoa học máy tính và những người quan tâm đến việc học lập trình. Mục tiêu chính của hệ thống là cung cấp trải nghiệm học tập cá nhân hóa thông qua việc ứng dụng các mô hình ngôn ngữ lớn (LLM), tối ưu hóa quá trình học tập để trở nên linh hoạt, hiệu quả và phù hợp với nhu cầu cụ thể của từng người học.
+
+\par Hệ thống tập trung vào việc tăng cường sự tương tác giữa người học và trí tuệ nhân tạo (AI), tạo ra một môi trường học tập thông minh. Các tính năng chính bao gồm quản lý khóa học, lộ trình học tập cá nhân hóa, gia sư AI hỗ trợ lập trình, tạo bài tập tự động và theo dõi tiến độ học tập. Hệ thống hỗ trợ giảng viên trong việc tạo và quản lý khóa học, đồng thời tự động tạo bài tập và đánh giá, với khả năng điều chỉnh độ khó phù hợp với tiến độ học của người học.
+
+\par Một tính năng nổi bật của hệ thống là gia sư AI, hỗ trợ người học trong việc hiểu mã nguồn, đưa ra gợi ý tối ưu hóa mã, hỗ trợ sửa lỗi và cung cấp phản hồi thời gian thực về chất lượng mã lệnh. Ngoài ra, hệ thống còn tự động tạo bài tập, bao gồm các câu hỏi trắc nghiệm và bài tập lập trình, được điều chỉnh theo tiến độ học và nhu cầu của người dùng.
+
+\par Hệ thống học tập trực tuyến thông minh này nhằm tối ưu hóa trải nghiệm học tập, làm cho quá trình học trở nên cá nhân hóa, thích ứng và hiệu quả hơn, từ đó giúp người học nâng cao kỹ năng lập trình và tiếp cận kiến thức một cách linh hoạt, hiệu quả.
+
 \newpage
 
 \begin{singlespace}
