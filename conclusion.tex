@@ -20,35 +20,236 @@ Mặc dù hệ thống hiện tại đã có những tính năng cơ bản, như
 Nhìn chung, hệ thống đang trên đà phát triển và sẽ còn nhiều công việc cần phải hoàn thiện trong giai đoạn tiếp theo để đáp ứng được đầy đủ các nhu cầu của người dùng.
 
 \newpage
-\section*{Kế hoạch thực hiện Đồ án Tốt nghiệp}
-\begin{table}[H]
-    \centering
-    \small 
-    \begin{tabular}{|c|p{4.5cm}|p{6.5cm}|c|}
-    \hline
-    \textbf{Tuần} & \textbf{Nhiệm Vụ} & \textbf{Kết Quả Mong Đợi} & \textbf{Phụ Trách} \\ \hline
-    1 & Authentication: Backend APIs và UI & Đăng nhập/đăng ký hoạt động & Phạm Thi \\ \hline
-      & Landing Page: Thiết kế UI cơ bản & Trang giới thiệu hệ thống & Tuấn Anh \\ \hline
-      & Quản lý khóa học (Giảng viên): API CRUD & API để thêm/sửa/xóa khóa học, bài học & Phương Nam \\ \hline
-    2-3 & Quản lý học sinh (Giảng viên): API + UI & Giảng viên xem tiến độ và phản hồi học sinh & Phương Nam \\ \hline
-        & Progress Tracking: Backend APIs & Xử lý dữ liệu học tập sinh viên & Phạm Thi \\ \hline
-        & Quản lý người dùng (Admin): API CRUD & API quản lý tài khoản (giảng viên, sinh viên) & Tuấn Anh \\ \hline
-    4-5-6 & Tích hợp LLM: Quiz Generation, Document Generation (Backend APIs) & API nhận input từ sinh viên, giảng viên và tạo câu hỏi trắc nghiệm tự động & Phạm Thi \\ \hline
-        & Tích hợp LLM: Code Hint Module, Debugging Assistant, Explain Code Module & API cung cấp gợi ý sửa lỗi và giải thích code khi sinh viên yêu cầu & Tuấn Anh \\ \hline
-        & Xử lý câu trả lời: LLM Evaluation Module & API chấm điểm câu trả lời tự động và đưa ra nhận xét & Phương Nam \\ \hline
-    7-8 & Progress Tracking: UI + Biểu đồ & Giao diện hiển thị tiến độ học tập của sinh viên & Phạm Thi \\ \hline
-        & Gửi Feedback (Sinh viên): Backend APIs & Gửi phản hồi về bài học/hệ thống & Phương Nam \\ \hline
-        & Hiển thị Recent Activities: Backend APIs & Xử lý và lưu trữ dữ liệu hoạt động gần đây của sinh viên & Tuấn Anh \\ \hline
-    9-10 & Gửi Feedback: UI tích hợp & Giao diện cho sinh viên gửi feedback & Phương Nam \\ \hline
-        & Hiển thị Recent Activities: UI tích hợp & Giao diện hiển thị các hoạt động gần đây của sinh viên & Tuấn Anh \\ \hline
-        & Quản lý hệ thống (Admin): Logs \& Lỗi & API và UI để admin theo dõi logs và lỗi & Tuấn Anh \\ \hline
-    11-12 & Xử lý Feedback (Admin): Backend APIs & API xử lý phản hồi từ sinh viên & Phương Nam \\ \hline
-        & Quản lý bài tập (Giảng viên): API CRUD & API quản lý bài tập trong khóa học & Phạm Thi \\ \hline
-        & Testing Feedback Module & Kiểm tra và debug toàn bộ module Feedback & Phương Nam \\ \hline
-    13 & Testing \& Debugging: Toàn bộ hệ thống & Kiểm tra, fix lỗi phát sinh trên hệ thống & Cả nhóm \\ \hline
-    14 & Triển khai Backend: Deploy APIs & Backend chạy trên server test & Phạm Thi \\ \hline
-        & Triển khai Frontend: Deploy giao diện & Frontend hoạt động ổn định & Tuấn Anh \\ \hline
-    15 & Báo cáo \& Demo: Chuẩn bị thuyết trình & Báo cáo đầy đủ, demo hoàn thiện & Cả nhóm \\ \hline
-    \end{tabular}
-    \caption{Kế hoạch 15 Tuần}
-\end{table}
+\section{Kế hoạch thực hiện Đồ án Tốt nghiệp}
+\subsection*{Tuần 1}
+
+\noindent \textbf{Tên nhiệm vụ:} Authentication: Backend APIs và UI \\
+\noindent \textbf{Người đảm nhiệm:} Phạm Thi \\
+\noindent \textbf{Chi tiết nhiệm vụ:}
+\begin{enumerate}[label=-]
+    \item Phát triển API cho chức năng đăng nhập và đăng ký.
+    \item Cài đặt hệ thống bảo mật cho API, bao gồm mã hóa mật khẩu và xác thực người dùng.
+    \item Thiết kế giao diện UI cho trang đăng nhập và đăng ký.
+    \item Kiểm tra tính năng đăng nhập và đăng ký với các trường hợp đặc biệt như mật khẩu sai, tài khoản không tồn tại.
+\end{enumerate}
+
+\noindent \textbf{Tên nhiệm vụ:} Landing Page: Thiết kế UI cơ bản \\
+\noindent \textbf{Người đảm nhiệm:} Tuấn Anh \\
+\noindent \textbf{Chi tiết nhiệm vụ:}
+\begin{enumerate}[label=-]
+    \item Thiết kế giao diện trang giới thiệu của hệ thống.
+    \item Tích hợp thông tin cơ bản về hệ thống, cách thức hoạt động và các tính năng chính.
+    \item Kiểm tra tính tương thích và khả năng tương tác của trang giới thiệu.
+\end{enumerate}
+
+\noindent \textbf{Tên nhiệm vụ:} Quản lý khóa học (Giảng viên): API CRUD \\
+\noindent \textbf{Người đảm nhiệm:} Phương Nam \\
+\noindent \textbf{Chi tiết nhiệm vụ:}
+\begin{enumerate}[label=-]
+    \item Phát triển các API cho phép giảng viên thêm, sửa và xóa các khóa học.
+    \item Đảm bảo các API này có thể xử lý các tình huống dữ liệu như khóa học đã có, khóa học không hợp lệ.
+    \item Phát triển tính năng yêu cầu giảng viên upload tài liệu cho mỗi bài học (lesson) trong khóa học. Mỗi lesson cần có ít nhất một tài liệu PDF (slides của chapter) được upload. Giảng viên có thể upload các loại tài liệu khác, nhưng sẽ có các giới hạn về định dạng file (ví dụ: chỉ cho phép các định dạng như .pdf, .docx, .pptx, v.v.).
+    \item Đảm bảo rằng giảng viên phải nhập tên và thứ tự của từng lesson (chapter). Trường mô tả (description) là tùy chọn, không bắt buộc.
+    \item Kiểm tra API với các bộ dữ liệu mẫu, bao gồm các trường hợp không hợp lệ như tải lên tài liệu không đúng định dạng, thiếu tên hoặc thứ tự bài học.
+    \item Cung cấp các thông báo lỗi rõ ràng nếu tài liệu không hợp lệ hoặc thiếu thông tin cần thiết cho bài học.
+    \item Kiểm tra API với các tình huống thực tế để đảm bảo tính chính xác, hiệu suất và khả năng mở rộng của hệ thống khi có nhiều bài học và tài liệu được thêm vào.
+\end{enumerate}
+
+
+\subsection*{Tuần 2-3}
+
+\noindent \textbf{Tên nhiệm vụ:} Quản lý học sinh (Giảng viên): API + UI \\
+\noindent \textbf{Người đảm nhiệm:} Phương Nam \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Phát triển API cho phép giảng viên xem tiến độ học tập của học sinh. 
+    \item Thiết kế giao diện UI cho phép giảng viên dễ dàng xem và tương tác với tiến độ của từng học sinh. 
+    \item Thêm các tính năng lọc, tìm kiếm và phân loại học sinh theo tiến độ học tập. 
+    \item Kiểm tra tính năng giao diện và API.
+\end{enumerate}
+
+\noindent \textbf{Tên nhiệm vụ:} Progress Tracking: Backend APIs \\
+\noindent \textbf{Người đảm nhiệm:} Phạm Thi \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Phát triển API để xử lý và lưu trữ dữ liệu học tập của sinh viên. 
+    \item Đảm bảo tính chính xác trong việc theo dõi tiến độ học tập của sinh viên qua các bài học và khóa học. 
+    \item Tích hợp các API với các hệ thống khác để đảm bảo dữ liệu được đồng bộ và cập nhật đúng lúc.
+\end{enumerate}
+
+\noindent \textbf{Tên nhiệm vụ:} Quản lý người dùng (Admin): API CRUD \\
+\noindent \textbf{Người đảm nhiệm:} Tuấn Anh \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Phát triển API cho phép quản lý tài khoản của giảng viên và sinh viên. 
+    \item Thiết lập quyền truy cập cho admin để có thể xem, thêm, sửa và xóa tài khoản người dùng. 
+    \item Đảm bảo các API bảo mật thông tin người dùng và thực hiện các kiểm tra bảo mật.
+\end{enumerate}
+
+\subsection*{Tuần 4-6}
+
+\noindent \textbf{Tên nhiệm vụ:} Tích hợp LLM: Quiz Generation, Document Generation (Backend APIs) \\
+\noindent \textbf{Người đảm nhiệm:} Phạm Thi \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Phát triển API sử dụng LLM (Large Language Model) để tạo các câu hỏi trắc nghiệm tự động dựa trên bài giảng. 
+    \item Tạo tài liệu tự động từ nội dung khóa học, bao gồm phần tóm tắt và các câu hỏi ôn tập. 
+    \item Kiểm tra độ chính xác của các câu hỏi được tạo ra và tính hiệu quả của tài liệu tự động.
+\end{enumerate}
+
+\noindent \textbf{Tên nhiệm vụ:} Tích hợp LLM: Code Hint Module, Debugging Assistant, Explain Code Module \\
+\noindent \textbf{Người đảm nhiệm:} Tuấn Anh \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Phát triển API cung cấp gợi ý sửa lỗi và giải thích code tự động khi sinh viên gặp vấn đề. 
+    \item Tích hợp module giải thích các lỗi và cung cấp hướng dẫn sửa chữa trong quá trình lập trình. 
+    \item Thực hiện kiểm tra và tối ưu hóa các module này để đảm bảo tính chính xác và hiệu quả.
+\end{enumerate}
+
+\noindent \textbf{Tên nhiệm vụ:} Xử lý câu trả lời: LLM Evaluation Module \\
+\noindent \textbf{Người đảm nhiệm:} Phương Nam \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Phát triển API chấm điểm tự động cho câu trả lời của sinh viên. 
+    \item Sử dụng LLM để phân tích và đưa ra nhận xét về câu trả lời của sinh viên. 
+    \item Đảm bảo API có thể xử lý các loại câu hỏi khác nhau và đưa ra đánh giá chính xác.
+\end{enumerate}
+
+\subsection*{Tuần 7-8}
+
+\noindent \textbf{Tên nhiệm vụ:} Progress Tracking: UI + Biểu đồ \\
+\noindent \textbf{Người đảm nhiệm:} Phạm Thi \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Thiết kế giao diện UI hiển thị tiến độ học tập của sinh viên thông qua biểu đồ và đồ thị. 
+    \item Đảm bảo rằng giao diện có thể cập nhật và phản hồi nhanh chóng với dữ liệu mới. 
+    \item Kiểm tra tính tương thích của giao diện với các thiết bị và nền tảng khác nhau.
+\end{enumerate}
+
+\noindent \textbf{Tên nhiệm vụ:} Gửi Feedback (Sinh viên): Backend APIs \\
+\noindent \textbf{Người đảm nhiệm:} Phương Nam \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Phát triển API cho phép sinh viên gửi phản hồi về bài học và hệ thống. 
+    \item Đảm bảo hệ thống lưu trữ và xử lý phản hồi của sinh viên một cách chính xác và hiệu quả. 
+    \item Thực hiện các kiểm tra và tối ưu hóa để đảm bảo tính ổn định và bảo mật cho API.
+\end{enumerate}
+
+\noindent \textbf{Tên nhiệm vụ:} Hiển thị Recent Activities: Backend APIs \\
+\noindent \textbf{Người đảm nhiệm:} Tuấn Anh \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Phát triển API lưu trữ và hiển thị các hoạt động gần đây của sinh viên. 
+    \item Đảm bảo API này có thể xử lý và truy vấn dữ liệu một cách nhanh chóng và chính xác. 
+    \item Kiểm tra tính năng API trong các tình huống thực tế và đảm bảo dữ liệu không bị mất hoặc sai sót.
+\end{enumerate}
+
+\subsection*{Tuần 9-10}
+
+\noindent \textbf{Tên nhiệm vụ:} Gửi Feedback: UI tích hợp \\
+\noindent \textbf{Người đảm nhiệm:} Phương Nam \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Thiết kế giao diện người dùng cho tính năng gửi phản hồi của sinh viên. 
+    \item Cung cấp các tùy chọn cho sinh viên để chọn loại phản hồi và nhập ý kiến. 
+    \item Tối ưu giao diện để đảm bảo tính thân thiện và dễ sử dụng trên nhiều nền tảng khác nhau. 
+    \item Kiểm tra các chức năng của giao diện để đảm bảo dữ liệu phản hồi được gửi đúng và đầy đủ.
+\end{enumerate}
+
+\noindent \textbf{Tên nhiệm vụ:} Hiển thị Recent Activities: UI tích hợp \\
+\noindent \textbf{Người đảm nhiệm:} Tuấn Anh \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Thiết kế giao diện UI để hiển thị các hoạt động gần đây của sinh viên, bao gồm các bài học, bài tập, và phản hồi. 
+    \item Cung cấp khả năng lọc và tìm kiếm các hoạt động theo thời gian hoặc loại hoạt động. 
+    \item Đảm bảo giao diện có thể cập nhật động khi có dữ liệu mới từ các API backend. 
+    \item Kiểm tra giao diện với các tình huống thực tế để đảm bảo hiển thị chính xác và dễ sử dụng.
+\end{enumerate}
+
+\noindent \textbf{Tên nhiệm vụ:} Quản lý hệ thống (Admin): Logs \& Lỗi \\
+\noindent \textbf{Người đảm nhiệm:} Tuấn Anh \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Phát triển API và giao diện người dùng cho phép admin theo dõi các logs và lỗi hệ thống. 
+    \item Xây dựng chức năng cảnh báo khi phát hiện lỗi nghiêm trọng hoặc sự cố trong hệ thống. 
+    \item Đảm bảo tính năng có thể phân loại các lỗi và sự cố theo mức độ ưu tiên và loại hình. 
+    \item Kiểm tra hiệu quả và độ chính xác của tính năng giám sát lỗi trong các tình huống thực tế.
+\end{enumerate}
+
+\subsection*{Tuần 11-12}
+
+\noindent \textbf{Tên nhiệm vụ:} Xử lý Feedback (Admin): Backend APIs \\
+\noindent \textbf{Người đảm nhiệm:} Phương Nam \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Phát triển API cho phép admin xử lý phản hồi từ sinh viên. 
+    \item Tích hợp hệ thống để admin có thể xem, phân loại và trả lời phản hồi của sinh viên. 
+    \item Đảm bảo API có khả năng phân tích các phản hồi tự động và cung cấp các giải pháp hoặc hướng dẫn. 
+    \item Kiểm tra tính hiệu quả của hệ thống trong việc quản lý và xử lý phản hồi.
+\end{enumerate}
+
+\noindent \textbf{Tên nhiệm vụ:} Quản lý bài tập (Giảng viên): API CRUD \\
+\noindent \textbf{Người đảm nhiệm:} Phạm Thi \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Phát triển các API cho phép giảng viên quản lý bài tập trong các khóa học. 
+    \item Đảm bảo giảng viên có thể tạo, chỉnh sửa, xóa và xem các bài tập. 
+    \item Xây dựng API để giảng viên có thể theo dõi tình trạng hoàn thành bài tập của sinh viên. 
+    \item Kiểm tra tính ổn định và chính xác của API trong các tình huống sử dụng thực tế.
+\end{enumerate}
+
+\noindent \textbf{Tên nhiệm vụ:} Testing Feedback Module \\
+\noindent \textbf{Người đảm nhiệm:} Phương Nam \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Kiểm tra và debug toàn bộ module Feedback để đảm bảo tính năng hoạt động đúng. 
+    \item Chạy thử nghiệm với nhiều tình huống khác nhau để kiểm tra độ chính xác và tính ổn định. 
+    \item Xử lý các lỗi phát sinh và tối ưu hóa các chức năng liên quan đến phản hồi. 
+    \item Kiểm tra khả năng xử lý khối lượng lớn dữ liệu phản hồi từ nhiều người dùng cùng lúc.
+\end{enumerate}
+
+\subsection*{Tuần 13}
+
+\noindent \textbf{Tên nhiệm vụ:} Testing \& Debugging: Toàn bộ hệ thống \\
+\noindent \textbf{Người đảm nhiệm:} Cả nhóm \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Kiểm tra toàn bộ hệ thống để phát hiện và sửa lỗi. 
+    \item Thực hiện các bài test tự động và thủ công trên cả backend và frontend. 
+    \item Đảm bảo hệ thống vận hành mượt mà với tất cả các tính năng được tích hợp. 
+    \item Xử lý các vấn đề hiệu suất và bảo mật nếu có. 
+    \item Kiểm tra khả năng mở rộng của hệ thống khi có nhiều người dùng truy cập đồng thời.
+\end{enumerate}
+
+\subsection*{Tuần 14}
+
+\noindent \textbf{Tên nhiệm vụ:} Triển khai Backend: Deploy APIs \\
+\noindent \textbf{Người đảm nhiệm:} Phạm Thi \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Triển khai các API backend lên môi trường test hoặc production. 
+    \item Cấu hình các server và cơ sở hạ tầng để chạy API một cách ổn định. 
+    \item Kiểm tra kết nối và hiệu suất của các API sau khi triển khai. 
+    \item Đảm bảo hệ thống có thể xử lý lưu lượng truy cập thực tế từ người dùng.
+\end{enumerate}
+
+\noindent \textbf{Tên nhiệm vụ:} Triển khai Frontend: Deploy UI \\
+\noindent \textbf{Người đảm nhiệm:} Tuấn Anh \\
+\noindent \textbf{Chi tiết nhiệm vụ:} 
+\begin{enumerate}[label=-]
+    \item Triển khai giao diện người dùng lên môi trường test hoặc production. 
+    \item Đảm bảo giao diện hoạt động mượt mà và không gặp lỗi trên các trình duyệt và thiết bị khác nhau.
+\end{enumerate}
+
+\subsection*{Tuần 15}
+
+\noindent \textbf{Tên nhiệm vụ:} Báo cáo \& Demo: Chuẩn bị thuyết trình \\
+\noindent \textbf{Người đảm nhiệm:} Cả nhóm \\
+\noindent \textbf{Chi tiết nhiệm vụ:}
+\begin{enumerate}[label=-]
+    \item Chuẩn bị báo cáo đầy đủ về quá trình phát triển dự án, các tính năng đã hoàn thành và kết quả đạt được.
+    \item Tạo slide thuyết trình để trình bày các điểm nổi bật của hệ thống và quy trình làm việc.
+    \item Thực hiện demo hệ thống cho các đối tượng liên quan, bao gồm giảng viên và sinh viên.
+    \item Sửa lỗi và cải thiện các tính năng nếu cần thiết dựa trên phản hồi từ người dùng trong buổi demo.
+\end{enumerate}
+
