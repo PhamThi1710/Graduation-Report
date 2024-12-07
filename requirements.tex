@@ -122,48 +122,126 @@ Các người dùng liên quan trong hệ thống:
 \begin{enumerate}
     \item User
     \begin{itemize}
-        \item Thực thể: Người dùng
-        \item Thuộc tính: ID, username, password, role (student, admin, teacher)
+        \item Thực thể:User
+        \item Thuộc tính: ID, username, email,password, role (student, admin, teacher)
         \begin{itemize}
             \item Student: Goal, Birthyear, Background.
-            \item Teacher 
+            \item Teacher: Organizaiton
             \item Admin
         \end{itemize}
     \end{itemize}
     \item Course
     \begin{itemize}
-        \item Thực thể: Khóa học
-        \item Thuộc tính: ID, Name, Description, Type, Content.
+        \item Thực thể: Course
+        \item Thuộc tính: ID, Name, Description, Type, Learning Outcomes, nCredits.
     \end{itemize}
     \item LearningPath
     \begin{itemize}
-        \item Thực thể: Lộ trình học tập
-        \item Thuộc tính: ID, ExerciseCount, Level, Time.
+        \item Thực thể: LearningPath.
+        \item Thuộc tính: ID, Progress, Objective, StartDate, EndDate.
+    \end{itemize}
+    \item Lesson
+    \begin{itemize}
+        \item Thực thể: Lesson.
+        \item Thuộc tính: ID, Lesson Outcomes, Description, Name, Documents.
+    \end{itemize}
+    \item Recommend Lesson
+    \begin{itemize}
+        \item Thực thể: Recommend Lesson.
+        \item Thuộc tính: Expalin, Content, Progress.
     \end{itemize}
     \item Exercise
     \begin{itemize}
-        \item Thực thể: bài tập
-        \item Thuộc tính: ID bài tập, Document, Difficulty, Type (Quiz, Code).
-        \begin{itemize}
-            \item Quiz: ID, Content, Questions, Answer.
-            \item Code: ID, Content, Language, Testcases.
-        \end{itemize}
+        \item Thực thể: Exercise
+        \item Thuộc tính: ID , Name, Description, Type (Quiz, Code).
     \end{itemize}
-    \item Knowledge
+    \item Module
     \begin{itemize}
-        \item Thực thể: Dữ liệu kiến thức
-        \item Thuộc tính: Questions and Answers, Document, ExerciseData.
+        \item Thực thể: Module
+        \item Thuộc tính: ID, Objective, Title, Access.
+    \end{itemize}
+    \item Quiz
+    \begin{itemize}
+        \item Thực thể: Quiz
+        \item Thuộc tính: ID, Status, Score, MaxScore, LLM Response(Name, Difficulty, Quesion, Answer, Options, Image).
+    \end{itemize}
+    \item Document
+     \begin{itemize}
+        \item Thực thể: Document
+        \item Thuộc tính: ID, LLM Response.
+    \end{itemize}
+    \item Activity
+     \begin{itemize}
+        \item Thực thể: Activity    
+        \item Thuộc tính: ID, Type, Description, Timestamp.
+    \end{itemize}
+    \item Feedback
+     \begin{itemize}
+        \item Thực thể: Feedback    
+        \item Thuộc tính: ID, Content, Time.
     \end{itemize}
 \end{enumerate}
-\newpage
 \subsubsection{Mối quan hệ dữ liệu}
 \begin{itemize}
-    \item Admin có thể Manage (quản lý) Course, Knowledge, và LearningPath.
-    \item Teacher có thể Upload (tải lên) Course.
-    \item Student Have (có) một hoặc nhiều LearningPath.
-    \item LearningPath bao gồm nhiều Exercise.
-    \item AI Use (sử dụng) dữ liệu từ Knowledge và Course để Generate (sinh ra) các LearningPath, Exercise.
-    \item Exercise bao gồm 2 loại bài tập là Quiz và Code.
+    \item User:
+    \begin{itemize}
+        \item Specializes: Teacher, Manager, Student
+        \item Mối quan hệ với các thực thể:
+        \begin{itemize}
+            \item Student:  
+            \begin{itemize}
+                \item Include: 1-N Activity
+                \item Send: 1-N Feedback
+                \item Submission: N-N Exercise
+                \item Join: N-N Course
+                \item Bookmark: N-N Lesson
+            \end{itemize}
+            \item Teacher:  
+            \begin{itemize}
+                \item Upload: 1-N Course
+            \end{itemize}
+            \item Manager:  
+            \begin{itemize}
+                \item Manage: N-N Course
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+
+    \item Course:
+    \begin{itemize}
+        \item Include: 1-N Lesson
+        \item 1 Student - 1 Course: 1 LearningPath
+        \item Mối quan hệ với các thực thể:
+        \begin{itemize}
+            \item Include: 1-N Lesson
+            \item 1 Student 1 Course Have 1 LearningPath: Mối quan hệ giữa Student và Course, mỗi học viên chỉ có một LearningPath cho mỗi khóa học.
+        \end{itemize}
+    \end{itemize}
+
+    \item Lesson:
+    \begin{itemize}
+        \item Specializes: Recommend Lesson
+        \item Mối quan hệ với các thực thể:
+        \begin{itemize}
+            \item Include: 1-N Module
+        \end{itemize}
+    \end{itemize}
+
+    \item LearningPath:
+    \begin{itemize}
+        \item Have: 1-N Recommend Lesson
+    \end{itemize}
+
+    \item Recommend Lesson:
+    \begin{itemize}
+        \item Include: 1-N Module
+    \end{itemize}
+
+    \item Module:
+    \begin{itemize}
+        \item Generate: 1-N Quiz
+        \item Generate: 1-1 Document
+    \end{itemize}
 \end{itemize}
 \section{Kết luận}
 Chương 4 đã trình bày chi tiết về hệ thống đề xuất trong môi trường học tập trực tuyến thông minh. Hệ thống cung cấp các công cụ mạnh mẽ giúp người học có trải nghiệm học tập hiệu quả và tối ưu. Các tính năng như tạo bài tập tự động, theo dõi tiến độ học tập, và hỗ trợ từ gia sư AI giúp người học nâng cao khả năng lập trình và tiếp cận kiến thức một cách linh hoạt, hiệu quả.
