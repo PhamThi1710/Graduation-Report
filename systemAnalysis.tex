@@ -13,7 +13,39 @@ Trong quá trình phát triển, nhóm đã hoàn thành việc xây dựng giao
 \end{itemize}
 
 Các mô-đun học tập (quiz, code exercises, reading material) đã được phát triển cho phép sinh viên tham gia vào việc học theo dạng quiz, code exercises, và tài liệu đọc. Hệ thống cũng đã ghi lại quá trình học tập của sinh viên, tạo điều kiện để tiến hành báo cáo và đánh giá kết quả học tập.
-
+\newpage
+\section{Đánh giá các hệ thống liên quan}
+\begin{table}[ht]
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{|p{3.5cm}|p{3.5cm}|p{3.5cm}|p{3.5cm}|p{3.5cm}|p{3.5cm}|p{3.5cm}|}
+    \hline
+    \textbf{Tiêu chí} & \textbf{Hệ thống Adaptive LearningPath [11]} & \textbf{Hệ thống FOKE [12]} & \textbf{CS50.ai} & \textbf{APAS} & \textbf{LeetCode} \\ \hline
+    \textbf{Cá nhân hóa} & Đề xuất lộ trình dựa trên năng lực học sinh & Dựa trên hồ sơ người học và kỹ thuật prompt engineering & Gợi ý mã nguồn, trợ lý học tập AI & Phản hồi tức thời, gợi ý cải thiện mã & Tạo bài tập nhưng ít cá nhân hóa \\ \hline
+    \textbf{Tính tương thích với người dùng} & Thông qua đồ thị tri thức và tài nguyên phù hợp & Tùy chỉnh theo phong cách học tập và hành vi & Trợ lý học tập dựa trên GPT-4, trả lời câu hỏi học thuật & Phản hồi chi tiết về lỗi và cải tiến mã & Tạo bài tập dựa trên ngữ cảnh nhưng ít tùy chỉnh \\ \hline
+    \textbf{Khả năng tương tác} & Chỉ có gợi ý tài liệu học tập & Tương tác qua gợi ý cấu trúc và phản hồi liên tục & Chatbot tương tác trực tiếp với sinh viên & AI-Tutor cung cấp phản hồi và gợi ý cải thiện mã & Tương tác chủ yếu thông qua bài tập và câu hỏi \\ \hline
+    \textbf{Độ chính xác của đề xuất} & Tùy chỉnh theo dữ liệu thực tế & Sử dụng graph embedding và gợi ý cấu trúc & AI đưa ra phản hồi chính xác về mã nguồn & Phản hồi tức thời về mã nguồn và gợi ý cải thiện & Tạo bài tập nhưng không có giải thích chi tiết \\ \hline
+    \textbf{Sự minh bạch và giải thích} & Đưa ra lý do thay đổi lộ trình học & Cung cấp giải thích rõ ràng về lộ trình học & Giải thích chi tiết về mã nguồn và phong cách lập trình & Cung cấp lý do cải thiện mã, không tiết lộ đáp án & Ít giải thích về cách tạo bài tập hoặc câu hỏi \\ \hline
+    \textbf{Tính mở rộng} & Có thể mở rộng với nhiều tài nguyên học tập & Có thể mở rộng với nhiều đối tượng người học và lĩnh vực & Có thể áp dụng cho các khóa học online lớn & Có thể mở rộng cho nhiều khóa học và bài tập & Hệ thống có sẵn các bài tập cho nhiều cấp độ \\ \hline
+    \textbf{Ứng dụng vào thực tế} & Có thể áp dụng cho lớp học truyền thống và trực tuyến & Ứng dụng vào nhiều môi trường học tập khác nhau & Ứng dụng trong các khóa học lớn như CS50 & Hệ thống đánh giá tự động có thể áp dụng cho lớp học và MOOCs & Ứng dụng cho các bài tập lập trình cá nhân và nhóm \\ \hline
+    \textbf{Tiết kiệm thời gian cho giảng viên} & Giảm tải công việc của giảng viên & Giảm tải cho giảng viên trong việc thiết kế lộ trình học & Giảm tải cho giảng viên trong việc giải thích mã & Giảm tải cho giảng viên trong việc kiểm tra và đánh giá bài tập & Giảm tải cho giảng viên trong việc tạo bài tập \\ \hline
+    \textbf{Hiệu quả học tập} & Cải thiện khả năng học của học sinh qua lộ trình cá nhân hóa & Cải thiện hiệu quả học tập nhờ cá nhân hóa sâu & Tăng cường khả năng tự học của sinh viên & Giúp sinh viên phát triển tư duy thuật toán & Hiệu quả học tập phụ thuộc vào việc tự học của người dùng \\ \hline
+    \end{tabular}
+    }
+    \end{table}
+\begin{itemize}
+    \item Các tiêu chí đánh giá hệ thống
+    \begin{enumerate}
+        \item Cá nhân hóa: Đánh giá mức độ cá nhân hóa của lộ trình học tập, phản hồi và tài nguyên học tập.
+        \item Tính tương thích với người dùng: Đánh giá khả năng tương thích của hệ thống với các đặc điểm người dùng như phong cách học tập, mục tiêu học tập, và năng lực hiện tại.
+        \item Khả năng tương tác: Đánh giá mức độ và tính hiệu quả của sự tương tác giữa người học và hệ thống (ví dụ: chatbot, phản hồi tức thời).
+        \item Độ chính xác của đề xuất: Đánh giá khả năng của hệ thống trong việc tạo ra các đề xuất chính xác, phù hợp với người học.
+        \item Sự minh bạch và giải thích: Đánh giá mức độ giải thích rõ ràng của hệ thống về các đề xuất và lý do chọn các tài liệu học tập.
+        \item Tính mở rộng: Đánh giá khả năng mở rộng của hệ thống khi có nhiều người học và tài nguyên giáo dục hơn.
+        \item Ứng dụng vào thực tế: Đánh giá khả năng áp dụng hệ thống vào môi trường học tập thực tế, như lớp học truyền thống, lớp học trực tuyến, hoặc hệ thống MOOCs.
+        \item Tiết kiệm thời gian cho giảng viên: Đánh giá mức độ mà hệ thống giúp giảng viên giảm tải công việc như đánh giá bài tập, phản hồi học sinh, v.v.
+        \item Hiệu quả học tập: Đánh giá mức độ cải thiện kết quả học tập của sinh viên khi sử dụng hệ thống.
+    \end{enumerate}
+\end{itemize}
 \section{Các vấn đề và khó khăn trong quá trình phát triển}
 
 Mặc dù hệ thống đã đạt được nhiều tiến triển, nhưng quá trình phát triển không thiếu thử thách. Một số vấn đề chính bao gồm:
