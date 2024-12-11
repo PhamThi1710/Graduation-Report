@@ -244,3 +244,118 @@ Mỗi kịch bản kiểm thử được tổ chức và theo dõi theo bảng s
     \item \textbf{Kiểm thử độ tin cậy}: Kiểm tra xem các API có thể xử lý được các tình huống thực tế và đưa ra kết quả chính xác.
 \end{itemize}
 \subsubsection{Kết quả kiểm thử API}
+\subsubsubsection{Kiểm thử phương thức}
+\begin{itemize}
+    \item \textbf{Welcome API Testing}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/test/test_WC.png}
+        \caption{Kiểm thử truy xuất các khóa học gần đây}
+    \end{figure}
+    Minh họa cách hệ thống truy xuất thông tin về các khóa học gần đây mà sinh viên đã tham gia hoặc có liên quan.
+    \item \textbf{Get Activities API Testing}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/test/test_GA.png}
+        \caption{Kiểm thử truy xuất các hoạt động gần đây}
+    \end{figure}
+    Hiển thị kết quả kiểm thử cho việc truy xuất các hoạt động gần đây của sinh viên trong hệ thống.
+    \item \textbf{Courses List API Testing}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/test/test_CL.png}
+        \caption{Kiểm thử truy xuất danh sách khóa học của sinh viên}
+    \end{figure}
+    Thể hiện chi tiết kết quả khi lấy danh sách các khóa học mà sinh viên đã đăng ký hoặc tham gia.
+    \item \textbf{Get Course for Student API Testing}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/test/test_CD.png}
+        \caption{Kiểm thử truy xuất chi tiết một khóa học}
+    \end{figure}
+    Kết quả trả về chi tiết thông tin của một khóa học cụ thể trong hệ thống.
+    \item \textbf{Recommended Courses List API Testing}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/test/test_RCL.png}
+        \caption{Kiểm thử truy xuất danh sách khóa học được đề xuất}
+    \end{figure}
+    Truy xuất danh sách các khóa học được hệ thống đề xuất dựa trên sở thích hoặc lịch sử học tập của sinh viên.
+    \item \textbf{Add Activity API Testing}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/test/test_AA.png}
+        \caption{Kiểm thử thêm hoạt động gần đây của sinh viên}
+    \end{figure}
+    Minh họa kiểm thử chức năng ghi nhận một hoạt động mới vào danh sách các hoạt động gần đây của sinh viên.
+    \item \textbf{Recommend Lesson API Testing}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/test/test_RL.png}
+        \caption{Kiểm thử truy xuất chi tiết một lesson được đề xuất}
+    \end{figure}
+    Thể hiện kết quả kiểm thử khi truy xuất chi tiết về một bài học được hệ thống đề xuất.
+    \item \textbf{Quizzes List API Testing}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/test/test_QL.png}
+        \caption{Kiểm thử truy xuất danh sách bài tập quizzes từ module}
+    \end{figure}
+    Hiển thị kết quả kiểm thử danh sách bài tập dạng quiz từ một module cụ thể.
+    \item \textbf{Quiz Detail API Testing}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/test/test_DQ.png}
+        \caption{Kiểm thử truy xuất chi tiết một bài tập quiz}
+    \end{figure}
+    Kết quả kiểm thử truy xuất thông tin chi tiết về một bài tập quiz trong danh sách.
+    \item \textbf{Clear Answer API Testing}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/test/test_CA.png}
+        \caption{Kiểm thử bắt đầu làm lại một bài tập quiz}
+    \end{figure}
+    Thể hiện kết quả thử nghiệm chức năng cho phép sinh viên bắt đầu làm lại một bài tập quiz đã làm trước đó.
+    \item \textbf{Submit Answer API Testing}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/test/test_SA.png}
+        \caption{Kiểm thử submit một bài tập quiz}
+    \end{figure}
+    Kiểm tra chức năng nộp bài làm cho một bài tập quiz thông qua hệ thống.
+    \item \textbf{Document API Testing}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/test/test_DO.png}
+        \caption{Kiểm thử truy xuất document từ module}
+    \end{figure}
+    Minh họa việc truy xuất tệp tài liệu từ một module khóa học.
+\end{itemize}
+\subsubsubsection{Kết quả tổng hợp của các testcase}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/test/synthesisResults.png}
+    \caption{Kết quả tổng hợp của các testcase}
+\end{figure}
+\begin{itemize}
+    \item Kết quả tổng quan:
+    \begin{itemize}
+        \item \textbf{Số lượng test case đã thực thi:} Toàn bộ 48 test case đã được thực thi, đạt tỷ lệ bao phủ kiểm thử là 100\%.
+        \item \textbf{Số lượng test case đã vượt qua:} Có 42 test case thành công, chiếm 88\% tổng số test case.
+        \item \textbf{Số lượng test case thất bại:} Có 6 test case thất bại, chiếm 13\% tổng số test case.
+        \item \textbf{Số lượng test case đang chờ xử lý:} Không có test case nào đang chờ xử lý (0\%).
+    \end{itemize}
+    \item Phân tích chi tiết theo từng chức năng
+    \begin{itemize}
+        \item \textbf{Welcome API Testing, Get Activities Testing, Recommended Courses List API Testing, Add Activity API Testing, Recommend Lesson API Testing, Quizzes List API Testing, Quiz Detail API Testing, Clear Answer API Testing:} 
+        Các chức năng này đều đạt tỷ lệ thành công 100\%, không có lỗi xảy ra trong quá trình kiểm thử.
+        
+        \item \textbf{Courses List API Testing:} Tỷ lệ thành công đạt 60\% với 3 test case vượt qua và 2 test case thất bại.
+        
+        \item \textbf{Get Course for Student API:} Tỷ lệ thành công đạt 67\%, với 2 test case vượt qua và 1 test case thất bại.
+        
+        \item \textbf{Document API Testing:} Có tỷ lệ thành công thấp nhất (50\%), với 2 test case vượt qua và 2 test case thất bại.
+        
+        \item \textbf{Submit Answer API Testing:} Đạt tỷ lệ thành công 83\%, với 5 test case vượt qua và 1 test case thất bại.
+    \end{itemize}
+\end{itemize}
