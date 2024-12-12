@@ -1,17 +1,17 @@
 \section{Thử nghiệm hệ thống với các mô hình ngôn ngữ hiện có}
+
 Mục đích của cuộc thử nghiệm đó là đánh giá chất lượng của lời giải thích của từng mô hình ngôn ngữ hớn dành cho người học. Mô hình tiến hành thử nghiệm:
 \begin{itemize}
     \item GPT 4o
     \item GPT 4o Mini
     \item Google Gemini Pro 1.5
 \end{itemize}
-Kết quả trả về lần lượt của từng mô hình:
+Dữ liệu đầu vào cho mỗi mô hình là một yêu cầu từ người dùng về việc cung cấp các tài nguyên học tập hữu ích cho việc phát triển kỹ năng. Dưới đây là kết quả trả về từ mỗi mô hình:
 \begin{itemize}
     \item GPT 4o mini:
-    \begin{verbatim}
-        GPT-4o-mini:
+    \begin{lstlisting}[breaklines=true]
+        GPT 4o mini:
         Response body
-        
         {
           "final_response": [
             {
@@ -46,10 +46,12 @@ Kết quả trả về lần lượt của từng mô hình:
             }
           ]
         }
-    \end{verbatim}
+      \end{lstlisting}
     \item GPT 4o
-    \begin{verbatim}
+    \begin{lstlisting}[breaklines=true]
     {
+      GPT 4o:
+      Response body
       "final_response": [
         {
           "id": "59427089-44c4-4916-8886-52a9f6f488b1",
@@ -83,10 +85,12 @@ Kết quả trả về lần lượt của từng mô hình:
         }
       ]
     }
-    \end{verbatim}
+    \end{lstlisting}
     \item Gemini Pro 1.5
-    \begin{verbatim}
+    \begin{lstlisting}[breaklines=true]
     {
+      Gemini Pro 1.5:
+      Response body
       "final_response": [
         {
           "id": "b0f66328-862d-4e4d-9f5a-2bdee93490b8",
@@ -120,7 +124,7 @@ Kết quả trả về lần lượt của từng mô hình:
         }
       ]
     }
-    \end{verbatim}
+    \end{lstlisting}
 \end{itemize}
 Đánh giá về lời giải thích các tài nguyên:
 \begin{itemize}
@@ -134,4 +138,4 @@ Về chất lượng và chi tiết giải thích:
     \item GPT-4o: Các lời giải thích chi tiết hơn và cung cấp cái nhìn rõ ràng về các ứng dụng thực tế của từng tài nguyên. Chúng giúp người học nhận thức được lý do tại sao mỗi tài nguyên lại quan trọng trong hành trình học tập của họ.
     \item Gemini Pro: Cung cấp các lời giải thích rõ ràng, tuy nhiên có xu hướng tập trung vào các kỹ năng cụ thể mà người học sẽ phát triển thông qua các bài học và dự án. Gemini Pro khuyến khích người học áp dụng ngay các kỹ năng vào thực tế thông qua các dự án và bài học.
 \end{itemize}
-Kết luận: Tất cả ba mô hình GPT-4o-mini, GPT-4o và Gemini Pro đều cung cấp các tài nguyên học tập có giá trị, nhưng mức độ chi tiết và sự rõ ràng trong lời giải thích có sự khác biệt. GPT-4o là mô hình có giải thích chi tiết và nhấn mạnh đến tầm quan trọng của việc hiểu sâu về lý thuyết, trong khi Gemini Pro có xu hướng tập trung vào thực hành nhiều hơn. GPT-4o-mini, mặc dù cung cấp các tài nguyên tương tự, nhưng các lời giải thích có phần đơn giản và ít sâu sắc hơn.
+\textbf{\textit{Kết luận:}} Tất cả ba mô hình GPT-4o-mini, GPT-4o và Gemini Pro đều cung cấp các tài nguyên học tập có giá trị, nhưng mức độ chi tiết và sự rõ ràng trong lời giải thích có sự khác biệt. GPT-4o là mô hình có giải thích chi tiết và nhấn mạnh đến tầm quan trọng của việc hiểu sâu về lý thuyết, trong khi Gemini Pro có xu hướng tập trung vào thực hành nhiều hơn. GPT-4o-mini, mặc dù cung cấp các tài nguyên tương tự, nhưng các lời giải thích có phần đơn giản và ít sâu sắc hơn.

@@ -10,6 +10,9 @@
 \usepackage{a4wide,amssymb,epsfig,latexsym,array,hhline,fancyhdr}
 \usepackage[american]{babel}
 \usepackage{csquotes}
+
+\setlength{\parindent}{0pt} % No indentation
+\sloppy  % Allows more flexible line breaks
 \usepackage[style=apa, citestyle=numeric, backend=biber, sorting=none]{biblatex}
 \bibliography{refs}
 % \usepackage{apacite}
@@ -302,7 +305,7 @@
     \textbf{\Large Lời cam kết}
 \end{center}
 
-\par Bài báo cáo này được thực hiện với mục tiêu nghiên cứu và phát triển một hệ thống học tập trực tuyến thông minh, đáp ứng nhu cầu học tập cá nhân hóa và tối ưu hóa quá trình học của người dùng, đặc biệt là sinh viên ngành Khoa học máy tính. Trong quá trình thực hiện, chúng tôi đã gặp không ít thử thách và khó khăn, từ việc nghiên cứu các mô hình ngôn ngữ lớn (LLM) cho đến việc triển khai các tính năng AI hỗ trợ trong hệ thống. Tuy nhiên, với sự nỗ lực và hỗ trợ từ nhiều phía, chúng tôi đã hoàn thành được mục tiêu nghiên cứu và phát triển hệ thống như mong muốn.
+\par Bài báo cáo này được thực hiện với mục tiêu nghiên cứu và phát triển một hệ thống học tập trực tuyến thông minh, đáp ứng nhu cầu học tập cá nhân hóa và tối ưu hóa quá trình học của người dùng, đặc biệt là sinh viên ngành Khoa học máy tính thuộc khoa Khoa học \& Kỹ thuật máy tính, trường Đại học Bách Khoa - Đại học Quốc gia Thành phố Hồ Chí Minh. Trong quá trình thực hiện, chúng tôi đã gặp không ít thử thách và khó khăn, từ việc nghiên cứu các mô hình ngôn ngữ lớn (LLM) cho đến việc triển khai các tính năng AI hỗ trợ trong hệ thống. Tuy nhiên, với sự nỗ lực và hỗ trợ từ nhiều phía, chúng tôi đã và đang hoàn thành được mục tiêu nghiên cứu và phát triển hệ thống như mong muốn.
 \par Mặc dù vậy, chúng tôi cũng nhận thức được rằng trong quá trình thực hiện vẫn còn những hạn chế và khó khăn, đặc biệt trong việc tối ưu hóa một số tính năng AI và việc tạo ra các bài tập tự động. Tuy nhiên, những thử thách này sẽ là nền tảng để chúng tôi tiếp tục cải tiến hệ thống trong các giai đoạn phát triển tiếp theo. Chúng tôi hy vọng rằng những đóng góp của chúng tôi sẽ mang lại giá trị thực tế cho việc học tập và giảng dạy lập trình, đồng thời mở ra cơ hội ứng dụng rộng rãi hơn trong môi trường giáo dục.
 \par Chúng tôi xin cam kết rằng báo cáo này là công trình nghiên cứu độc lập của nhóm tôi. Tất cả các kết quả nghiên cứu, dữ liệu thu thập và phân tích đều được thực hiện một cách trung thực và không sao chép từ bất kỳ công trình nghiên cứu nào trước đó. Mọi nguồn tài liệu tham khảo đều được trích dẫn đầy đủ và rõ ràng trong báo cáo này. Nhóm tôi cam kết rằng những kết quả nghiên cứu trong báo cáo này phản ánh đúng những nỗ lực và công sức mà chúng tôi đã bỏ ra trong suốt quá trình thực hiện. Bất kỳ sự trợ giúp hay đóng góp nào từ bên ngoài đều được ghi nhận đầy đủ và không có sự gian lận hay sao chép.
 
@@ -316,7 +319,7 @@
     \textbf{\Large Lời cảm ơn}
 \end{center}
 
-\par Để hoàn thành bài báo cáo này, chúng tôi xin gửi lời cảm ơn sâu sắc đến các thầy cô, bạn bè và những người đã đồng hành cùng tôi trong suốt quá trình nghiên cứu và phát triển hệ thống. Đặc biệt, tôi xin gửi lời cảm ơn đến giáo viên hướng dẫn, người đã cung cấp cho chúng tôi những kiến thức quý báu, giúp chúng tôi hoàn thiện công trình nghiên cứu này. Sự chỉ dẫn tận tình của thầy cô đã giúp tôi hiểu rõ hơn về các phương pháp và công nghệ tiên tiến trong lĩnh vực học máy và trí tuệ nhân tạo.
+\par Để hoàn thành bài báo cáo này, chúng tôi xin gửi lời cảm ơn sâu sắc đến các thầy cô, bạn bè và những người đã đồng hành cùng tôi trong suốt quá trình nghiên cứu và phát triển hệ thống. Đặc biệt, chúng tôi xin gửi lời cảm ơn đến giáo viên hướng dẫn, người đã cung cấp cho chúng tôi những kiến thức quý báu, giúp chúng tôi hoàn thiện công trình nghiên cứu này. Sự chỉ dẫn tận tình của thầy cô đã giúp chúng tôi hiểu rõ hơn về các phương pháp và công nghệ tiên tiến trong lĩnh vực học máy và trí tuệ nhân tạo cũng như ứng dụng chúng vào trong lĩnh vực phát triển phần mềm - công nghệ phần mềm.
 
 \par\hfill\textbf{Tác giả}\hspace{1cm}
 \par\hfill\textit{Đỗ Phương Nam}
