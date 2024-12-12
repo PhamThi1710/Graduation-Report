@@ -1,0 +1,137 @@
+\section{Thử nghiệm hệ thống với các mô hình ngôn ngữ hiện có}
+Mục đích của cuộc thử nghiệm đó là đánh giá chất lượng của lời giải thích của từng mô hình ngôn ngữ hớn dành cho người học. Mô hình tiến hành thử nghiệm:
+\begin{itemize}
+    \item GPT 4o
+    \item GPT 4o Mini
+    \item Google Gemini Pro 1.5
+\end{itemize}
+Kết quả trả về lần lượt của từng mô hình:
+\begin{itemize}
+    \item GPT 4o mini:
+    \begin{verbatim}
+        GPT-4o-mini:
+        Response body
+        
+        {
+          "final_response": [
+            {
+              "id": "b0f66328-862d-4e4d-9f5a-2bdee93490b8",
+              "code": "COD001",
+              "description": "A classic beginner coding challenge.",
+              "explanation": "This coding challenge is a great starting point for you as it will help you practice fundamental programming skills. Engaging with such challenges will enhance your problem-solving abilities, which are essential for backend development."
+            },
+            {
+              "id": "d3f325a9-8103-4a7b-bb26-7de45b607f9c",
+              "code": "COD002",
+              "description": "A simple exercise to reverse a given string.",
+              "explanation": "This exercise will allow you to work on string manipulation, a critical skill in backend development. By mastering this concept, you will be better prepared to handle data processing tasks that are common in backend applications."
+            },
+            {
+              "id": "59427089-44c4-4916-8886-52a9f6f488b1",
+              "code": "CRS003",
+              "description": "A comprehensive introduction to web development.",
+              "explanation": "This course will provide you with a solid foundation in web development, covering essential concepts that are crucial for backend development. Understanding how the web works will empower you to create effective backend solutions."
+            },
+            {
+              "id": "1144a6d7-a357-4e4c-b4f5-315afde72a67",
+              "code": "PA001",
+              "description": "A project to build a calculator using Python.",
+              "explanation": "Working on this project will give you hands-on experience with Python, a popular backend language. It will help you apply your knowledge in a practical setting, enhancing your coding skills and preparing you for real-world backend tasks."
+            },
+            {
+              "id": "7a32d80f-5313-425f-9bf2-c271084384d8",
+              "code": "PA003",
+              "description": "A project to create and deploy a personal portfolio website.",
+              "explanation": "This project will not only allow you to practice your web development skills but also give you experience in deploying a web application. Understanding deployment is vital for backend developers, as it will help you manage and maintain applications effectively."
+            }
+          ]
+        }
+    \end{verbatim}
+    \item GPT 4o
+    \begin{verbatim}
+    {
+      "final_response": [
+        {
+          "id": "59427089-44c4-4916-8886-52a9f6f488b1",
+          "code": "CRS003",
+          "description": "A comprehensive introduction to web development.",
+          "explanation": "Since you're starting your journey towards backend development, having a solid understanding of web development is essential. This course will provide you with the foundational knowledge necessary to understand how web applications are structured, which is crucial before diving into backend specifics."
+        },
+        {
+          "id": "CRS001",
+          "code": "6e906d7e-8f93-4dd8-8890-fa4b42cfcc8c",
+          "description": "A beginner-friendly course to learn Python programming.",
+          "explanation": "Python is a popular language for backend development due to its simplicity and effectiveness. This course is perfect for you as it will introduce you to programming concepts using Python, which is often used for backend tasks such as server scripting and data management."
+        },
+        {
+          "id": "PA003",
+          "code": "7a32d80f-5313-425f-9bf2-c271084384d8",
+          "description": "A project to create and deploy a personal portfolio website.",
+          "explanation": "Engaging in a project like this will give you hands-on experience with web hosting and deployment, skills that are vital for a backend developer. You'll learn how to manage servers and deploy applications, which are key components of backend development."
+        },
+        {
+          "id": "LES002",
+          "code": "1bb2500f-4275-4672-9089-fd9b382809a6",
+          "description": "A lesson focused on understanding binary search.",
+          "explanation": "Understanding algorithms is a critical skill for backend development, especially for optimizing data retrieval processes. This lesson will help you grasp the concept of binary search, enhancing your problem-solving skills and efficiency in handling data."
+        },
+        {
+          "id": "PA001",
+          "code": "1144a6d7-a357-4e4c-b4f5-315afde72a67",
+          "description": "A project to build a calculator using Python.",
+          "explanation": "This project will reinforce your Python programming skills by applying them to a practical task. It will help you understand how to implement logic and functionality, which is essential for developing backend applications."
+        }
+      ]
+    }
+    \end{verbatim}
+    \item Gemini Pro 1.5
+    \begin{verbatim}
+    {
+      "final_response": [
+        {
+          "id": "b0f66328-862d-4e4d-9f5a-2bdee93490b8",
+          "code": "COD001",
+          "description": "A classic beginner coding challenge.",
+          "explanation": "This coding challenge will help you build foundational programming skills.  It's a great way to start practicing problem-solving, a crucial skill for any programmer, especially in backend development where you'll constantly be tackling new challenges."
+        },
+        {
+          "id": "d3f325a9-8103-4a7b-bb26-7de45b607f9c",
+          "code": "COD002",
+          "description": "A simple exercise to reverse a given string.",
+          "explanation": "This exercise focuses on string manipulation, a core skill for backend development.  Practicing this will improve your ability to process and handle data effectively, a common task in backend applications."
+        },
+        {
+          "id": "CRS001",
+          "code": "CRS001",
+          "description": "A beginner-friendly course to learn Python programming.",
+          "explanation": "Since you're just starting, this course provides a foundational understanding of Python, a widely-used language for backend development.  Learning the basics will lay a solid groundwork for more advanced concepts and projects later on."
+        },
+        {
+          "id": "LES001",
+          "code": "LES001",
+          "description": "An in-depth lesson on Python lists.",
+          "explanation": "This lesson will build your proficiency in working with Python lists, a fundamental data structure.  Understanding list manipulation is essential for many backend programming tasks, improving your overall coding efficiency."
+        },
+        {
+          "id": "PA001",
+          "code": "PA001",
+          "description": "A project to build a calculator using Python.",
+          "explanation": "This project allows you to apply what you learn in a practical way. Building a calculator will solidify your understanding of fundamental programming concepts like user input, arithmetic operations, and function use within the context of a complete application."
+        }
+      ]
+    }
+    \end{verbatim}
+\end{itemize}
+Đánh giá về lời giải thích các tài nguyên:
+\begin{itemize}
+    \item GPT-4o-mini: Các lời giải thích cho mỗi tài nguyên đều rõ ràng, nhấn mạnh lợi ích mà người học sẽ nhận được, chẳng hạn như việc nâng cao kỹ năng giải quyết vấn đề hoặc làm quen với các công cụ phát triển backend. Tuy nhiên, các lời giải thích có phần chung chung và ít tập trung vào ứng dụng thực tế của các kỹ năng học được.
+    \item GPT-4o: Cung cấp những lời giải thích chi tiết hơn về lý do tại sao mỗi tài nguyên lại hữu ích cho người học, ví dụ như việc hiểu cách hoạt động của web và tầm quan trọng của các kiến thức về máy chủ và triển khai. Những lời giải thích này giúp người học hiểu rõ hơn về mục đích và ứng dụng của các tài nguyên trong việc phát triển kỹ năng backend.
+    \item Gemini Pro: Cũng cung cấp những lời giải thích chi tiết, nhưng có phần thiên về việc khuyến khích người học tham gia vào các bài học thực tế. Mô hình này đưa ra những lý do cụ thể như việc học cách xử lý chuỗi (COD002) hay hiểu cách danh sách hoạt động trong Python (LES001), từ đó giúp người học nâng cao kỹ năng giải quyết vấn đề và lập trình thực tế.
+\end{itemize}
+Về chất lượng và chi tiết giải thích:
+\begin{itemize}
+    \item GPT-4o-mini: Lời giải thích trong GPT-4o-mini thường ngắn gọn và tập trung vào lý do chung chung tại sao một tài nguyên lại hữu ích, nhưng thiếu sâu sắc về cách tài nguyên đó giúp người học phát triển các kỹ năng cụ thể.
+    \item GPT-4o: Các lời giải thích chi tiết hơn và cung cấp cái nhìn rõ ràng về các ứng dụng thực tế của từng tài nguyên. Chúng giúp người học nhận thức được lý do tại sao mỗi tài nguyên lại quan trọng trong hành trình học tập của họ.
+    \item Gemini Pro: Cung cấp các lời giải thích rõ ràng, tuy nhiên có xu hướng tập trung vào các kỹ năng cụ thể mà người học sẽ phát triển thông qua các bài học và dự án. Gemini Pro khuyến khích người học áp dụng ngay các kỹ năng vào thực tế thông qua các dự án và bài học.
+\end{itemize}
+Kết luận: Tất cả ba mô hình GPT-4o-mini, GPT-4o và Gemini Pro đều cung cấp các tài nguyên học tập có giá trị, nhưng mức độ chi tiết và sự rõ ràng trong lời giải thích có sự khác biệt. GPT-4o là mô hình có giải thích chi tiết và nhấn mạnh đến tầm quan trọng của việc hiểu sâu về lý thuyết, trong khi Gemini Pro có xu hướng tập trung vào thực hành nhiều hơn. GPT-4o-mini, mặc dù cung cấp các tài nguyên tương tự, nhưng các lời giải thích có phần đơn giản và ít sâu sắc hơn.
