@@ -89,47 +89,7 @@ LlamaIndex là một framework chuyên biệt cho việc xây dựng các ứng 
 \end{table}
 
 Với những ưu điểm trên, \textbf{LangChain} là một lựa chọn tối ưu cho hệ thống vì nó hỗ trợ mạnh mẽ về việc quản lý prompts – một yếu tố quan trọng để tạo ra các hướng dẫn cho các mô hình ngôn ngữ lớn (LLM), cho phép tuỳ chỉnh và tối ưu chức năng Adaptive Learning Path Management. Ngoài ra, tính năng memory của LangChain giúp lưu giữ và quản lý ngữ cảnh của các cuộc hội thoại trước đó, giúp các tương tác trở nên liền mạch và cá nhân hóa hơn.
-\subsection{Hệ quản trị cơ sở dữ liệu đồ thị}
 
-Hệ quản trị cơ sở dữ liệu đồ thị (Graph Database Management Systems - GDBMS) là một loại cơ sở dữ liệu được thiết kế để lưu trữ và truy vấn dữ liệu theo dạng đồ thị, với các nút (nodes), cạnh (edges), và thuộc tính (properties) mô phỏng mối quan hệ giữa các thực thể. Hệ thống này đặc biệt hữu ích trong các trường hợp yêu cầu xử lý các mối quan hệ phức tạp và tìm kiếm các kết nối giữa dữ liệu. Khi lựa chọn hệ quản trị cơ sở dữ liệu đồ thị, sự chọn lựa phụ thuộc vào yêu cầu của ứng dụng, từ khả năng mở rộng, tính linh hoạt đến hiệu suất trong việc xử lý các mối quan hệ phức tạp. Ba công cụ nổi bật trong lĩnh vực này là Neo4J, ArangoDB và OrientDB. Báo cáo này sẽ so sánh ba hệ quản trị cơ sở dữ liệu này dựa trên các tiêu chí về tính năng, hiệu suất và khả năng mở rộng.
-
-\subsubsection{Neo4J}
-Neo4J là hệ quản trị cơ sở dữ liệu đồ thị phổ biến nhất, được tối ưu hóa cho việc quản lý và truy vấn các mối quan hệ giữa các đối tượng. Neo4J sử dụng ngôn ngữ truy vấn Cypher và có thể dễ dàng tích hợp vào các ứng dụng phát triển dựa trên đồ thị.
-
-\par \textbf{\textit{Các tính năng chính:}} \begin{itemize} \item Tối ưu hóa cho các truy vấn đồ thị phức tạp \item Hỗ trợ ACID transactions và các tính năng bảo mật mạnh mẽ \item Tích hợp tốt với các công cụ phân tích dữ liệu và máy học \end{itemize}
-
-\subsubsection{ArangoDB}
-ArangoDB là một cơ sở dữ liệu đa mô hình, hỗ trợ đồ thị, tài liệu và các kiểu dữ liệu khác. ArangoDB cho phép linh hoạt trong việc lựa chọn mô hình dữ liệu, giúp xây dựng các ứng dụng phức tạp với nhiều loại dữ liệu khác nhau.
-
-\par \textbf{\textit{Các tính năng chính:}} \begin{itemize} \item Hỗ trợ đa mô hình, bao gồm đồ thị, tài liệu và dữ liệu khóa-giá trị \item Tối ưu cho việc truy vấn đồng thời trên các mô hình dữ liệu khác nhau \item Khả năng mở rộng và hỗ trợ các phân vùng dữ liệu phân tán \end{itemize}
-
-\subsubsection{OrientDB}
-OrientDB là một cơ sở dữ liệu đồ thị lai, kết hợp các tính năng của đồ thị và cơ sở dữ liệu quan hệ. Nó cung cấp tính linh hoạt và hiệu suất cao trong các ứng dụng cần xử lý mối quan hệ giữa dữ liệu.
-
-\par \textbf{\textit{Các tính năng chính:}} \begin{itemize} \item Kết hợp đồ thị và quan hệ trong một hệ thống duy nhất \item Hỗ trợ các mô hình dữ liệu tài liệu, đối tượng và đồ thị \item Các tính năng như truy vấn SQL kết hợp với Cypher (ngôn ngữ của Neo4J) \end{itemize}
-
-\subsubsection{Tổng quan}
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|p{2.5cm}|p{4.5cm}|p{4.5cm}|p{4.5cm}|}
-    \hline
-    \textbf{Tiêu chí} & \textbf{Neo4J} & \textbf{ArangoDB} & \textbf{OrientDB} \\ 
-    \hline
-    \textbf{Mô hình dữ liệu} & Đồ thị & Đa mô hình (Đồ thị, Tài liệu, Khóa-Giá trị) & Đồ thị và Quan hệ \\
-    \hline
-    \textbf{Hiệu suất} & Tối ưu cho truy vấn đồ thị phức tạp & Tối ưu cho đa mô hình và dữ liệu phân tán & Mạnh mẽ trong các ứng dụng kết hợp đồ thị và quan hệ \\
-    \hline
-    \textbf{Tính mở rộng} & Khả năng mở rộng cao với clustering và phân tán dữ liệu & Phân tán dữ liệu linh hoạt với ArangoSearch & Khả năng mở rộng tốt nhưng không mạnh bằng ArangoDB \\
-    \hline
-    \textbf{Tính linh hoạt} & Hạn chế ở đồ thị & Hỗ trợ đa mô hình với khả năng linh hoạt cao & Hỗ trợ đồ thị và quan hệ, linh hoạt trong việc lựa chọn mô hình \\
-    \hline
-    \textbf{Tính năng bảo mật} & Hỗ trợ các tính năng bảo mật cấp cao & Tích hợp bảo mật và phân quyền linh hoạt & Tính năng bảo mật và phân quyền mạnh mẽ \\
-    \hline
-    \textbf{Khả năng tích hợp} & Dễ dàng tích hợp với các công cụ phân tích dữ liệu & Hỗ trợ các công cụ phân tích và tích hợp API mạnh mẽ & Hỗ trợ SQL và tích hợp API tốt \\
-    \hline
-    \end{tabular}
-    \caption{So sánh giữa Neo4J, ArangoDB và OrientDB}
-\end{table}
 \subsection{Framework xây dựng giao diện người dùng}
 
 Framework xây dựng giao diện người dùng (UI Framework) giúp phát triển các ứng dụng web với giao diện người dùng linh hoạt và dễ dàng tương tác. Việc lựa chọn framework xây dựng giao diện người dùng (UI) là một quyết định quan trọng đối với các ứng dụng web hiện đại. React, Vue, và Angular là ba framework phổ biến nhất hiện nay, mỗi framework có điểm mạnh và hạn chế riêng. Báo cáo này sẽ so sánh ba framework này dựa trên các tiêu chí như tính dễ học, hiệu suất, khả năng mở rộng và sự linh hoạt trong phát triển.

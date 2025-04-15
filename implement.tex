@@ -1,4 +1,4 @@
-\chapter{Hiện thực và Kiểm thử}
+\chapter{Hiện thực}
 
 \section{Hiện thực hệ thống}
 Hệ thống học tập được triển khai nhằm hỗ trợ sinh viên và giảng viên trong việc tổ chức và quản lý việc học tập hiệu quả hơn. Với sự hỗ trợ của Mô hình Ngôn ngữ Lớn (LLMs), hệ thống có thể tự động tạo ra các bài học đề xuất dựa trên mục tiêu học tập của sinh viên và nội dung được cung cấp bởi giảng viên.
@@ -186,181 +186,524 @@ Hệ thống được cấu hình để tự động khởi chạy khi có yêu 
 
 \par \textbf{Link deploy backend:} \textcolor{blue}{\href{https://edumind.onrender.com}{https://edumind.onrender.com}}
 
+\section{Các chức năng đã được thực hiện}
 
+Dưới đây là các chức năng đã được thực hiện trong hệ thống học tập trực tuyến thông minh. Các chức năng này được phân chia theo từng module và vai trò của người dùng trong hệ thống.
 
-\section{Kiểm thử}
-
-\subsection{Tổng quan về kiểm thử}
-
-Mục đích của kiểm thử trong hệ thống: Đảm bảo rằng các tính năng hoạt động đúng, hệ thống không có lỗi và có thể chịu được tải trong quá trình sử dụng thực tế.
-
-Loại kiểm thử thực hiện:
-\begin{itemize}
-    \item \textbf{Kiểm thử chức năng:} Đảm bảo các chức năng của hệ thống hoạt động đúng
-    \item \textbf{Kiểm thử hiệu suất:} Đảm bảo hệ thống có thể xử lý nhiều yêu cầu đồng thời
-    \item \textbf{Kiểm thử bảo mật:} Đảm bảo hệ thống bảo vệ tốt các dữ liệu người dùng
-    \item \textbf{Kiểm thử tích hợp:} Kiểm tra sự hoạt động đồng bộ của các module
-    \item \textbf{Kiểm thử hồi quy:} Đảm bảo những thay đổi mới không làm hỏng các tính năng cũ
+\subsection{Quản lý tài khoản (Thành viên đảm nhiệm: Phạm Thi)}
+Module này cung cấp các chức năng liên quan đến đăng nhập, xác thực và quản lý thông tin cá nhân của người dùng.
+\begin{itemize}[label=--]
+    \item Đăng nhập vào hệ thống bằng email/mật khẩu hoặc tài khoản Google (Role: Sinh viên, Giảng viên, Quản trị viên).
+    \item Làm mới token xác thực khi phiên đăng nhập hết hạn (Role: Sinh viên, Giảng viên, Quản trị viên).
+    \item Xác minh email và gửi lại mã xác minh nếu cần (Role: Sinh viên, Giảng viên, Quản trị viên).
+    \item Đặt lại mật khẩu khi quên mật khẩu (Role: Sinh viên, Giảng viên, Quản trị viên).
+    \item Cập nhật thông tin cá nhân (tên, ngày sinh, ảnh đại diện) (Role: Sinh viên, Giảng viên, Quản trị viên).
+    \item Xem thông tin hồ sơ cá nhân (ID, tên, email, MSSV/MSCB, ngày sinh, vai trò) (Role: Sinh viên, Giảng viên, Quản trị viên).
 \end{itemize}
 
-
-\subsection{Mô tả chung về các kịch bản kiểm thử}
-
-Mỗi kịch bản kiểm thử được tổ chức và theo dõi theo bảng sau đây. Các mục chính trong mỗi kịch bản kiểm thử bao gồm:
-\begin{itemize}
-    \item \textbf{TEST SCENARIO:} Tên kịch bản kiểm thử
-    \item \textbf{Screen name/Function name:} Tên màn hình hoặc tên chức năng cần kiểm thử
-    \item \textbf{Test case code:} Mã số của test case
-    \item \textbf{Number of passed test cases (P):} Số lượng test case đã thành công
-    \item \textbf{Number of failed test cases (F):} Số lượng test case không thành công
-    \item \textbf{Number of test cases under pending (PE):} Số lượng test case đang chờ xử lý
-    \item \textbf{Number of unexecuted test cases:} Số lượng test case chưa được thực hiện
-    \item \textbf{Total number of test cases:} Tổng số test case cần kiểm thử
-\end{itemize}
-
-\subsubsection{Cấu trúc của một kịch bản kiểm thử}
-
-\begin{itemize}
-    \item \textbf{Test case code:} Mã của test case, giúp phân biệt các test case khác nhau
-    \item \textbf{Testing Purpose:} Mục đích của việc kiểm thử
-    \item \textbf{Steps:} Các bước thực hiện kiểm thử
-    \item \textbf{Expected outcome:} Kết quả mong đợi sau khi thực hiện các bước kiểm thử
-    \item \textbf{Browser compatibility testing:} Kiểm tra tính tương thích với các trình duyệt phổ biến
-    \item \textbf{Test status report:} Báo cáo tình trạng của các lần kiểm thử
-\end{itemize}
-
-\subsubsection{Ví dụ về một kịch bản kiểm thử trong bảng Excel}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{Images/Implement/testScenario.png}
-    \caption{Ví dụ về một kịch bản kiểm thử}
+    \includegraphics[width=0.9\linewidth]{images/Quan_ly_tai_khoan/authenFlow.drawio.png}
+    \caption{Flow Định danh tài khoản}
+    \label{fig:enter-label}
 \end{figure}
-\subsubsection{Mục tiêu của các kịch bản kiểm thử}
-\begin{itemize}
-    \item \textbf{Kiểm thử chức năng}: Đảm bảo các API hoạt động đúng với các yêu cầu và dữ liệu đầu vào hợp lệ hoặc không hợp lệ. 
-    \item \textbf{Kiểm thử tương thích trình duyệt}: Đảm bảo hệ thống hoạt động ổn định trên các trình duyệt phổ biến.
-    \item \textbf{Kiểm thử độ tin cậy}: Kiểm tra xem các API có thể xử lý được các tình huống thực tế và đưa ra kết quả chính xác.
-\end{itemize}
-\subsection{Kết quả kiểm thử API}
-\subsubsection{Kiểm thử phương thức}
-\begin{itemize}
-    \item \textbf{Welcome API Testing}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{Images/test/test_WC.png}
-        \caption{Kiểm thử truy xuất các khóa học gần đây}
-    \end{figure}
-    Minh họa cách hệ thống truy xuất thông tin về các khóa học gần đây mà sinh viên đã tham gia hoặc có liên quan.
-    \item \textbf{Get Activities API Testing}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{Images/test/test_GA.png}
-        \caption{Kiểm thử truy xuất các hoạt động gần đây}
-    \end{figure}
-    Hiển thị kết quả kiểm thử cho việc truy xuất các hoạt động gần đây của sinh viên trong hệ thống.
-    \item \textbf{Courses List API Testing}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{Images/test/test_CL.png}
-        \caption{Kiểm thử truy xuất danh sách khóa học của sinh viên}
-    \end{figure}
-    Thể hiện chi tiết kết quả khi lấy danh sách các khóa học mà sinh viên đã đăng ký hoặc tham gia.
-    \item \textbf{Get Course for Student API Testing}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{Images/test/test_CD.png}
-        \caption{Kiểm thử truy xuất chi tiết một khóa học}
-    \end{figure}
-    Kết quả trả về chi tiết thông tin của một khóa học cụ thể trong hệ thống.
-    \item \textbf{Recommended Courses List API Testing}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{Images/test/test_RCL.png}
-        \caption{Kiểm thử truy xuất danh sách khóa học được đề xuất}
-    \end{figure}
-    Truy xuất danh sách các khóa học được hệ thống đề xuất dựa trên sở thích hoặc lịch sử học tập của sinh viên.
-    \item \textbf{Add Activity API Testing}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{Images/test/test_AA.png}
-        \caption{Kiểm thử thêm hoạt động gần đây của sinh viên}
-    \end{figure}
-    Minh họa kiểm thử chức năng ghi nhận một hoạt động mới vào danh sách các hoạt động gần đây của sinh viên.
-    \item \textbf{Recommend Lesson API Testing}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{Images/test/test_RL.png}
-        \caption{Kiểm thử truy xuất chi tiết một lesson được đề xuất}
-    \end{figure}
-    Thể hiện kết quả kiểm thử khi truy xuất chi tiết về một bài học được hệ thống đề xuất.
-    \item \textbf{Quizzes List API Testing}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{Images/test/test_QL.png}
-        \caption{Kiểm thử truy xuất danh sách bài tập quizzes từ module}
-    \end{figure}
-    Hiển thị kết quả kiểm thử danh sách bài tập dạng quiz từ một module cụ thể.
-    \item \textbf{Quiz Detail API Testing}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{Images/test/test_DQ.png}
-        \caption{Kiểm thử truy xuất chi tiết một bài tập quiz}
-    \end{figure}
-    Kết quả kiểm thử truy xuất thông tin chi tiết về một bài tập quiz trong danh sách.
-    \item \textbf{Clear Answer API Testing}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{Images/test/test_CA.png}
-        \caption{Kiểm thử bắt đầu làm lại một bài tập quiz}
-    \end{figure}
-    Thể hiện kết quả thử nghiệm chức năng cho phép sinh viên bắt đầu làm lại một bài tập quiz đã làm trước đó.
-    \item \textbf{Submit Answer API Testing}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{Images/test/test_SA.png}
-        \caption{Kiểm thử submit một bài tập quiz}
-    \end{figure}
-    Kiểm tra chức năng nộp bài làm cho một bài tập quiz thông qua hệ thống.
-    \item \textbf{Document API Testing}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{Images/test/test_DO.png}
-        \caption{Kiểm thử truy xuất document từ module}
-    \end{figure}
-    Minh họa việc truy xuất tệp tài liệu từ một module khóa học.
-\end{itemize}
-\subsubsection{Kết quả tổng hợp của các testcase}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Images/test/synthesisResults.png}
-    \caption{Kết quả tổng hợp của các testcase}
-\end{figure}
-\begin{itemize}
-    \item Kết quả tổng quan:
-    \begin{itemize}
-        \item \textbf{Số lượng test case đã thực thi:} Toàn bộ 48 test case đã được thực thi, đạt tỷ lệ bao phủ kiểm thử là 100\%.
-        \item \textbf{Số lượng test case đã vượt qua:} Có 42 test case thành công, chiếm 88\% tổng số test case.
-        \item \textbf{Số lượng test case thất bại:} Có 6 test case thất bại, chiếm 13\% tổng số test case.
-        \item \textbf{Số lượng test case đang chờ xử lý:} Không có test case nào đang chờ xử lý (0\%).
-    \end{itemize}
-    \item Phân tích chi tiết theo từng chức năng
-    \begin{itemize}
-        \item \textbf{Welcome API Testing, Get Activities Testing, Recommended Courses List API Testing, Add Activity API Testing, Recommend Lesson API Testing, Quizzes List API Testing, Quiz Detail API Testing, Clear Answer API Testing:} 
-        Các chức năng này đều đạt tỷ lệ thành công 100\%, không có lỗi xảy ra trong quá trình kiểm thử.
-        
-        \item \textbf{Courses List API Testing:} Tỷ lệ thành công đạt 60\% với 3 test case vượt qua và 2 test case thất bại.
-        
-        \item \textbf{Get Course for Student API:} Tỷ lệ thành công đạt 67\%, với 2 test case vượt qua và 1 test case thất bại.
-        
-        \item \textbf{Document API Testing:} Có tỷ lệ thành công thấp nhất (50\%), với 2 test case vượt qua và 2 test case thất bại.
-        
-        \item \textbf{Submit Answer API Testing:} Đạt tỷ lệ thành công 83\%, với 5 test case vượt qua và 1 test case thất bại.
-    \end{itemize}
+
+\subsection{Quản lý khóa học (Thành viên đảm nhiệm: Phạm Thi/Tuấn Anh)}
+Module này hỗ trợ quản lý thông tin khóa học, bao gồm tạo, xem, cập nhật và xóa dữ liệu liên quan.
+\begin{itemize}[label=--]
+    \item Xem danh sách khóa học (đã đăng ký hoặc đang phụ trách, hỗ trợ phân trang và tìm kiếm) (Role: Sinh viên, Giảng viên).
+    \item Xem chi tiết khóa học (số lượng sinh viên, bài học, bài tập, tài liệu, tiến độ học tập) (Role: Sinh viên, Giảng viên).
+    \item Xem thông tin Giảng viên của khóa học (Role: Sinh viên).
+    \item Cập nhật mục tiêu học tập và ảnh khóa học (Role: Giảng viên).
+    \item Tạo khóa học mới (đơn lẻ hoặc nhiều khóa) (Role: Quản trị viên).
+    \item Cập nhật thông tin khóa học (tên, tín chỉ, học kỳ) (Role: Quản trị viên).
+    \item Xóa khóa học cùng dữ liệu liên quan (Role: Quản trị viên).
+    \item Xem danh sách khóa học có sẵn của HCMUT (Role: Quản trị viên).
+    \item Xem khóa học truy cập gần đây nhất qua dashboard (Role: Sinh viên).
 \end{itemize}
 
-\subsubsection{Hạn chế}
-\begin{itemize}
-    \item Do nhóm chưa có nhiều kinh nghiệm trong việc thực hiện unit testing.
-    \item Quá trình kiểm thử chủ yếu tập trung vào kiểm tra chức năng API mà chưa thực hiện đầy đủ các kiểm thử liên quan đến giao diện người dùng (UI testing) hoặc hiệu năng hệ thống (performance testing). 
-    \item Một số API vẫn còn thất bại, đặc biệt là Courses List API Testing và Document API Testing, cần được kiểm tra và sửa lỗi.
+\subsection{Quản lý bài học (Thành viên đảm nhiệm: Phạm Thi/Tuấn Anh)}
+Module này cho phép tạo, chỉnh sửa và quản lý bài học trong khóa học.
+\begin{itemize}[label=--]
+    \item Xem danh sách bài học trong khóa học (Role: Sinh viên).
+    \item Tạo bài học mới (Role: Giảng viên).
+    \item Cập nhật bài học (tiêu đề, mô tả, mục tiêu học tập) (Role: Giảng viên).
+    \item Xóa bài học cùng tài liệu liên quan (Role: Giảng viên).
+    \item Thêm tài liệu vào bài học (Role: Giảng viên).
+    \item Xem chi tiết bài học và danh sách tài liệu liên quan (Role: Giảng viên).
 \end{itemize}
+
+\subsection{Quản lý bài tập (Thành viên đảm nhiệm: Tuấn Anh)}
+Module này hỗ trợ quản lý bài tập dạng quiz và lập trình, bao gồm tạo, xem và nộp bài.
+\begin{itemize}[label=--]
+    \item Xem danh sách bài tập trong khóa học (chỉ bài tập đã mở) (Role: Sinh viên).
+    \item Xem chi tiết bài tập dạng quiz hoặc lập trình (câu hỏi, yêu cầu, test cases) (Role: Sinh viên, Giảng viên).
+    \item Tạo bài tập dạng quiz hoặc lập trình (Role: Giảng viên).
+    \item Cập nhật thông tin bài tập dạng quiz hoặc lập trình (Role: Giảng viên).
+    \item Xóa bài tập dạng quiz hoặc lập trình (Role: Giảng viên).
+    \item Gửi câu hỏi tới trợ lý lập trình và xem lịch sử hội thoại (Role: Sinh viên).
+    \item Nộp bài quiz và xóa câu trả lời để làm lại (Role: Sinh viên).
+    \item Xem danh sách sự kiện bài tập sắp tới qua lịch học (Role: Sinh viên, Giảng viên).
+\end{itemize}
+
+\subsection{Quản lý lộ trình học tập (Thành viên đảm nhiệm: Phạm Thi/Tuấn Anh)}
+Module này cung cấp các chức năng liên quan đến lộ trình học tập cá nhân hóa và bài học đề xuất.
+\begin{itemize}[label=--]
+    \item Xem lộ trình học tập cá nhân hóa và danh sách bài học đề xuất (Role: Sinh viên).
+    \item Xóa lộ trình học tập cá nhân (Role: Sinh viên).
+    \item Xem chi tiết bài học đề xuất (tiêu đề, mục tiêu, nội dung, tiến độ) (Role: Sinh viên).
+    \item Đánh dấu hoặc bỏ đánh dấu bài học đề xuất (Role: Sinh viên).
+    \item Yêu cầu tạo lộ trình học tập dựa trên mục tiêu và khóa học (Role: Sinh viên).
+    \item Tái tạo nội dung bài học dựa trên vấn đề đã xác định (Role: Sinh viên).
+    \item Nhận gợi ý mục tiêu học tập từ hệ thống (Role: Sinh viên).
+    \item Xem tài liệu của module trong lộ trình học tập (Role: Sinh viên).
+    \item Tạo bài quiz dựa trên nội dung module (Role: Sinh viên).
+\end{itemize}
+
+\subsection{Theo dõi tiến độ học tập (Thành viên đảm nhiệm: Phạm Thi/Tuấn Anh)}
+Module này hỗ trợ theo dõi và đánh giá tiến độ học tập của sinh viên.
+\begin{itemize}[label=--]
+    \item Nhận đánh giá tiến độ học tập theo chuẩn Rubric (Role: Sinh viên).
+    \item Cập nhật thời gian học cho bài học đề xuất (Role: Sinh viên).
+    \item Xem phân tích tiến độ học tập trong khóa học hoặc bài học cụ thể (Role: Sinh viên).
+    \item Xem điểm số của sinh viên trong khóa học (tên, email, MSSV, điểm trung bình) (Role: Giảng viên).
+    \item Xem điểm chi tiết của một bài tập cụ thể (Role: Giảng viên).
+\end{itemize}
+
+\subsection{Quản lý phản hồi (Thành viên đảm nhiệm: Phạm Thi)}
+Module này cho phép gửi, xem và quản lý phản hồi trong hệ thống.
+\begin{itemize}[label=--]
+    \item Gửi phản hồi về hệ thống hoặc khóa học (tiêu đề, mô tả, đánh giá) (Role: Sinh viên, Giảng viên).
+    \item Xem danh sách phản hồi (lọc theo tháng, năm, trạng thái, khóa học) (Role: Giảng viên, Quản trị viên).
+    \item Cập nhật trạng thái phản hồi (pending, in\_progress, resolved) (Role: Quản trị viên).
+    \item Xóa phản hồi khỏi hệ thống (Role: Quản trị viên).
+\end{itemize}
+
+\subsection{Quản lý người dùng (Thành viên đảm nhiệm: Phạm Thi)}
+Module này cung cấp các chức năng quản lý thông tin và trạng thái người dùng trong hệ thống.
+\begin{itemize}[label=--]
+    \item Tạo người dùng mới (sinh viên, Giảng viên, quản trị viên) (Role: Quản trị viên).
+    \item Đếm số lượng người dùng (tổng hoặc theo vai trò) (Role: Quản trị viên).
+    \item Xem danh sách tất cả người dùng (lọc theo vai trò, trạng thái, tìm kiếm) (Role: Quản trị viên).
+    \item Xem thông tin chi tiết của một người dùng cụ thể (Role: Quản trị viên).
+    \item Cập nhật trạng thái người dùng (bật/tắt) (Role: Quản trị viên).
+\end{itemize}
+
+\subsection{Quản lý nhật ký đăng nhập (Thành viên đảm nhiệm: Phạm Thi)}
+Module này hỗ trợ theo dõi và ghi nhận hoạt động đăng nhập của người dùng.
+\begin{itemize}[label=--]
+    \item Xem danh sách nhật ký đăng nhập (ID người dùng, vai trò, thời gian) (Role: Quản trị viên).
+    \item Tạo bản ghi nhật ký đăng nhập mới (Role: Quản trị viên).
+\end{itemize}
+
+\subsection{Quản lý dashboard (Thành viên đảm nhiệm: Phạm Thi)}
+Module này cung cấp tổng quan hoạt động cho người dùng qua giao diện dashboard.
+\begin{itemize}[label=--]
+    \item Xem tổng quan hoạt động giảng dạy (số lượng khóa học, bài học, sinh viên, bài tập) (Role: Giảng viên).
+    \item Xem và thêm các hoạt động gần đây (tối đa 5 hoạt động) (Role: Sinh viên).
+\end{itemize}
+
+\section{Giới thiệu chi tiết về các chức năng chính của hệ thống}
+Hệ thống học tập thông minh được thiết kế để hỗ trợ học sinh trong việc lập kế hoạch học tập và đánh giá tiến độ một cách hiệu quả. Với sự tích hợp của AI, hệ thống có khả năng phân tích dữ liệu học tập, tạo lộ trình cá nhân hóa và đưa ra các đánh giá chi tiết. Mục nội dung này sẽ tập trung vào các chức năng chính như sinh ra lộ trình học tập, đề xuất mục tiêu học tập, đánh giá kết quả học tập, tạo bài kiểm tra, và các tính năng bổ sung khác. \par 
+
+Sau đây là các nguyên tắc cơ bản trong việc thiết lập mục tiêu học tập và phương pháp đánh giá mà hệ thống áp dụng:
+
+\subsection{Nguyên tắc SMART trong việc thiết lập mục tiêu}
+Nguyên tắc SMART là một khung tiêu chuẩn được áp dụng rộng rãi trong việc thiết lập mục tiêu hiệu quả. Trong hệ thống của chúng tôi, mỗi mục tiêu học tập được đề xuất đều tuân theo năm tiêu chí của nguyên tắc SMART:
+
+\begin{itemize}
+    \item \textbf{Specific (Cụ thể)}: Mục tiêu phải rõ ràng và cụ thể, không mơ hồ. Ví dụ: ``Hiểu và áp dụng được các thuật toán sắp xếp'' thay vì ``Học về thuật toán''.
+    
+    \item \textbf{Measurable (Đo lường được)}: Mục tiêu phải có thể đo lường được để đánh giá tiến độ. Ví dụ: ``Đạt điểm 8/10 trong bài kiểm tra về cấu trúc dữ liệu'' hoặc ``Hoàn thành 5 bài tập lập trình về đệ quy''.
+    
+    \item \textbf{Achievable (Khả thi)}: Mục tiêu phải thực tế và có thể đạt được với các nguồn lực và thời gian hiện có. Mục tiêu quá tham vọng có thể dẫn đến nản chí.
+    
+    \item \textbf{Relevant (Liên quan)}: Mục tiêu phải phù hợp với nội dung khóa học và kết quả học tập mong đợi. Ví dụ, đặt mục tiêu học sâu về machine learning sẽ không phù hợp cho một khóa học cơ bản về Python.
+    
+    \item \textbf{Time-bound (Giới hạn thời gian)}: Mục tiêu phải có thời hạn cụ thể để tạo động lực và tính cấp bách. Ví dụ: ``Hoàn thành trước kỳ thi giữa kỳ'' hoặc ``Trong vòng 3 tuần''.
+\end{itemize}
+
+Trong API \texttt{/generate-student-goals}, AI sẽ tạo ra các mục tiêu học tập tuân thủ nguyên tắc SMART cho ba cấp độ học tập khác nhau: Struggling (khó khăn), Average (trung bình), và Advanced (nâng cao). Mỗi mục tiêu đều được giới hạn dưới 200 ký tự để đảm bảo tính súc tích và dễ nhớ.
+
+\subsection{Phương pháp Rubric-Based Assessment}
+Rubric-Based Assessment (Đánh giá dựa trên Rubric) là phương pháp đánh giá sử dụng các tiêu chí cụ thể và mức độ đạt được cho mỗi tiêu chí. Phương pháp này mang lại nhiều lợi ích:
+
+\begin{itemize}
+    \item \textbf{Tính khách quan}: Đánh giá dựa trên các tiêu chí rõ ràng, giảm thiểu tính chủ quan.
+    \item \textbf{Tính nhất quán}: Đảm bảo các học sinh được đánh giá theo cùng một tiêu chuẩn.
+    \item \textbf{Tính minh bạch}: Học sinh hiểu rõ họ được đánh giá như thế nào và cần cải thiện điều gì.
+    \item \textbf{Phản hồi có cấu trúc}: Cung cấp phản hồi chi tiết theo từng tiêu chí.
+\end{itemize}
+
+Trong hệ thống của chúng tôi, Rubric được áp dụng để đánh giá học sinh theo ba tiêu chí chính:
+\begin{enumerate}
+    \item \textbf{Kiến thức lý thuyết (Theoretical Knowledge)}: Đánh giá mức độ hiểu biết về lý thuyết dựa trên tiến độ trong các bài học liên quan đến khái niệm lý thuyết.
+    
+    \item \textbf{Kỹ năng thực hành (Coding Skills)}: Đánh giá kỹ năng lập trình dựa trên việc hoàn thành các bài tập mã hóa. Nếu khóa học không bao gồm lập trình, tiêu chí này sẽ được thay thế bằng một kỹ năng thực hành khác phù hợp.
+    
+    \item \textbf{Nỗ lực (Effort)}: Đánh giá sự cố gắng dựa trên thời gian học tập (time\_spent), số lượng bài học đã bắt đầu (status), và tiến độ tổng thể.
+\end{enumerate}
+
+Mỗi tiêu chí được đánh giá theo bốn mức độ: Excellent (Xuất sắc), Good (Tốt), Average (Trung bình), và Poor (Kém), với các miêu tả cụ thể cho mỗi mức độ.
+
+\subsection{Phương pháp đánh giá STAR}
+STAR là một phương pháp đánh giá cấu trúc được sử dụng rộng rãi trong giáo dục và phát triển nghề nghiệp. Trong hệ thống của chúng tôi, phương pháp STAR được áp dụng để đánh giá tiến độ học tập của học sinh một cách toàn diện. STAR bao gồm bốn thành phần:
+
+\begin{itemize}
+    \item \textbf{Situation (Tình huống)}: Mô tả bối cảnh học tập của học sinh, bao gồm tên, khóa học, và mối liên hệ với mục tiêu học tập.
+    
+    \item \textbf{Task (Nhiệm vụ)}: Nêu rõ mục tiêu học tập của học sinh, nhấn mạnh tầm quan trọng của việc đạt được mục tiêu trước thời hạn (ví dụ: trước kỳ thi giữa kỳ).
+    
+    \item \textbf{Action (Hành động)}: Liệt kê chi tiết các hành động học sinh đã thực hiện cho mỗi tiêu chí đánh giá (Kiến thức lý thuyết, Kỹ năng thực hành, Nỗ lực), dựa trên dữ liệu bài học (progress, time\_spent, objectives).
+    
+    \item \textbf{Result (Kết quả)}: Đánh giá tiến độ tổng thể so với mục tiêu, phân tích theo từng tiêu chí, với nhận xét rõ ràng (on track/needs effort/at risk) và tham chiếu đến ngày hiện tại.
+\end{itemize}
+
+API \texttt{/student/\{courseId\}/assessment} sử dụng phương pháp STAR kết hợp với Rubric để tạo ra báo cáo đánh giá toàn diện cho học sinh, giúp họ hiểu rõ tiến độ học tập và những điểm cần cải thiện.
+
+\section{Sinh ra lộ trình học tập}
+Chức năng này chịu trách nhiệm tạo ra một lộ trình học tập cá nhân hóa dựa trên mục tiêu học tập của học sinh, nội dung khóa học và thời gian khả dụng. Quá trình được thực hiện qua ba giai đoạn chính:
+
+\begin{enumerate}
+    \item \textbf{Phân tích mục tiêu và thời gian}: Hàm \texttt{analyze\_goal\_and\_timeline} kiểm tra tính hợp lệ của mục tiêu (ví dụ: độ dài, tính liên quan) và xác định thời gian khả thi dựa trên ngày bắt đầu và kết thúc khóa học. Ví dụ mã nguồn:
+    \begin{lstlisting}[language=Python]
+async def analyze_goal_and_timeline(goal: str, course_start_date: datetime, ...):
+    if len(goal) < 10:
+        raise ApplicationException(message="Goal is too short...")
+    prompt = f"..."
+    chunking_manager = ChunkingManager(
+        provider="gemini",
+        gemini_model_name="gemini-2.0-flash-lite",
+        max_tokens_per_chunk=15000,
+        temperature=0.7,
+        max_output_tokens=8000
+    )
+    response = chunking_manager.call_llm_api(prompt, "You are an expert in goal validation and timeline analysis.")
+    \end{lstlisting}
+
+    \item \textbf{Lựa chọn bài học liên quan}: Hàm \texttt{select\_relevant\_lessons} lọc các bài học phù hợp với mục tiêu, sắp xếp theo thứ tự logic và điều chỉnh theo thời gian. AI được sử dụng để ưu tiên các bài học nền tảng nếu thời gian ngắn.
+
+    \item \textbf{Tạo lộ trình chi tiết}: Hàm \texttt{generate\_detailed\_learning\_path} xây dựng lộ trình đầy đủ, bao gồm các bài học được đề xuất và phân bổ thời gian cụ thể. Kết quả được lưu vào cơ sở dữ liệu qua endpoint \texttt{/generate-learning-path}.
+\end{enumerate}
+
+Kết quả là một JSON chứa thông tin chi tiết về lộ trình, ví dụ:
+\begin{lstlisting}[language=JSON]
+{
+    "learning_path_start_date": "2025-04-06",
+    "learning_path_end_date": "2025-05-20",
+    "learning_path_objective": "Achieve goal...",
+    "recommend_lessons": [
+        {
+            "lesson_id": "123",
+            "recommended_content": "What to focus on in this lesson...",
+            "explain": "Why this lesson supports the goal...",
+            "order": 1,
+            "number_of_modules": 2
+        }
+    ],
+    "modules": [
+        {
+            "title": "Module Title",
+            "objectives": ["Objective 1", "Objective 2"],
+            "reading_material": {...}
+        }
+    ]
+}
+\end{lstlisting}
+
+\section{Đề xuất mục tiêu học tập}
+Đây là tính năng mới được thêm vào để giúp học sinh xác định mục tiêu học tập phù hợp, sử dụng endpoint \texttt{/generate-student-goals/\{course\_id\}}. Các bước thực hiện:
+
+\begin{itemize}
+    \item \textbf{Thu thập thông tin khóa học}: Hệ thống lấy dữ liệu về tên khóa học, mục tiêu học tập, và tổng quan các bài học.
+    \item \textbf{Sinh mục tiêu theo trình độ}: AI tạo ra các mục tiêu học tập phù hợp cho ba cấp độ khác nhau: Struggling (khó khăn), Average (trung bình), và Advanced (nâng cao), mỗi cấp độ có 2-3 mục tiêu cụ thể.
+    \item \textbf{Đảm bảo chất lượng mục tiêu}: Mỗi mục tiêu đều tuân theo nguyên tắc SMART (Specific, Measurable, Achievable, Relevant, Time-bound) và không vượt quá 200 ký tự.
+\end{itemize}
+
+Kết quả là một JSON chứa các mục tiêu học tập được đề xuất, ví dụ:
+\begin{lstlisting}[language=JSON]
+{
+    "suggested_goals": [
+        {
+            "proficiency_level": "Struggling",
+            "goal": "Master basic Python syntax and write simple programs with 70% accuracy by midterm",
+            "explanation": "This goal focuses on building fundamental programming skills...",
+            "key_lessons": ["Introduction to Python", "Basic Data Types"]
+        },
+        {
+            "proficiency_level": "Average",
+            "goal": "Implement and optimize sorting algorithms with 80% efficiency by midterm",
+            "explanation": "This goal challenges the student to apply theoretical concepts...",
+            "key_lessons": ["Algorithm Complexity", "Sorting Algorithms"]
+        }
+    ]
+}
+\end{lstlisting}
+
+\section{Đánh giá kết quả học tập}
+Chức năng này bao gồm hai phần phụ: theo dõi quá trình học tập và phân tích kết quả cuối cùng.
+
+\subsection{Đánh giá quá trình học tập (Progress Tracking Assessment)}
+Phần này sử dụng endpoint \texttt{/student/\{courseId\}/assessment} để đánh giá tiến độ học tập dựa trên phương pháp STAR (Situation, Task, Action, Result). Các bước thực hiện:
+\begin{itemize}
+    \item \textbf{Tạo prompt chuẩn}: Hàm \texttt{generate\_standard\_prompt} sinh ra một prompt chi tiết gửi đến AI, yêu cầu đánh giá dựa trên các tiêu chí: kiến thức lý thuyết, kỹ năng thực hành (hoặc kỹ năng thay thế), và sự nỗ lực.
+    \item \textbf{Phân tích dữ liệu}: AI sử dụng dữ liệu bài học (progress, time\_spent) để đưa ra đánh giá theo Rubric chuẩn, với các mức: Excellent, Good, Average, Poor.
+    \item \textbf{Xử lý văn bản dài}: Sử dụng \texttt{ChunkingManager} để xử lý các prompt và phản hồi dài, đảm bảo không bị lỗi do giới hạn token.
+    \item \textbf{Kết quả đầu ra}: Một JSON chứa thông tin đánh giá, ví dụ:
+    \begin{lstlisting}[language=JSON]
+{
+    "student_assessment": {
+        "student_info": {
+            "name": "Nguyen Van A",
+            "email": "nguyenvana@example.com"
+        },
+        "learning_goal": "Master Python programming",
+        "assessment_date": "2025-03-31",
+        "assessment_summary": {
+            "situation": "Nguyen Van A is taking a Python course...",
+            "task": "The task of Nguyen Van A is to master Python programming...",
+            "action": {
+                "theoretical_knowledge": "...",
+                "coding_skills": "...",
+                "effort": "..."
+            },
+            "result": "With 75\% progress as of 2025-03-31, Nguyen Van A is on track..."
+        },
+        "progress_review": {
+            "strengths": "...",
+            "areas_to_note": "..."
+        },
+        "advice": {
+            "theoretical_knowledge": "...",
+            "coding_skills": "...",
+            "effort": "..."
+        }
+    }
+}
+    \end{lstlisting}
+\end{itemize}
+
+\subsection{Theo dõi và phân tích tiến độ học tập}
+Hệ thống cung cấp API \texttt{/progress\_tracking/student/recommend\_lessons/\{recommend\_lesson\_id\}/time\_spent} để cập nhật thời gian học tập và theo dõi tiến độ của học sinh:
+
+\begin{itemize}
+    \item \textbf{Cập nhật thời gian}: Hàm \texttt{add\_time\_spent} nhận thời gian mới (định dạng HH:MM:SS) và cộng dồn vào thời gian hiện có.
+    \begin{lstlisting}[language=Python]
+def add_time_spent(existing_time_spent, new_time_spent_str):
+    hours, minutes, seconds = map(int, new_time_spent_str.split(':'))
+    new_time_delta = timedelta(hours=hours, minutes=minutes, seconds=seconds)
+    return existing_time_spent + new_time_delta
+    \end{lstlisting}
+    \item \textbf{Lưu trữ}: Thời gian được cập nhật vào cơ sở dữ liệu qua \texttt{recommend\_lesson\_controller}.
+    \item \textbf{Kết quả}: Trả về thời gian đã cập nhật, ví dụ:
+    \begin{lstlisting}[language=JSON]
+{
+    "recommend_lesson_id": "xyz789",
+    "updated_time_spent": "02:30:45"
+}
+\end{lstlisting}
+\end{itemize}
+
+\subsection{Đánh giá kết quả học tập (Monitor Study Progress)}
+Phần này sử dụng API để phân tích kết quả sau khi học sinh hoàn thành một bài học được đề xuất. Các bước:
+\begin{itemize}
+    \item \textbf{Kiểm tra tiến độ}: Hệ thống kiểm tra xem học sinh đã đạt đủ tiến độ cần thiết (ít nhất 80\%) để được đánh giá.
+    \item \textbf{Phân tích vấn đề}: Dựa trên \texttt{issues\_summary} từ cơ sở dữ liệu, hàm \texttt{analyze\_issues} sử dụng AI để xác định các vấn đề quan trọng (significant\_issues) và mức độ nghiêm trọng (severity).
+    \item \textbf{Đề xuất hành động}: Đưa ra một hoặc hai khuyến nghị (proceed, repeat, review\_prior), ví dụ:
+    \begin{lstlisting}[language=JSON]
+{
+    "can_proceed": false,
+    "needs_repeat": true,
+    "needs_review_prior": false,
+    "issues_analysis": {
+        "significant_issues": [
+            {
+                "type": "concept_misunderstanding",
+                "frequency": 8,
+                "description": "Struggling to grasp recursion base cases.",
+                "severity": "high",
+                "impact_on_goals": "This significantly hinders..."
+            }
+        ],
+        "total_issues_count": 13,
+        "increasing_issues": ["recursion application"],
+        "most_frequent_type": "concept_misunderstanding"
+    },
+    "recommendations": [
+        {
+            "action": "repeat",
+            "reason": "Significant difficulties with recursion...",
+            "details": "Review 'Advanced Recursion'"
+        }
+    ]
+}
+    \end{lstlisting}
+\end{itemize}
+
+\section{Tạo bài kiểm tra (Generate Quiz)}
+Chức năng này cho phép hệ thống tạo bài kiểm tra trắc nghiệm dựa trên nội dung của một module, sử dụng endpoint \texttt{/generate-quiz}. Các bước thực hiện:
+\begin{itemize}
+    \item \textbf{Tập hợp dữ liệu}: Hệ thống lấy thông tin từ module, bài học (lesson), nội dung được đề xuất (recommended content), và tài liệu liên quan (documents).
+    \item \textbf{Tạo câu hỏi theo phân phối độ khó}: AI sinh ra các câu hỏi với ba mức độ khó (easy, medium, hard) theo phân phối được yêu cầu, sử dụng mô hình Gemini qua \texttt{AIToolProvider}. Ví dụ mã nguồn:
+    \begin{lstlisting}[language=Python]
+async def generate_quiz(request: GenerateQuizRequest, ...):
+    # Fetch module details
+    module = await modules_controller.modules_repository.first(
+        where_=[Modules.id == request.module_id]
+    )
+    
+    # Generate questions for each difficulty level
+    for difficulty in difficulties:
+        prompt = f"Generate EXACTLY {questions_needed} {difficulty_name} difficulty questions..."
+        response = llm.invoke(question_request.content)
+    \end{lstlisting}
+    \item \textbf{Lưu trữ}: Câu hỏi và bài kiểm tra được lưu vào cơ sở dữ liệu với thông tin như thời gian giới hạn và điểm tối đa.
+\end{itemize}
+Kết quả là một JSON chứa bài kiểm tra, ví dụ:
+\begin{lstlisting}[language=JSON]
+{
+    "quiz_id": "abc123",
+    "name": "Quiz: Python Basics",
+    "description": "Assessment covering key concepts from Introduction to Python",
+    "time_limit": 30,
+    "max_score": 100,
+    "module_id": "def456",
+    "questions": [
+        {
+            "id": "q123",
+            "question_text": "What is a list in Python?",
+            "question_type": "single_choice",
+            "options": ["A mutable sequence type", "An immutable sequence type", "A mapping type", "A set type"],
+            "correct_answer": ["A mutable sequence type"],
+            "difficulty": "easy",
+            "explanation": "Lists in Python are mutable sequences...",
+            "points": 5
+        }
+    ]
+}
+\end{lstlisting}
+
+\section{Tái tạo nội dung bài học (Regenerate Lesson Content)}
+Chức năng này điều chỉnh nội dung bài học dựa trên các vấn đề học sinh gặp phải, sử dụng endpoint \texttt{/regenerate-lesson-content}. Các bước:
+\begin{itemize}
+    \item \textbf{Phân tích vấn đề}: Dựa trên kết quả phân tích từ \texttt{monitor\_study\_progress}, hệ thống xác định các khía cạnh cần cải thiện (ví dụ: hiểu sai khái niệm, lỗi mã).
+    \item \textbf{Đánh giá tình huống}: Kiểm tra xem học sinh có cần xem lại bài học trước đó không (needs\_review\_prior) và thu thập thông tin liên quan nếu cần.
+    \item \textbf{Tạo nội dung mới}: AI sinh nội dung cập nhật với các mô-đun chi tiết, ví dụ mã nguồn:
+    \begin{lstlisting}[language=Python]
+async def regenerate_lesson_content(
+    recommend_lesson_id: UUID,
+    analysis_result: dict,
+    prior_recommend_lessons_data: List[dict],
+    ...
+):
+    prompt = f"""
+    ## Lesson Content Regeneration Task
+    ### Context
+    - Lesson Title: "{lesson.title}"
+    - Analysis Result: {json.dumps(analysis_result, indent=2)}
+    """
+    updated_content = chunking_manager.call_llm_api(prompt, ...)
+    \end{lstlisting}
+    \item \textbf{Cập nhật dữ liệu}: Xóa mô-đun cũ, tạo mô-đun mới và đánh dấu trạng thái bài học là "new" với tiến độ 0%.
+\end{itemize}
+Kết quả là một JSON chứa nội dung mới, ví dụ:
+\begin{lstlisting}[language=JSON]
+{
+    "recommended_content": "Updated content addressing recursion issues...",
+    "explain": "Explanation of how this content resolves the issues...",
+    "start_date": "2025-04-06",
+    "end_date": "2025-04-20",
+    "duration_notes": "Updated notes on timeline...",
+    "modules": [
+        {
+            "title": "Recursion Basics Revisited",
+            "objectives": ["Understand base cases", "Apply recursive patterns"],
+            "reading_material": {...}
+        }
+    ]
+}
+\end{lstlisting}
+
+\section{Kiến trúc tổng thể hệ thống}
+Hệ thống học tập trực tuyến thông minh được thiết kế theo mô hình Client – Server, với các thành phần chính bao gồm:
+
+\subsection{Frontend (Client-side):}
+Được xây dựng bằng Vue 3, giao diện người dùng cung cấp các tính năng như đăng nhập, học bài, làm bài tập, theo dõi tiến độ học tập, tương tác với gia sư AI, gửi phản hồi, \dots
+
+Frontend giao tiếp với backend thông qua các API RESTful.
+
+\subsection{Backend (Server-side):}
+Đảm nhiệm xử lý logic nghiệp vụ, quản lý dữ liệu người dùng, khóa học, bài học, bài tập, tiến độ học, phản hồi, \dots Đồng thời xử lý yêu cầu từ AI (qua LLM API).
+Backend được xây dựng bằng FastAPI. 
+\subsection{Cơ sở dữ liệu (Database):}
+Sử dụng hệ quản trị cơ sở dữ liệu PostgreSQL để lưu trữ thông tin người dùng, khóa học, bài học, kết quả học tập, bài tập, phản hồi, \dots
+Thiết kế cơ sở dữ liệu đảm bảo tính mở rộng, hỗ trợ việc theo dõi tiến độ và sinh báo cáo.
+
+\subsection{AI Module (LLM – Large Language Model):}
+Các tác vụ như gợi ý lộ trình học, sinh bài tập, chấm điểm và hỗ trợ giải thích được thực hiện nhờ tích hợp LLM API (OpenAI, Gemini)
+Backend sẽ định nghĩa prompt phù hợp và gửi yêu cầu tới LLM để lấy kết quả.
+
+\subsection{Hệ thống lưu trữ tài liệu:}
+Các tài liệu PDF, slide bài giảng được lưu ở AWS S3 thư mục local server.
+
+\section{Sơ đồ cơ sở dữ liệu}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{images/ERD.png}
+    \caption{Sơ đồ ERD của hệ thống}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Tổng quan cấu trúc cơ sở dữ liệu}
+Hệ thống được xây dựng trên nhiều bảng chính, chia thành các nhóm chức năng như sau:
+
+\subsubsection{Nhóm người dùng (User Management)}
+\begin{itemize}
+    \item \textbf{professors}, \textbf{student}, \textbf{admins}: chứa thông tin cơ bản của người dùng theo 3 role như username, email, password,...
+    \item \textbf{user\_login}\: bảng mở rộng lưu thông tin đăng nhập người dùng.
+\end{itemize}
+
+\subsubsection{Nhóm khóa học và tài liệu (Course Management)}
+\begin{itemize}
+    \item \textbf{courses}, \textbf{student\_courses}, \textbf{extracted\_text}: quản lý thông tin khóa học, tham gia khóa học và tài liệu học tập liên quan do giảng viên đăng tải.
+    \item \textbf{lessons}, \textbf{documents}, \textbf{modules}: quản lý bài học và các nội dung bài học liên quan.
+    \item \textbf{learning\_paths}, \textbf{recommend\_lessons}, \textbf{recommend\_documents}: quản lý các bài kiểm tra, bài tập và câu hỏi liên quan đến khóa học.
+\end{itemize}
+
+\subsubsection{Nhóm câu hỏi và bài kiểm tra (Assessment)}
+\begin{itemize}
+    \item \textbf{recommend\_quizzes}, \textbf{exercises}: chứa thông tin về các câu hỏi, loại câu hỏi, câu trả lời và kết quả bài kiểm tra của sinh viên trong các bài quiz được sinh ra theo từng bài học đề xuất.
+\end{itemize}
+
+\subsubsection{Nhóm tương tác và phản hồi (Interaction)}
+\begin{itemize}
+    \item  \textbf{feedbacks}, \textbf{activities}: quản lý tương tác giữa sinh viên và giảng viên, người dùng và hệ thống, và các hoạt động của người dùng.
+\end{itemize}
+
+\subsubsection{Nhóm bài tập Code Exercises}
+\begin{itemize}
+    \item \textbf{conversations}, \textbf{messages}, \textbf{coding\_conversations}: ghi nhận nhật ký hoạt động, cài đặt hệ thống và quản lý phiên làm việc.
+\end{itemize}
+
+\subsection{Mối quan hệ giữa các bảng}
+Các bảng trong hệ thống có mối quan hệ nhiều-nhiều và một-nhiều, với các khóa ngoại được thể hiện rõ trong sơ đồ:
+\begin{itemize}
+    \item Một người dùng có thể tham gia nhiều khóa học thông qua bảng \texttt{student\_courses}.
+    \item Một khóa học có thể có nhiều bài học, bài kiểm tra và tài liệu.
+    \item Bài kiểm tra có thể bao gồm nhiều câu hỏi và mỗi câu hỏi có nhiều đáp án.
+    \item Người dùng có thể đưa ra phản hồi và nhận thông báo từ hệ thống.
+    \item Một sinh viên đối với một khóa học có thể có nhiều lộ trình học khác nhau. 
+    \item Một lộ trình học có thể có nhiều bài học và tài liệu khác nhau.
+    \item Một bài học có thể có nhiều module nhỏ và nội dung khác nhau.
+    \item Một module có thể có nhiều bài quiz hoặc code exercises khác nhau (do sinh viên tùy chọn sinh ra)
+\end{itemize}
+
+\subsection{Kết luận}
+Sơ đồ ERD này cung cấp một cái nhìn toàn diện về kiến trúc cơ sở dữ liệu của hệ thống. Cấu trúc được tổ chức hợp lý, cho phép dễ dàng mở rộng và tích hợp thêm các chức năng mới như AI hỗ trợ học tập, phân tích dữ liệu học viên, và hơn thế nữa.
+
+\section{Kết luận}
+Hệ thống học tập trực tuyến thông minh đã được phát triển với mục tiêu mang lại trải nghiệm học tập cá nhân hóa, hiệu quả và linh hoạt cho sinh viên ngành công nghệ thông tin và những người có nhu cầu học lập trình. Thông qua việc tích hợp các mô hình ngôn ngữ lớn (LLM) và các tính năng tiên tiến như gia sư AI, hệ thống tạo bài tập tự động, và lộ trình học tập cá nhân hóa, hệ thống không chỉ hỗ trợ người học trong việc tiếp thu kiến thức mà còn giúp họ phát triển kỹ năng lập trình một cách thực tế và sâu sắc.
+
+Các module đã được triển khai, bao gồm quản lý tài khoản, khóa học, bài học, bài tập, lộ trình học tập, tiến độ học tập, phản hồi, người dùng, nhật ký đăng nhập và dashboard, đáp ứng đầy đủ các yêu cầu chức năng và phi chức năng được đề ra. Những tính năng này cho phép sinh viên, giảng viên và quản trị viên tương tác một cách hiệu quả, đồng thời đảm bảo tính bảo mật, khả năng mở rộng và hiệu năng cao của hệ thống.
+
+Trong tương lai, hệ thống có thể được cải tiến thêm bằng cách tích hợp các công nghệ mới, mở rộng các tính năng hỗ trợ đa ngôn ngữ, hoặc tối ưu hóa thuật toán đề xuất để nâng cao độ chính xác và phù hợp của các tài nguyên học tập. Với nền tảng vững chắc đã được xây dựng, hệ thống hứa hẹn sẽ tiếp tục là một công cụ hữu ích, đóng góp tích cực vào quá trình học tập và giảng dạy trong lĩnh vực công nghệ thông tin.

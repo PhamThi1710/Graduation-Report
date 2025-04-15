@@ -10,7 +10,7 @@
 \usepackage{a4wide,amssymb,epsfig,latexsym,array,hhline,fancyhdr}
 \usepackage[american]{babel}
 \usepackage{csquotes}
-
+\usepackage{fvextra}
 \setlength{\parindent}{0pt} % No indentation
 \sloppy  % Allows more flexible line breaks
 \usepackage[style=apa, citestyle=numeric, backend=biber, sorting=none]{biblatex}
@@ -89,15 +89,57 @@
 
 \usetikzlibrary{arrows,snakes,backgrounds,calc}
 \usepackage{hyperref}
-\usepackage{xcolor} 
-\hypersetup{
-    urlcolor=blue,  % URL color
-    linkcolor=black, % Internal link color
-    citecolor=black, % Citation color
-    colorlinks=true,  % Enable colored links
+\hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true}
+\usepackage{listings}
+
+\lstdefinelanguage{JSON}{
+    morestring=[b]",
+    morestring=[b]',
+    morecomment=[s]{/*}{*/},
+    morecomment=[l]//,
+    literate=
+        *{0}{{{\color{red}0}}}{1}
+         {1}{{{\color{red}1}}}{1}
+         {2}{{{\color{red}2}}}{1}
+         {3}{{{\color{red}3}}}{1}
+         {4}{{{\color{red}4}}}{1}
+         {5}{{{\color{red}5}}}{1}
+         {6}{{{\color{red}6}}}{1}
+         {7}{{{\color{red}7}}}{1}
+         {8}{{{\color{red}8}}}{1}
+         {9}{{{\color{red}9}}}{1}
+         {:}{{{\color{blue}:}}}{1}
+         {,}{{{\color{blue},}}}{1}
+         {\{}{{{\color{blue}\{}}}{1}
+         {\}}{{{\color{blue}\}}}}{1}
+         {[}{{{\color{blue}[}}}{1}
+         {]}{{{\color{blue}]}}}{1},
+    sensitive=false,
+    keywords={true,false,null},
+    keywordstyle=\color{purple}\bfseries,
+    stringstyle=\color{orange},
+    commentstyle=\color{gray}\itshape
 }
 
+% Cài đặt cho listings (mã nguồn)
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{xcolor}
 \usepackage{listings}
+
+% Thiết lập định dạng cho listings
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=single,
+    language=Python,
+    showstringspaces=false,
+    tabsize=4,
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{green!50!black}
+}
 
 
 %\usepackage{pstcol} 								% PSTricks with the standard color package
@@ -174,8 +216,8 @@
 		\tiny \bf 
 	\end{tabular}  }
 \fancyfoot{} % clear all footer fields
-\fancyfoot[L]{\scriptsize  Specialized project report}
-\fancyfoot[R]{\scriptsize  Page {\thepage}/\pageref{LastPage}}
+\fancyfoot[L]{\scriptsize  Báo cáo đồ án tốt nghiệp}
+\fancyfoot[R]{\scriptsize  Trang {\thepage}/\pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.3pt}
 \renewcommand{\footrulewidth}{0.3pt}
 
@@ -249,7 +291,7 @@
 \vspace{0.3cm}
 
 \begin{center}
-\fontsize{15}{12} \textbf{Đồ án chuyên ngành}  \\ 
+\fontsize{15}{12} \textbf{Đồ án tốt nghiệp}  \\ 
 \fontsize{15}{12} \textbf{BÁO CÁO}  \\ 
 \end{center}
 
@@ -267,23 +309,23 @@
 \fontsize{15}{12}\selectfont{
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{rl}
-    \textbf{HỘI ĐỒNG 4 } & ĐỒ ÁN CHUYÊN NGÀNH  \\
+    \textbf{HỘI ĐỒNG 4 } & ĐỒ ÁN TỐT NGHIỆP  \\
     \textbf{GVHD 1:} & Assoc. Prof. Võ Thị Ngọc Châu, PhD  \\
     \textbf{GVHD 2:} & Assoc. Prof. Nguyễn Hứa Phùng, PhD \\
     \textbf{Thư kí:} & Assoc. Prof. Trần Thị Quế Nguyệt, PhD \\
     \multicolumn{2}{c}{\textbf{---o0o---}} \\
-    \textbf{Sinh viên 1:} & Đỗ Phương Nam (2114111) \\
-    \textbf{Sinh viên 2}: & Phan Phạm Thi (2114857) \\
-    \textbf{Sinh viên 3:} & Nguyễn Trường Tuấn Anh (2112796)
+    \textbf{Sinh viên 1}: & Phan Phạm Thi (2114857) \\
+    \textbf{Sinh viên 2:} & Nguyễn Trường Tuấn Anh (2112796) \\
+    \textbf{Sinh viên 3:} & Đỗ Phương Nam (2114111) 
     
 \end{tabular}
 }
 \end{center}
 
-\vspace{2.2cm}
+\vspace{2cm}
 
 \begin{center}
-    \fontsize{15}{12}\selectfont Ho Chi Minh City, December 2024
+    \fontsize{15}{12}\selectfont Thành phố Hồ Chí Minh, tháng 5 năm 2025 
 \end{center}
 \end{titlepage}
 
@@ -311,9 +353,10 @@
 \par Chúng tôi xin cam kết rằng báo cáo này là công trình nghiên cứu độc lập của nhóm tôi. Tất cả các kết quả nghiên cứu, dữ liệu thu thập và phân tích đều được thực hiện một cách trung thực và không sao chép từ bất kỳ công trình nghiên cứu nào trước đó. Mọi nguồn tài liệu tham khảo đều được trích dẫn đầy đủ và rõ ràng trong báo cáo này. Nhóm tôi cam kết rằng những kết quả nghiên cứu trong báo cáo này phản ánh đúng những nỗ lực và công sức mà chúng tôi đã bỏ ra trong suốt quá trình thực hiện. Bất kỳ sự trợ giúp hay đóng góp nào từ bên ngoài đều được ghi nhận đầy đủ và không có sự gian lận hay sao chép.
 
 \par\hfill\textbf{Tác giả}\hspace{1cm}
-\par\hfill\textit{Đỗ Phương Nam}
-\par\hfill\textit{Phan Phạm Thi}\hspace{0.3cm}
-\par\hfill\textit{Nguyễn Trường Tuấn Anh}\hspace{0.2cm}
+
+\par\hfill\textit{Phan Phạm Thi}
+\par\hfill\textit{Nguyễn Trường Tuấn Anh}\hspace{0.3cm}
+\par\hfill\textit{Đỗ Phương Nam}\hspace{0.2cm}
 \newpage
 
 \begin{center}
@@ -323,9 +366,9 @@
 \par Để hoàn thành bài báo cáo này, chúng tôi xin gửi lời cảm ơn sâu sắc đến các thầy cô, bạn bè và những người đã đồng hành cùng tôi trong suốt quá trình nghiên cứu và phát triển hệ thống. Đặc biệt, chúng tôi xin gửi lời cảm ơn đến giáo viên hướng dẫn, người đã cung cấp cho chúng tôi những kiến thức quý báu, giúp chúng tôi hoàn thiện công trình nghiên cứu này. Sự chỉ dẫn tận tình của thầy cô đã giúp chúng tôi hiểu rõ hơn về các phương pháp và công nghệ tiên tiến trong lĩnh vực học máy và trí tuệ nhân tạo cũng như ứng dụng chúng vào trong lĩnh vực phát triển phần mềm - công nghệ phần mềm.
 
 \par\hfill\textbf{Tác giả}\hspace{1cm}
-\par\hfill\textit{Đỗ Phương Nam}
-\par\hfill\textit{Phan Phạm Thi}\hspace{0.3cm}
-\par\hfill\textit{Nguyễn Trường Tuấn Anh}\hspace{0.2cm}
+\par\hfill\textit{Phan Phạm Thi}
+\par\hfill\textit{Nguyễn Trường Tuấn Anh}\hspace{0.3cm}
+\par\hfill\textit{Đỗ Phương Nam}\hspace{0.2cm}
 \newpage
 
 \begin{center}
@@ -375,435 +418,15 @@
 
 \input{analysis&desgin}
 \input{algorithm}
-\input{figmaDesign}
+
+% \input{figmaDesign}
 
 \input{implement}
+\input{UI}
+\input{testing}
 \input{systemAnalysis}
 \input{conclusion}
 % \input{systemAnalysis}
 \nocite{*}
 \printbibliography
-
-% \newpage
-% % \addcontentsline{toc}{section}{Appendix}
-% \begin{appendices}
-% \section{Business process modelling notations v2.0}
-% \par The current version - 2.0 of BPMN includes the main components: \cite{bpmn2.0}
-% \begin{itemize}
-%     \item[-] Event: something that happens during the process.
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics{Images/others/bpmn_events.png}
-%         \caption{BPMN events \cite{bpmn2.0}}
-%         \label{fig:enter-label}
-%     \end{figure}
- 
-%     \item[-] Activity: action, work performed.
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics {Images/others/bpmn_activity.png}
-%         \caption{BPMN activity \cite{bpmn2.0}}
-%         \label{fig:enter-label}
-%     \end{figure}
-     
-%     \item[-] Gateways: control the flow of process.
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics{Images/others/bpmn_gateways.png}
-%         \caption{BPMN gateways \cite{bpmn2.0}}
-%         \label{fig:enter-label}
-%     \end{figure}
-     
-%     \item[-] Sequence flow: show the orders in which activities are performed.
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics{Images/others/bpmn_flow.png}
-%         \caption{BPMN sequence flow \cite{bpmn2.0}}
-%         \label{fig:enter-label}
-%     \end{figure}
-     
-%     \item[-] Message flow: show the flow of messages between participants in the process.
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics{Images/others/bpmn_msgFlow.png}
-%         \caption{BPMN message flow \cite{bpmn2.0}}
-%         \label{fig:enter-label}
-%     \end{figure}
-     
-%     \item[-] Association: link information and artifacts with BPMN elements
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics{Images/others/bpmn_assoc.png}
-%         \caption{BPMN association links \cite{bpmn2.0}}
-%         \label{fig:enter-label}
-%     \end{figure}
-     
-%     \item[-] Pool: represents a participant.
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics{Images/others/bpmn_pool.png}
-%         \caption{BPMN pool \cite{bpmn2.0}}
-%         \label{fig:enter-label}
-%     \end{figure}
-     
-%     \item[-] Lane: sub-partition within a pool, used to organize and categorize activities.
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics{Images/others/bpmn_lanes.png}
-%         \caption{BPMN lanes \cite{bpmn2.0}}
-%         \label{fig:enter-label}
-%     \end{figure}
-     
-%     \item[-] Data object: provide information about what activities require to be performed and/or what they produce.
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics{Images/others/bpmn_data.png}
-%         \caption{BPMN data object \cite{bpmn2.0}}
-%         \label{fig:enter-label}
-%     \end{figure}
-     
-%     \item[-] Message: denotes communication between participants.
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics{Images/others/bpmn_msg.png}
-%         \caption{BPMN message object \cite{bpmn2.0}}
-%         \label{fig:enter-label}
-%     \end{figure}
-     
-%     \item[-] Group: groups graphical elements.
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics{Images/others/bpmn_group.png}
-%         \caption{BPMN group \cite{bpmn2.0}}
-%         \label{fig:enter-label}
-%     \end{figure}
-     
-%     \item[-] Text annotation: for modeler to add additional information to the diagram.
-%     \begin{figure}[H]
-%         \centering
-%         \includegraphics{Images/others/bpmn_annotation.png}
-%         \caption{BPMN text annotation \cite{bpmn2.0}}
-%         \label{fig:enter-label}
-%     \end{figure}
-% \end{itemize}
-
-
-% \section{Case study: Outcome-based evaluation in the Computer Science and Engineering faculty of Ho Chi Minh University of Technology}
-% \par For effective outcome-based evaluation, a program built on the foundation of objectives and outcomes. In the context of Ho Chi Minh University of Technology (HCMUT), there exists collections of clearly outlined and measurable performance indicators, as well as specific learning outcomes for each course.
-% To evaluate outcome attainment, HCMUT makes use of a multitude of direct, indirect, quantitative, and qualitative measures:
-% \begin{itemize}
-%     \item[-] Direct assessment of students’ performance in courses, tests and projects based on mark.
-%     \item[-] Direct assessment of students’ behavior and demonstrated skills in projects and presentations.
-%     \item[-] Indirect assessment via surveys and self-evaluations
-% \end{itemize}
-
-% \par Each assessment contributes to specific PIs, reflecting the level of achievement attained by students in particular skills, knowledge domains, or exhibited behaviors. These assessment outcomes provide insights into the students' proficiency and competence in understanding specific areas of knowledge, demonstrating skills, or displaying expected behaviors.
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=\textwidth]{Images/others/sampleTable_PI.png}
-%     \caption{A sample of evaluating PI achievement through multiple assessments}
-%     \label{fig:enter-label}
-% \end{figure}
-
-% \par The above image illustrates a PI’s attainment throughout multiple assessments. As each assessment contributes to measuring a specific PI, it offers insight into the degree to which that PI is being fulfilled. This view allows educators to gauge whether the program's teaching is effectively providing students with the necessary knowledge and skills for proficient performance. Moreover, it enables identification of areas where students are struggling with, aiding in program enhancement for better learning.
-
-% \par Furthermore, assessment results may sometimes reveal shortcomings related to ambiguously defined assessment methods or content, resulting in inaccurate evaluations of students' capabilities.
-
-% \par Similarly, the following image depicts how a PI might involves various assessment methods conducted at different intervals throughout a program's duration. Offering a broader, higher-level view, this approach assists program developers in identifying significant problematic areas regarding student assessments. This insight allows them to focus on identifying and addressing any flawed or impractical assessment methods for improvements in subsequent assessments.
-
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=\linewidth]{Images/others/sampleTable_multiPI.png}
-%     \caption{A sample of evaluating PI achievement through multiple assessments, at different intervals}
-%     \label{fig:enter-label}
-% \end{figure}
-
-% \par Upon examining each PI, the evaluation of outcome achievement can be conducted, as seen below. A well-designed program should ideally guarantee the fulfillment of all Student Outcomes, ensuring that graduates possess the necessary capabilities to attain the targeted Program Educational Objectives (PEOs) in their future endeavors. 
-
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=\textwidth]{Images/others/sampleTable_SO.png}
-%     \caption{A sample of evaluating SO attainment through the achievement of connected PIs}
-%     \label{fig:enter-label}
-% \end{figure}
-
-% \par However, in instances where certain SOs remain un-achieved, educators can look deeper into the reasons behind these shortcomings. This analysis allows them to assess the root causes and severity of defects within the program, paving the way for devising of effective strategies aimed at enhancing future outcome attainment for future generation of students.
-
-
-% \section{Detailed features}
-% \par For each requirement, the team devised sets of features to fulfill them, while adhering to business processes.
-
-% \begin{enumerate}
-%     \item\textbf{Outcome-based evaluation setup:} 
-%     \begin{enumerate}
-%         \item Setup outcome-based assessment.
-%         \begin{itemize}
-%             \item[-] Accreditation team personnel (ATP) can name, abbreviation (or load program list of the uni) of the programs to setup assessment
-%             \item[-] ATP can set up a program’s assessment by setting up SOs, PIs for that program:
-%             \begin{itemize}
-%                 \item[+] Option 1: manual input of SOs, PIs names, descriptions and mappings.
-%                 \item[+] Option 2: Upload file of defined SOs, PIs, mapping between SOs-PIs
-%             \end{itemize}
-%         \end{itemize}
-    
-%         \item Setup evaluation.
-%         \begin{itemize}
-%             \item[-] ATP selects a PI/SO to configure
-%             \item[-] ATP inputs selected PI/SOs’ default passing threshold, passing goal values
-%         \end{itemize}
-        
-%         \item Create assessment schemes.
-%         \begin{itemize}
-%             \item[-] ATP select program SOs, PIs related to the assessment scheme
-%             \item[-] ATP create assessment form:
-%             \begin{itemize}
-%                 \item[+] Option 1: manual input of each criterion's content, levels and levels' descriptions.
-%                 \item[+] Option 2: upload assessment form file
-%             \end{itemize}
-%             \item[-] ATP map assessing criteria in the form with relevant PIs
-%             \item[-] ATP input configurations for each assessing criterion in the form to create an assessment scheme:
-%             \begin{itemize}
-%                 \item[+] Input each level’s score range
-%                 \item[+] Criterion’s passing goal
-%                 \item[+] The criterion’s weight of contribution to each corresponding PI (all criteria contribute equally to a PI by default)
-%             \end{itemize}
-%             \item[-] ATP can modify related SOs, PIs’ passing threshold, passing goal values specific to the current scheme.
-%         \end{itemize}
-        
-%         \item Manage assessment schemes.
-%         \begin{itemize}
-%             \item[-] ATP can view, modify, delete created schemes
-%         \end{itemize}
-%     \end{enumerate}
-
-%     \item\textbf{Foundation test assessment:} 
-%     \begin{enumerate}
-%         \item Create assessment schemes for the test.
-%         \begin{itemize}
-%             \item[-] ATP selects program SOs, PIs related to the test
-%             \item[-] ATP create an exam:
-%             \begin{itemize}
-%                 \item[+] Option 1: manual input of each question's content, answers.
-%                 \item[+] Option 2: upload questions data file
-%             \end{itemize}
-%             \item[-] ATP map exam questions with relevant PIs
-%             \item[-] ATP input configurations for question:
-%             \begin{itemize}
-%                 \item[+] Input each answer’s score (wrong answers has no points)
-%                 \item[+] Expected passing goal
-%                 \item[+] Question's PI contribution weight
-%             \end{itemize}
-%             \item[-] ATP can modify related SOs, PIs’ passing threshold, passing goal values specific to the test's assessment scheme.
-%         \end{itemize}
-        
-%         \item Manage assessment schemes.
-%         \begin{itemize}
-%             \item[-] ATP can view, modify, delete a scheme
-%         \end{itemize}
-        
-%         \item Input students’ assessment record (test answers).
-%         \begin{itemize}
-%             \item[-] ATP select a created assessment scheme to assess student
-%             \item[-] ATP input a student’s assessment data into the selected assessment scheme to create an assessment record
-%         \end{itemize}
-        
-%         \item Manage student’s assessment records.
-%         \begin{itemize}
-%             \item[-] ATP can view assessment records corresponding to a scheme
-%             \item[-] ATP can modify or delete a student’s assessment record
-%         \end{itemize}
-        
-%         \item Automatically grade students’ answers.
-%         \begin{itemize}
-%             \item[-] Select an assessment scheme’s grading (pass/fail PI) method:
-%             \begin{itemize}
-%                 \item[+] Method 1: Based on cumulative grades from each question’s score and weight, compared with passing score threshold
-%                 \item[+] Method 2: Based on number of correct questions needed compared with passing threshold
-%             \end{itemize}
-%         \end{itemize}
-        
-%         \item Assess students’ performance and outcome attainment.
-%         \begin{itemize}
-%             \item[-] The system assess PI, SO scores for each student based on student’s assessment record and corresponding assessment scheme
-%         \end{itemize}
-        
-%         \item Evaluate and generate report on students’ outcome attainment.
-%         \begin{itemize}
-%             \item[-] The system calculate and shows the extent to which PIs, SOs are being attained.
-%             \item[-] Report the information to ATP, superusers(program chair, department head, dean board member) with customizable charts/graphs.
-%             \item[-] Record ATP, superusers’ feedbacks on a report.
-%         \end{itemize}
-%     \end{enumerate}
-
-%     \item\textbf{Internship assessment:} 
-%     \begin{enumerate}
-%         \item Input intern assessment data from companies.
-%         \begin{itemize}
-%             \item[-] ATP select internship assessment scheme to assess student
-%             \item[-] ATP input a intern’s assessment data from the company’s evaluation form into the selected assessment scheme
-%         \end{itemize}
-        
-%         \item Manage assessment records.
-%         \textit{Same as features for requirement 2.4}
-%         \item Assess intern students’ performance and outcome attainment.
-%         \textit{Same as features for requirement 2.7}
-%         \item Evaluate and generate report on students’ outcome attainment.
-%         \textit{Same as features for requirement 2.8}
-%     \end{enumerate}
-        
-
-%     \item\textbf{Project submission \& enrollment:} 
-%     \begin{enumerate}
-%         \item Submit new research projects.
-%         \begin{itemize}
-%             \item[-] A project supervisor input their project contents or upload a file containing their projects’ contents. Each project’s content includes: 
-%             \begin{itemize}
-%                 \item[+] Project stage (stage 1, stage 2)
-%                 \item[+] Project name (Vietnamese)
-%                 \item[+] Project name (English)
-%                 \item[+] Instructor names and emails
-%                 \item[+] Project's specializations
-%                 \item[+] Project's program
-%                 \item[+] Project's evaluation committee
-%                 \item[+] Number of participants allowed
-%                 \item[+] Students list
-%                 \item[+] Requirements
-%                 \item[+] Description
-%                 \item[+] Tasks
-%                 \item[+] References list
-%             \end{itemize} Project supervisor can save and submit a created project for approval.
-%             \item[-]
-%         \end{itemize}
-        
-%         \item Manage projects.
-%         \begin{itemize}
-%             \item[-] Project supervisor, superusers can view submitted, approved projects corresponding to their programs
-%             \item[-] Project supervisor can cancel a project they submitted, changing the status of the project to “canceled”
-%             \item[-] Project supervisor can remove a completed project by changing status of project to “completed”
-%             \item[-] Project supervisor can modify their project’s participants list
-%         \end{itemize}
-        
-%         \item Transfer stage 1 projects to stage 2.
-%         \begin{itemize}
-%             \item[-] Project supervisor can choose to modify the stage of an available stage-1 project and resubmit the project as a new stage-2 project
-%         \end{itemize}
-        
-%         \item Approve projects.
-%         \begin{itemize}
-%             \item[-] Everyone can view a project’s life cycle status (submitted/first-stage approved/fully approved)
-%             \item[-] The department head can approve a submitted project (first stage approval) or reject the project and input the reason for rejection.
-%             \item[-] The program chair can approve a project for the second time (full approval) or reject the project and input the reason for rejection.
-%         \end{itemize}
-        
-%         \item Notify supervisors status of projects approval.
-%         \par Upon a project’s full approval, send a notification to the project’s supervisor via existing communication methods, system
-        
-%         \item Students enroll in projects.
-%         \begin{itemize}
-%             \item[-] Student can view fully approved projects that includes the student’s specialization and belong in the same program as the student
-%             \item[-] Upon enrolling in a project, the student is checked whether they satisfy the project's entry requirements (English level, GPA, credits) and notify the student if any requirement is unsatisfied.
-%             \item[-] System handles synchronization between concurrent enrollments
-%             \item[-] Students can change their enrolled project, only enroll in 1 project at a time. Any student that enroll into a project first is added to the project’s student list first.
-%             \item[-] Enrolled projects are placed on top of the projects list on the student’s view.
-%         \end{itemize}
-        
-%         \item Set project formation period deadline.
-%         \begin{itemize}
-%             \item[-] The system automatically lock the project formation and registration process when enrollment deadline is reached.
-%             \item[-] After the project formation and registration deadline, the system prevents project modification from supervisors and enrollment from students.
-%             \item[-] Dean board member can extend the deadline anytime.
-%         \end{itemize}
-%     \end{enumerate}
-
-%     \item\textbf{Project assessment:} 
-%     \begin{enumerate}
-%         \item Approve a project’s progress.
-%         \par The project supervisor can examine an ongoing project's progress at a certain time and update the project's status to be qualified or unqualified for continuation.
-        
-%         \item Input project presentation assessment data.
-%         \begin{itemize}
-%             \item[-] ATP can select a corresponding project assessment scheme to assess student
-%             \item[-] ATP can input project name as written in defense committee member’s evaluation sheets.
-%             \item[-] ATP input a student’s assessment data from the defense committee member’s evaluation sheets into the selected assessment scheme
-%         \end{itemize}
-        
-%         \item Manage assessment records.
-%         \par\textit{Same as requirements 3.2}
-        
-%         \item Process written data from assessment records.
-%         \par The system map inconsistent written names from inputted assessment data to available research project name
-        
-%         \item Assess students’ performance and outcome attainment.
-%         \par\textit{Same as requirements 2.7}
-        
-%         \item Evaluate and generate report on students’ outcome attainment.
-%         \par\textit{Same as requirements 2.8}
-%     \end{enumerate}
-
-%     \item\textbf{Exit survey assessment:} 
-%     \begin{enumerate}
-%         \item Input students’ survey answers.
-%         \begin{itemize}
-%             \item[-] ATP select exit survey assessment scheme to assess student
-%             \item[-] ATP input a student’s assessment data from their survey form answers into selected scheme
-%         \end{itemize}
-        
-%         \item Manage students’ survey assessment records.
-%         \par\textit{Same as requirements 2.7}
-        
-%         \item Evaluate and generate report on students’ outcome attainment.
-%         \par\textit{Same as requirements 2.8}
-        
-%         \item Process students’ survey answers.
-%         \par Process written data to find the most common opinions:
-%         \begin{itemize}
-%             \item[-] Perform standardization: Map different subject names to available subjects’ names
-%             \item[-] Perform segmentation: group similar ideas, statements and count how many students share the same opinions
-%             \item[-] Statement analysis: positive, negative response for some open-answer section
-%             \item[-] Summarize key points, ideas
-%         \end{itemize}
-%     \end{enumerate}
-
-%     \item\textbf{Program evaluation:} 
-%     \begin{enumerate}
-%         \item Load and analyze assessment data of a semester or a graduated generation.
-%         \begin{itemize}
-%             \item[-] Final evaluation is done for every graduating generation
-%             \item[-] Final evaluation data includes PI, SO attainment synthesized from different evaluation methods within the semesters from the foundation test to the exit survey of each fresh graduate
-%             \item[-] ATP, superusers can view, dynamically manipulate data tables; generate custom reports with charts, graphs
-%         \end{itemize}
-        
-%         \item Record feedbacks on generated reports.
-%         \begin{itemize}
-%             \item[-] Allow saving a generated report by saving the metadata used to generate the report
-%             \item[-] Allow ATP, program chair, dean board member to view and record feedback for every saved report 
-%         \end{itemize}
-        
-%         \item Export reports.
-%         \par Allow ATP,  program chair, dean board member to export created reports along with report feedbacks.
-%     \end{enumerate}
-
-%     \item\textbf{User administration:} 
-%     \begin{enumerate}
-%         \item Add users to system.
-%         \begin{itemize}
-%             \item[-] Dean board member can add a new user into the system with new username, email, password, role, permissions, associated program, specializations.
-%             \item[-] Dean board member can import existing users into the system via external authentication service
-%         \end{itemize}
-        
-%         \item Modify users from system.
-%         \begin{itemize}
-%             \item[-] Dean board member can view list of available users recorded in the evaluation system
-%             \item[-] Dean board member can remove a user from the system
-%         \end{itemize}
-        
-%         \item Modify a user.
-%         \begin{itemize}
-%             \item[-] Dean board member can view list of available users and select one for modification
-%             \item[-] Dean board member can modify the user's details including user’s role, permission, program, specialization
-%         \end{itemize}
-%     \end{enumerate}
-
-% \end{enumerate}
-% \end{appendices}
 \end{document}

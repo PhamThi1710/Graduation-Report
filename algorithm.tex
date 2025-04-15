@@ -1,162 +1,114 @@
-\section{Thiết kế prompt để xây dựng cơ sở dữ liệu đồ thị và hệ thống đề xuất lộ trình học cho từng khóa học}
 
-Trong hệ thống học tập này, LLM (Language Model) được sử dụng để hỗ trợ việc trích xuất thông tin về người học và tài nguyên học tập, từ đó giúp đề xuất các tài nguyên học tập phù hợp với mục tiêu học tập của người dùng. Quy trình này được thực hiện thông qua một chuỗi các bước được mô tả chi tiết dưới đây.
-\section{Thiết kế prompt để xây dựng đồ thị tri thức từ nguồn học liệu (bài giảng, module,...)}
-Việc xây dựng đồ thị từ nguồn học liệu sẽ được thực hiện bởi mô hình ngôn ngữ lớn, và dữ liệu sẽ được thêm vào cơ sở dữ liệu đồ thị bằng kỹ thuật \emph{function calling}:
 
-Context: You are an assistant helping teachers and instructors process their learning resources.
+\section{Quy trình Đề xuất và Theo dõi Lộ trình Học tập Cá nhân hóa}
 
-Your role is to analyze and extract data from various learning materials (such as courses, lessons, 
-learning modules, assignments, exercises, etc.) and convert it into a format suitable for 
-insertion into a graph database. This database will support a personalized learning resource 
-recommendation system tailored for students.
+\subsection{Tổng quan}
+Hệ thống học tập trực tuyến thông minh được thiết kế để cung cấp trải nghiệm học tập cá nhân hóa, hỗ trợ học viên đạt được mục tiêu học tập một cách hiệu quả. Quy trình tận dụng trí tuệ nhân tạo (AI) để phân tích nhu cầu học viên, đề xuất nội dung phù hợp, đánh giá tiến độ, và điều chỉnh lộ trình học tập khi cần. Các chức năng chính bao gồm xây dựng lộ trình học tập, tạo bài kiểm tra tự động, theo dõi hiệu quả học tập, và tái tạo nội dung để giải quyết khó khăn.
 
-Your main task is to use the tool `AddLearningResource` to categorize each learning resource 
-and identify relevant concepts. For each learning resource, you must identify and list at least 
-5 related concepts that represent the key ideas or topics covered.
-    
-Instructions:
+Quy trình được chia thành bốn giai đoạn chính:
+\begin{itemize}
+	\item Phân tích mục tiêu và tạo lộ trình học tập.
+	\item Tạo bài kiểm tra tự động.
+	\item Theo dõi và đánh giá tiến độ học tập.
+	\item Điều chỉnh nội dung học tập dựa trên kết quả học tập.
+\end{itemize}
+
+\subsection{Giai đoạn 1: Phân tích Mục tiêu và Tạo Lộ trình Học tập}
+Giai đoạn này tập trung vào việc hiểu mục tiêu học tập của học viên và xây dựng một kế hoạch học tập phù hợp, sử dụng AI để phân tích và đề xuất nội dung.
+
 \begin{enumerate}
-    \item Carefully examine the provided JSON data and understand the main topics of the resource.
-    \item Use `add\_learning\_resource` to log the resource details and associated concepts.
-    \item Ensure each resource has at least 5 related concepts to maximize the utility of the recommendation system.
-    \item If the input data is a JSON array, please call AddLearningResource function for each learning
-resource in the array.
-Output your findings in a structured format.
-\end{enumerate}
-Câu prompt trên sử dụng function calling để mô hình có thể tự động thực hiện các tác vụ sau khi phân tích tài nguyên học tập, trong đó:
-\begin{itemize}
-    \item  Mô hình nhận diện các khái niệm chính từ nội dung của tài liệu học tập, chẳng hạn như "Networking", "Machine Learning", và các chủ đề liên quan. Các khái niệm này giúp xây dựng một cấu trúc đồ thị tri thức, từ đó hỗ trợ hệ thống gợi ý tài nguyên học tập cá nhân hóa cho người học.
-    \item Sau khi trích xuất các khái niệm, mô hình sử dụng hàm \texttt{AddLearningResource} để ghi tài nguyên và các khái niệm vào cơ sở dữ liệu đồ thị. Mỗi tài nguyên học tập được gắn với các thuộc tính như độ khó (difficulty) và độ liên quan (relevance), giúp phân loại tài nguyên học tập theo các tiêu chí quan trọng.
-\end{itemize}
+	\item \textbf{Hiểu mục tiêu học tập}: Hệ thống thu thập mục tiêu của học viên, ví dụ: ``nắm vững lập trình Python cơ bản'' hoặc ``cải thiện kỹ năng giải thuật''. AI phân tích mục tiêu để đảm bảo nó rõ ràng, phù hợp với khóa học, và khả thi trong thời gian quy định. Nếu mục tiêu có thời hạn cụ thể (như trước kỳ thi giữa kỳ), hệ thống xác định khoảng thời gian phù hợp.
 
-\subsection{Cấu Trúc Đồ Thị}
-Hệ thống sử dụng cơ sở dữ liệu đồ thị Neo4j để lưu trữ và quản lý các khái niệm học tập, tài nguyên học tập, và mối quan hệ giữa chúng. Cấu trúc đồ thị bao gồm các loại node và mối quan hệ sau:
+	\item \textbf{Prompt sử dụng}:
+	      \begin{Verbatim}[breaklines=true]
+		      Phân tích mục tiêu học tập: "[goal]". Xác định tính hoàn chỉnh, phù hợp với khóa học "[course_name]", và khả thi dựa trên kết quả học tập mong đợi. Đề xuất dòng thời gian từ [start_date] đến [end_date]. Trả về JSON với start_date, end_date, và ghi chú xác thực.
+	      \end{Verbatim}
+	      Prompt này yêu cầu AI kiểm tra tính hợp lệ của mục tiêu và đề xuất thời gian thực hiện, đảm bảo lộ trình học tập phù hợp với lịch trình khóa học.
 
-\begin{itemize}
-    \item \textbf{Concept:} Mỗi node đại diện cho một khái niệm học tập.
-    \item \textbf{Learning Resource:} Các node tài nguyên học tập đại diện cho các bài giảng, sách, video, tài liệu học tập, ví dụ: "Video bài giảng về phương trình bậc hai", "Bài viết về đạo hàm".
-    \item \textbf{Learner:} Node người học chứa thông tin về người học, bao gồm các khái niệm mà họ đang học và mức độ thành thạo đối với các khái niệm này.
-\end{itemize}
+	\item \textbf{Lựa chọn bài học phù hợp}: AI xem xét nội dung khóa học và chọn các bài học liên quan nhất đến mục tiêu. Các bài học được sắp xếp từ cơ bản đến nâng cao, kèm theo giải thích về lý do lựa chọn, giúp học viên dễ dàng tiếp cận kiến thức.
 
-Các mối quan hệ giữa các node bao gồm:
-\begin{itemize}
-    \item \textbf{COVERS:} Quan hệ giữa tài nguyên học tập và khái niệm mà tài nguyên đó đề cập đến. Mối quan hệ này có thuộc tính \textbf{difficulty}, đại diện cho độ khó của tài nguyên học tập đối với khái niệm đó. Ví dụ: Một video có thể "COVERS" khái niệm "Phương trình bậc hai" với độ khó là 0.8.
-    \item \textbf{LEARNS:} Quan hệ giữa người học và khái niệm mà họ đang học. Mối quan hệ này có thuộc tính \textbf{proficiency}, biểu thị mức độ thành thạo của người học đối với khái niệm đó. Ví dụ: Người học "LEARNS" khái niệm "Lập trình Python" với mức độ thành thạo là 0.6.
-\end{itemize}
+	\item \textbf{Prompt sử dụng}:
+	      \begin{Verbatim}[breaklines=true]
+		      Dựa trên mục tiêu "[goal]" và khóa học "[course_name]", chọn các bài học từ danh sách [lessons_data]. Sắp xếp theo thứ tự logic, ưu tiên bài học cơ bản nếu thời gian ngắn. Trả về danh sách bài học với ID, thứ tự, tiêu đề, và lý do chọn.
+	      \end{Verbatim}
+	      Prompt này hướng dẫn AI lọc và sắp xếp bài học dựa trên mục tiêu, đảm bảo tính liên quan và trình tự hợp lý.
 
-\subsection{Thiết kế prompt cho việc đề xuất lộ trình học}
-Việc đánh giá các tài nguyên học tập phù hợp sẽ được phụ trách bởi LLM. Sau đây là câu prompt đầu vào của hệ thống:
+	\item \textbf{Xây dựng lộ trình chi tiết}: Hệ thống tạo lộ trình học tập bao gồm các bài học được chia thành các phần nhỏ (module), mỗi phần có nội dung lý thuyết, hướng dẫn thực hành, và tài liệu tham khảo. AI thiết kế lộ trình phù hợp với thời gian và tốc độ học của học viên.
 
-\begin{verbatim}
-    You are a teacher assistant, and your task is to recommend learning 
-    resources based on the learner’s profile. Here’s how the process works:
-
-    Receive the learning goal from the learner.
-
-    Invoke the function get_learner_profile_and_learning_resources with
-    the list of analyzed concepts. This will return two things:
-        The learner’s profile, which contains the proficiency level
-        (0 to 1) for each concept. For instance:
-            High proficiency (0.8-1): The learner is very skilled in 
-            the concept (e.g., Linked List).
-            Low proficiency (0.0-0.3): The learner is not familiar with 
-            the concept (e.g., Binary Tree).
-            Medium proficiency (0.3-0.7): The learner has some experience
-            but needs improvement (e.g., sorting algorithms).
-        A list of learning resources that match the learner’s needs.
-
-    Select the top 5 most suitable resources, based on the learner's 
-    profile and the resources returned.
-        For each resource, explain why it is a good match for the learner:
-            Focus on what the learner needs to improve on and how the 
-            resource addresses those weaknesses.
-            Avoid mentioning numerical proficiency, but instead focus on
-            the learner’s needs.
-            Explain what the learner can achieve by interacting with 
-            each resource.
-
-    Call the lp_recommender_response tool with your analysis and 
-    recommendations.
-
-   Example:
-
-    Learning Goal: Mastering Binary Trees
-
-        Learner Profile:
-            Binary Trees: Proficiency = 0.3 (moderate skill)
-            Data Structures: Proficiency = 0.8 (high skill)
-            Algorithms: Proficiency = 0.5 (moderate skill)
-
-        Learning Resources:
-            Resource 1: "Binary Tree Fundamentals" (difficulty 0.4)
-            Resource 2: "Advanced Binary Tree Algorithms" (difficulty 0.7)
-            Resource 3: "Data Structure Optimization" (difficulty 0.6)
-            Resource 4: "Understanding Tree Traversals" (difficulty 0.5)
-            Resource 5: "Recursive Tree Operations" (difficulty 0.6)
-
-        Recommended Resources and Explanations:
-
-            Resource 1: "Binary Tree Fundamentals"
-            Based on your profile, you have a moderate understanding of
-            Binary Trees, but there are still fundamental areas where
-            you could improve. This resource will help you strengthen
-            your foundational knowledge, ensuring that you grasp basic
-            concepts and terminology. This is particularly important
-            because a strong foundation in Binary Trees will make 
-            advanced topics easier to comprehend.
-
-            Resource 2: "Advanced Binary Tree Algorithms"
-            Your current proficiency in Binary Trees shows you have a basic
-            understanding, but there are gaps when it comes to more complex
-            algorithms. This resource will help you expand your knowledge 
-            of how Binary Trees can be manipulated and optimized through 
-            more advanced techniques, which will enhance your overall 
-            problem-solving ability.
-
-            Resource 3: "Data Structure Optimization"
-            Since you are already proficient in data structures, this resource
-            will help you learn how to make data structures, including Binary
-            Trees, more efficient. Understanding optimization strategies will
-            not only improve your technical skills but will also help you 
-            think more critically about performance in algorithms.
-
-            Resource 4: "Understanding Tree Traversals"
-            Although you have a moderate proficiency with Binary Trees, your
-            understanding of traversal techniques may need refinement. This
-            resource is designed to help you understand different tree traversal
-            methods, which are crucial for manipulating and accessing data
-            within Binary Trees. Mastering this concept will be vital for
-            solving problems efficiently.
-
-            Resource 5: "Recursive Tree Operations"
-            Your profile suggests that you may not be fully comfortable with 
-            recursive algorithms, which are essential for operations in Binary
-            Trees. This resource will walk you through recursive techniques 
-            and give you the confidence to handle recursive solutions within
-            tree structures.
-\end{verbatim}
-Quy trình xử lý mục tiêu học tập và đề xuất tài nguyên học tập được thực hiện thông qua các bước sau:
-\begin{enumerate}
-    \item LLM sẽ sử dụng function calling để gọi các hàm trong hệ thống nhằm trích xuất các thông tin sau:
-    \begin{itemize}
-        \item Tất cả các khái niệm liên quan mà khóa học đó có đề cập sẽ được trích xuất.
-        \item Từ các khái niệm trên, profile của người học sẽ được mô hình thành một vector nhiều chiều, trong đó, mỗi thành phần của một vector là mức độ thông thạo của người học ứng với một khái niệm nhất định.
-        \item Tương tự với profile của người học, các tài nguyên học tập cũng sẽ được mô hình thành các vector, trong đó, mỗi một thành phần biểu diễn độ khó của tài nguyên đó với một khái niệm nhất định.
-        \item Từ vector biểu diễn profile của người học và vector biểu diễn các tài nguyên học tập, độ phù hợp của người học ứng với một tài nguyên học tập tương ứng sẽ được tính bằng khoảng cách Euclid. Công thức tính Euclidean distance là:
-    $$
-    \text{Euclidean Distance} = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}
-    $$
-    Trong đó, $x_i$ và $y_i$ là các component của vector $X$ và $Y$ tương ứng, đại diện cho các khái niệm hoặc tài nguyên học tập.
-    \end{itemize}
-
-    \item Sau khi có được profile của người học, các tài nguyên học tập tương ứng cũng như độ phù hợp, LLM sẽ phân tích, đánh giá để chọn ra cũng như giải thích chi tiết về cách mỗi tài nguyên giúp người học cải thiện khả năng thành thạo các khái niệm cần thiết. LLM sẽ trả về các giải thích dạng tự nhiên cho người học.
+	\item \textbf{Prompt sử dụng}:
+	      \begin{Verbatim}[breaklines=true]
+		      Tạo lộ trình học tập cho mục tiêu "[goal]" từ [start_date] đến [end_date]. Dựa trên bài học [selected_lessons], tạo danh sách bài học đề xuất với nội dung trọng tâm, giải thích lý do, và 2-3 module mỗi bài học. Trả về JSON với bài học và module chi tiết.
+	      \end{Verbatim}
+	      Prompt này yêu cầu AI tạo lộ trình chi tiết, bao gồm nội dung và module, để hỗ trợ học viên đạt mục tiêu một cách có hệ thống.
 \end{enumerate}
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=\linewidth]{Images/flowchart-diagram.png}
-    \caption{Giải thích chi tiết về các tài nguyên học tập}
-    \label{fig:giaithuat}
-\end{figure}
+\subsection{Giai đoạn 2: Tạo Bài Kiểm tra Tự động}
+Hệ thống sử dụng AI để tạo bài kiểm tra nhằm đánh giá sự hiểu biết của học viên dựa trên nội dung học tập.
 
+\begin{enumerate}
+	\item \textbf{Xác định nội dung kiểm tra}: Hệ thống chọn một phần nội dung cụ thể (module) để tạo bài kiểm tra, tập trung vào các khái niệm và kỹ năng quan trọng.
+
+	\item \textbf{Tạo câu hỏi đa dạng}: AI tạo các câu hỏi với nhiều mức độ khó (dễ, trung bình, khó) và loại hình (trắc nghiệm đơn, đa lựa chọn, đúng/sai). Mỗi câu hỏi đi kèm giải thích chi tiết để học viên hiểu rõ đáp án.
+
+	\item \textbf{Prompt sử dụng}:
+	      \begin{Verbatim}[breaklines=true]
+		      Tạo [count] câu hỏi [difficulty] cho module "[module_title]". Câu hỏi dựa trên mục tiêu [objectives] và nội dung "[recommended_content]". Bao gồm loại câu hỏi đa dạng (single_choice, multiple_choice, true_false), với giải thích chi tiết. Trả về JSON với câu hỏi, lựa chọn, đáp án, và điểm.
+	      \end{Verbatim}
+	      Prompt này chỉ đạo AI tạo câu hỏi phù hợp với nội dung module, đảm bảo đa dạng và có giá trị đánh giá cao.
+
+	\item \textbf{Thiết lập thông tin bài kiểm tra}: Hệ thống đặt thời gian làm bài và tổng điểm dựa trên số lượng câu hỏi, đảm bảo bài kiểm tra cân đối và khả thi.
+
+	\item \textbf{Prompt sử dụng}:
+	      \begin{Verbatim}[breaklines=true]
+		      Thiết lập bài kiểm tra cho module "[module_title]". Dựa trên [questions_count] câu hỏi, tính thời gian làm bài (2 phút/câu, tối đa 60 phút) và tổng điểm. Trả về JSON với tên, mô tả, thời gian, và điểm tối đa.
+	      \end{Verbatim}
+	      Prompt này giúp AI cấu hình bài kiểm tra phù hợp với khối lượng nội dung, đảm bảo trải nghiệm học tập công bằng.
+\end{enumerate}
+
+\subsection{Giai đoạn 3: Theo dõi và Đánh giá Tiến độ Học tập}
+Hệ thống liên tục theo dõi quá trình học tập của học viên, sử dụng AI để đánh giá và đưa ra gợi ý cải thiện.
+
+\begin{enumerate}
+	\item \textbf{Thu thập dữ liệu học tập}: Hệ thống ghi nhận thời gian học, tiến độ hoàn thành bài học, và kết quả bài kiểm tra, từ đó đánh giá mức độ nỗ lực và hiểu biết của học viên.
+
+	\item \textbf{Đánh giá theo tiêu chí}: AI phân tích tiến độ dựa trên ba yếu tố:
+	      \begin{itemize}
+		      \item \textit{Kiến thức lý thuyết}: Mức độ hiểu các khái niệm quan trọng.
+		      \item \textit{Kỹ năng thực hành}: Khả năng áp dụng kiến thức, như viết mã lập trình.
+		      \item \textit{Mức độ nỗ lực}: Sự chăm chỉ, dựa trên thời gian học và số bài học đã bắt đầu.
+	      \end{itemize}
+
+	\item \textbf{Prompt sử dụng}:
+	      \begin{Verbatim}[breaklines=true]
+		      Đánh giá tiến độ học viên "[student_name]" với mục tiêu "[goal]". Dựa trên dữ liệu bài học [lessons_data], phân tích theo kiến thức lý thuyết, kỹ năng thực hành, và nỗ lực. Trả về JSON với báo cáo STAR, điểm mạnh, điểm cần cải thiện, và gợi ý chi tiết.
+	      \end{Verbatim}
+	      Prompt này yêu cầu AI tạo báo cáo toàn diện, giúp học viên hiểu rõ tình trạng học tập và nhận gợi ý cụ thể.
+
+	\item \textbf{Báo cáo chi tiết}: AI tạo báo cáo nêu rõ điểm mạnh (như nắm vững lý thuyết), điểm cần cải thiện (như kỹ năng thực hành còn yếu), và gợi ý (như tập trung vào bài tập thực hành). Báo cáo được trình bày rõ ràng để học viên dễ áp dụng.
+\end{enumerate}
+
+\subsection{Giai đoạn 4: Điều chỉnh Nội dung Học tập}
+Khi học viên gặp khó khăn, hệ thống sử dụng AI để phân tích và tái tạo nội dung học tập, giúp giải quyết vấn đề hiệu quả.
+
+\begin{enumerate}
+	\item \textbf{Phân tích vấn đề}: AI xem xét các khó khăn, như hiểu sai khái niệm hoặc mắc lỗi thực hành, và xác định liệu học viên cần ôn lại nội dung trước đó.
+
+	\item \textbf{Prompt sử dụng}:
+	      \begin{Verbatim}[breaklines=true]
+		      Phân tích vấn đề từ dữ liệu [issues_summary] cho bài học "[lesson_title]". Xác định các khó khăn chính (hiểu sai, lỗi thực hành) và đề xuất hành động (lặp lại, xem lại bài trước). Trả về JSON với danh sách vấn đề, mức độ nghiêm trọng, và hành động đề xuất.
+	      \end{Verbatim}
+	      Prompt này giúp AI xác định nguyên nhân khó khăn và đề xuất cách khắc phục phù hợp.
+
+	\item \textbf{Tái tạo nội dung}: AI tạo lại nội dung bài học, tập trung vào giải quyết các vấn đề đã xác định. Nội dung mới bao gồm ví dụ thực tế, hướng dẫn chi tiết, và tài liệu tham khảo phù hợp.
+
+	\item \textbf{Prompt sử dụng}:
+	      \begin{Verbatim}[breaklines=true]
+		      Tái tạo nội dung cho bài học "[lesson_title]" dựa trên vấn đề [issues_analysis]. Cung cấp nội dung mới với giải thích chi tiết, ví dụ thực tế, và 2-3 module tập trung vào khó khăn. Trả về JSON với nội dung đề xuất, giải thích, và module.
+	      \end{Verbatim}
+	      Prompt này chỉ đạo AI thiết kế nội dung mới, đảm bảo phù hợp với nhu cầu cụ thể của học viên.
+
+	\item \textbf{Cập nhật lộ trình}: Nội dung mới được tích hợp vào lộ trình học tập, giúp học viên tiếp tục học mà không bị gián đoạn.
+\end{enumerate}
+
+\subsection{Kết luận}
+Quy trình đề xuất và theo dõi lộ trình học tập cá nhân hóa tận dụng trí tuệ nhân tạo để mang lại trải nghiệm học tập linh hoạt và hiệu quả. Các câu lệnh AI (prompt) được thiết kế cẩn thận để phân tích mục tiêu, tạo nội dung, đánh giá tiến độ, và điều chỉnh lộ trình, giúp học viên vượt qua khó khăn và đạt được mục tiêu học tập. Quy trình này không chỉ nâng cao chất lượng học tập mà còn đảm bảo sự hỗ trợ liên tục, phù hợp với từng cá nhân.

@@ -26,17 +26,17 @@ Hiện nay, có nhiều kiến trúc phần mềm khác nhau, mỗi loại có �
         \end{itemize}
         \item \textbf{\textit{Ví dụ:}} Netflix sử dụng kiến trúc microservices, với các service riêng biệt cho việc xử lý video, quản lý người dùng, đề xuất nội dung, v.v.
     \end{itemize}
-    \item Kiến trúc Client-Server (Multitier)
+    \item Kiến trúc Client-Server
     \begin{itemize}
-        \item \textbf{\textit{Định nghĩa:}} Kiến trúc client-server chia ứng dụng thành các tầng (tiers) riêng biệt, thường bao gồm tầng trình bày (presentation), tầng logic nghiệp vụ (business logic), và tầng dữ liệu (data).
+        \item \textbf{\textit{Định nghĩa:}} Kiến trúc client-server chia ứng dụng thành hai phần chính: client (trình bày và tương tác người dùng) và server (xử lý logic nghiệp vụ và lưu trữ dữ liệu).
         \item \textbf{\textit{Điểm chính:}} 
         \begin{itemize}
-            \item Phân tách rõ ràng giữa các tầng chức năng
-            \item Dễ dàng mở rộng từng tầng độc lập
-            \item Cải thiện bảo mật bằng cách kiểm soát quyền truy cập giữa các tầng
-            \item Có thể trở nên phức tạp khi số lượng tầng tăng lên
+            \item Phân tách rõ ràng giữa client và server
+            \item Dễ dàng mở rộng server để đáp ứng nhu cầu người dùng
+            \item Cải thiện bảo mật thông qua kiểm soát truy cập tại server
+            \item Phụ thuộc vào kết nối mạng giữa client và server
         \end{itemize}
-        \item \textbf{\textit{Ví dụ:}} Một ứng dụng web ba tầng điển hình bao gồm frontend (React), backend API (Node.js), và cơ sở dữ liệu (PostgreSQL).
+        \item \textbf{\textit{Ví dụ:}} Một ứng dụng web với frontend (React) và backend (Node.js) giao tiếp qua RESTful API.
     \end{itemize}
     \item Kiến trúc Event-Driven
     \begin{itemize}
@@ -63,95 +63,69 @@ Hiện nay, có nhiều kiến trúc phần mềm khác nhau, mỗi loại có �
         \item \textbf{\textit{Ví dụ:}} Một ứng dụng xử lý ảnh sử dụng AWS Lambda để thực hiện các tác vụ như resize, filter, và lưu trữ ảnh khi người dùng tải lên.
     \end{itemize}
 \end{enumerate}
-\subsubsection{Lựa chọn kiến trúc hệ thống}
-Dựa trên yêu cầu của hệ thống, nhóm sử dụng kiến trúc kết hợp giữa Microservices và Multitier Client-Server. Cụ thể như sau:
-\begin{enumerate}
-    \item Presentation Tier (Client Tier):
-    \begin{itemize}
-        \item Frontend: Vue.js application
-        \item Giao diện người dùng cho sinh viên và giảng viên
-        \item Tương tác với backend thông qua RESTful API
-    \end{itemize}
-    \item Application Tier:
-    \begin{enumerate}
-        \item API Gateway:
-        \begin{itemize}
-            \item Nginx hoặc API Gateway mã nguồn mở
-            \item Xử lý authentication, authorization và định tuyến requests đến các microservices
-        \end{itemize}
 
-    \item Microservices (tất cả được xây dựng bằng Fast API):
+\subsubsection{Lựa chọn kiến trúc hệ thống}
+Dựa trên yêu cầu của hệ thống, nhóm quyết định sử dụng kiến trúc Client-Server. Cụ thể như sau:
+\begin{enumerate}
+    \item Client Tier:
     \begin{itemize}
-        \item User Service:
-        \begin{itemize}
-            \item Quản lý thông tin người dùng
-            \item Xác thực và phân quyền
-        \end{itemize}
-        \item Course Management Service:
-        \begin{itemize}
-            \item CRUD operations cho khóa học, module, bài học
-            \item Quản lý nội dung học tập
-        \end{itemize}
-        \item Recommentation Learning Service:
-        \begin{itemize}
-            \item Đề xuất learning items dựa trên dữ liệu người dùng
-        \end{itemize}
-        \item AI Tutor Service:
-        \begin{itemize}
-            \item Tích hợp Langchain để xây dựng gia sư AI
-            \item Xử lý các yêu cầu liên quan đến hỗ trợ lập trình và giải thích mã nguồn
-        \end{itemize}
-        \item Exercise Generation Service:
-        \begin{itemize}
-            \item Sử dụng Langchain để tạo bài tập và test cases tự động
-            \item Đánh giá bài làm của người học
-        \end{itemize}
-        \item Progress Tracking Service:
-        \begin{itemize}
-            \item Theo dõi và ghi nhận tiến độ học tập
-            \item Tạo báo cáo học tập
-        \end{itemize}
-    \end{itemize} 
-    \end{enumerate}
-    \item Data Tier:
+        \item \textbf{Frontend:} Ứng dụng Vue.js cung cấp giao diện người dùng cho sinh viên, giảng viên và admin.
+        \item \textbf{Chức năng:} Hiển thị nội dung học tập, quản lý khóa học, bài tập, lộ trình học tập và tương tác với người dùng.
+        \item \textbf{Tương tác:} Giao tiếp với server thông qua RESTful API.
+    \end{itemize}
+    \item Server Tier:
     \begin{enumerate}
-        \item Persistence Layer:
+        \item \textbf{API Layer:}
         \begin{itemize}
-            \item PostgreSQL: Lưu trữ dữ liệu có cấu trúc (thông tin người dùng, khóa học, bài học)
-            \item Neo4j: Lưu trữ và quản lý mối quan hệ giữa các learning items, hỗ trợ tạo lộ trình học tập
-            \item AWS S3: Lưu trữ tài liệu học tập, video bài giảng
+            \item \textbf{Framework:} FastAPI xử lý các yêu cầu từ client.
+            \item \textbf{Chức năng:}
+            \begin{itemize}
+                \item \textit{User Management:} Quản lý thông tin người dùng, xác thực và phân quyền.
+                \item \textit{Course Management:} CRUD cho khóa học, module, bài học và nội dung học tập.
+                \item \textit{Recommendation System:} Đề xuất tài nguyên học tập dựa trên dữ liệu người dùng.
+                \item \textit{AI Tutor:} Tích hợp LangChain để hỗ trợ giải đáp thắc mắc và giải thích mã nguồn.
+                \item \textit{Exercise Generation:} Tạo bài tập và test cases tự động bằng LangChain.
+                \item \textit{Progress Tracking:} Theo dõi tiến độ học tập và tạo báo cáo.
+            \end{itemize}
         \end{itemize}
-        \item Caching Layer: 
+        \item \textbf{Persistence Layer:}
         \begin{itemize}
-            \item Redis: Cải thiện hiệu suất và giảm tải cho database
+            \item \textbf{PostgreSQL:} Lưu trữ dữ liệu có cấu trúc như thông tin người dùng, khóa học, bài học và tiến độ học tập.
+            \item \textbf{AWS S3:} Lưu trữ tài liệu học tập, video bài giảng và các tài nguyên khác.
+        \end{itemize}
+        \item \textbf{Caching Layer:}
+        \begin{itemize}
+            \item \textbf{Redis:} Lưu trữ tạm thời dữ liệu thường xuyên truy cập để cải thiện hiệu suất và giảm tải cho cơ sở dữ liệu.
         \end{itemize}
     \end{enumerate}
 \end{enumerate}
+
 \textbf{\textit{Phân tích nguyên nhân:}}
-\par \begin{itemize}
-    \item Phân chia trách nhiệm rõ ràng: Mỗi dịch vụ có một nhiệm vụ cụ thể, dễ bảo trì và phát triển. Ví dụ, FastAPI quản lý API, Langchain xử lý AI, PostgreSQL và Neo4j quản lý dữ liệu.
-    \item Dễ mở rộng: Mỗi dịch vụ có thể mở rộng riêng lẻ khi tải tăng lên, như tăng số lượng instances của FastAPI khi số người dùng tăng.
-    \item Triển khai linh hoạt: Thay đổi hoặc thêm công nghệ mới dễ dàng mà không ảnh hưởng đến toàn hệ thống.
+\begin{itemize}
+    \item \textbf{Phân tách rõ ràng:} Kiến trúc Client-Server tách biệt giữa giao diện người dùng (client) và logic nghiệp vụ/dữ liệu (server), giúp dễ dàng phát triển và bảo trì.
+    \item \textbf{Dễ mở rộng:} Server có thể được mở rộng bằng cách tăng tài nguyên hoặc thêm các instance FastAPI khi số lượng người dùng tăng.
+    \item \textbf{Bảo mật:} Server kiểm soát truy cập và xác thực, đảm bảo an toàn dữ liệu.
+    \item \textbf{Hiệu quả:} Sử dụng Redis để tối ưu hiệu suất truy vấn và AWS S3 để quản lý tài nguyên lớn như video, tài liệu.
 \end{itemize}
+
 \textbf{\textit{Không dùng:}}
 \begin{itemize}
-    \item Monolithic vì khó mở rộng, bảo trì, và tích hợp công nghệ mới.
-    \item Event-driven vì phức tạp khi quản lý trạng thái trực tiếp và đồng bộ.
-    \item Serverless do phụ thuộc nhà cung cấp, chi phí cao khi tải tăng, và hạn chế tùy chỉnh hiệu suất.
+    \item \textit{Monolithic:} Khó mở rộng, bảo trì và tích hợp công nghệ mới khi hệ thống phát triển.
+    \item \textit{Microservices:} Phức tạp trong quản lý nhiều dịch vụ, không cần thiết cho quy mô hiện tại của hệ thống.
+    \item \textit{Event-Driven:} Phức tạp trong việc đồng bộ và theo dõi trạng thái, không phù hợp với yêu cầu tương tác trực tiếp.
+    \item \textit{Serverless:} Phụ thuộc nhà cung cấp, chi phí cao khi tải tăng và hạn chế tùy chỉnh hiệu suất.
 \end{itemize}
-Như vậy, ta có luồng hoạt động của hệ thống như sau:
+
+\textbf{\textit{Luồng hoạt động:}}
 \begin{itemize}
-    \item Người dùng tương tác với frontend Vue.js (Presentation Tier).
-    \item Requests được gửi đến API Gateway trong Application Tier.
-    \item API Gateway xác thực và định tuyến requests đến microservice phù hợp.
-    \item Microservices trong Application Tier xử lý business logic:
-    \begin{itemize}
-        \item Gọi đến Persistence Layer trong Data Tier để lưu trữ hoặc truy xuất dữ liệu.
-        \item Sử dụng Caching Layer để tối ưu hiệu suất truy vấn.
-    \end{itemize}
-    \item Kết quả được trả về cho frontend thông qua API Gateway.
+    \item Người dùng tương tác với giao diện Vue.js (Client Tier).
+    \item Client gửi các request đến server thông qua RESTful API.
+    \item FastAPI (Server Tier) xử lý logic nghiệp vụ, truy vấn PostgreSQL hoặc AWS S3 để lấy/lưu dữ liệu.
+    \item Redis được sử dụng để cache dữ liệu, giảm thời gian phản hồi.
+    \item Kết quả được trả về client để hiển thị cho người dùng.
 \end{itemize}
-\textbf{\textit{Tóm lại,}} kiến trúc kết hợp ưu điểm của Microservices và Multitier tận dụng tối đa các công nghệ đã được chọn để xây dựng một hệ thống học tập trực tuyến thông minh, có khả năng mở rộng cao và linh hoạt. Việc phân chia rõ ràng giữa các tiers và microservices giúp dễ dàng phát triển, bảo trì và mở rộng hệ thống trong tương lai.
+
+\textbf{\textit{Tóm lại,}} kiến trúc Client-Server được chọn vì sự đơn giản, khả năng mở rộng và tính bảo mật cao, phù hợp với yêu cầu của hệ thống học tập trực tuyến thông minh. Việc sử dụng Vue.js, FastAPI, PostgreSQL, AWS S3 và Redis đảm bảo hiệu suất, linh hoạt và dễ dàng bảo trì trong tương lai.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{Images/component_diagram/component-All.drawio.png}
