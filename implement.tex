@@ -133,58 +133,23 @@ Ví dụ: Controller xử lý:
 \end{itemize}
 
 \section{Quá trình triển khai hệ thống}
-
-\textbf{1. Tạo cấu trúc cơ sở dữ liệu} 
-
-Cơ sở dữ liệu được thiết kế để lưu trữ các thông tin liên quan đến sinh viên, giảng viên, khóa học và bài học. Sơ đồ dưới đây minh họa cấu trúc cơ sở dữ liệu:
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Images/Implement/DB_diagram.jpg}
-    \caption{Cấu trúc Cơ sở dữ liệu}
-\end{figure}
-
-\textbf{2. Xây dựng API} 
-
-Các API hỗ trợ giao tiếp giữa frontend và backend, đảm bảo rằng người dùng có thể tương tác với hệ thống một cách hiệu quả. Các chức năng chính của API bao gồm:
-
-\begin{itemize}
-    \item Quản lý khóa học
-    \item Quản lý bài học
-    \item Gửi và nhận phản hồi từ sinh viên
-\end{itemize}
-
-FastAPI cung cấp cơ chế xử lý yêu cầu nhanh chóng và an toàn, giúp cải thiện hiệu năng hệ thống.
-
-\textbf{3. Quản lý bài học và đề xuất học tập} 
-
-Hệ thống sử dụng LLMs để phân tích dữ liệu từ sinh viên và giảng viên, từ đó đưa ra các bài học phù hợp. Điều này giúp cá nhân hóa việc học tập và tăng hiệu quả của hệ thống.
-
-Cụ thể:
-
-\begin{itemize}
-    \item Giảng viên cung cấp nội dung khóa học và mục tiêu học
-    \item Sinh viên nhập mục tiêu học tập cá nhân
-    \item LLMs xử lý và đề xuất các bài học tương thích
-\end{itemize}
-
-\textbf{4. Triển khai hệ thống}
+\subsection*{Triển khai hệ thống}
 
 \textbf{Frontend:}
-Frontend của hệ thống được triển khai trên nền tảng \textbf{Vercel}, mang đến một môi trường ổn định, tối ưu cho việc triển khai các ứng dụng web. Vercel cung cấp khả năng tự động build và deploy mỗi khi có thay đổi trong mã nguồn, giúp quá trình cập nhật trở nên nhanh chóng và mượt mà. Nhờ vào quy trình này, việc triển khai và duy trì hệ thống frontend trở nên đơn giản và hiệu quả.
+% Frontend của hệ thống được triển khai trên nền tảng \textbf{Vercel}, mang đến một môi trường ổn định, tối ưu cho việc triển khai các ứng dụng web. Vercel cung cấp khả năng tự động build và deploy mỗi khi có thay đổi trong mã nguồn, giúp quá trình cập nhật trở nên nhanh chóng và mượt mà. Nhờ vào quy trình này, việc triển khai và duy trì hệ thống frontend trở nên đơn giản và hiệu quả.
 
-Vercel không chỉ đảm bảo hiệu suất cao mà còn hỗ trợ các tính năng tối ưu hóa tự động, giúp giảm thời gian tải trang và nâng cao trải nghiệm người dùng. Với khả năng mở rộng linh hoạt, hệ thống có thể dễ dàng đáp ứng với nhu cầu tăng trưởng trong tương lai.
+% Vercel không chỉ đảm bảo hiệu suất cao mà còn hỗ trợ các tính năng tối ưu hóa tự động, giúp giảm thời gian tải trang và nâng cao trải nghiệm người dùng. Với khả năng mở rộng linh hoạt, hệ thống có thể dễ dàng đáp ứng với nhu cầu tăng trưởng trong tương lai.
 
-\par \textbf{Link deploy frontend:} \textcolor{blue}{\href{https://codemate-fe-murex.vercel.app/}{https://codemate-fe-murex.vercel.app/}}
+% \par \textbf{Link deploy frontend:} \textcolor{blue}{\href{https://codemate-fe-murex.vercel.app/}{https://codemate-fe-murex.vercel.app/}}
 
 \textbf{Backend:}
-Hệ thống sử dụng nền tảng \textbf{Render} để triển khai backend. Render cung cấp một môi trường chạy ổn định, dễ mở rộng và bảo mật cao, giúp tối ưu hóa việc quản lý và triển khai ứng dụng. Với quy trình build và deploy tự động, việc cập nhật hệ thống trở nên mượt mà và hiệu quả, giảm thiểu các vấn đề phát sinh trong quá trình triển khai.
+% Hệ thống sử dụng nền tảng \textbf{Render} để triển khai backend. Render cung cấp một môi trường chạy ổn định, dễ mở rộng và bảo mật cao, giúp tối ưu hóa việc quản lý và triển khai ứng dụng. Với quy trình build và deploy tự động, việc cập nhật hệ thống trở nên mượt mà và hiệu quả, giảm thiểu các vấn đề phát sinh trong quá trình triển khai.
 
-Để triển khai hệ thống, chúng tôi sử dụng công cụ \textbf{Poetry} để quản lý các gói phụ thuộc (dependencies) của Python. Điều này giúp đảm bảo rằng các thư viện và công cụ cần thiết luôn được cài đặt đúng phiên bản, đồng thời giảm thiểu các lỗi liên quan đến môi trường chạy.
+% Để triển khai hệ thống, chúng tôi sử dụng công cụ \textbf{Poetry} để quản lý các gói phụ thuộc (dependencies) của Python. Điều này giúp đảm bảo rằng các thư viện và công cụ cần thiết luôn được cài đặt đúng phiên bản, đồng thời giảm thiểu các lỗi liên quan đến môi trường chạy.
 
-Hệ thống được cấu hình để tự động khởi chạy khi có yêu cầu, đảm bảo hiệu suất cao và khả năng mở rộng dễ dàng khi cần thiết. Ngoài ra, Render cũng hỗ trợ giám sát và quản lý môi trường ứng dụng, giúp dễ dàng phát hiện và xử lý các sự cố.
+% Hệ thống được cấu hình để tự động khởi chạy khi có yêu cầu, đảm bảo hiệu suất cao và khả năng mở rộng dễ dàng khi cần thiết. Ngoài ra, Render cũng hỗ trợ giám sát và quản lý môi trường ứng dụng, giúp dễ dàng phát hiện và xử lý các sự cố.
 
-\par \textbf{Link deploy backend:} \textcolor{blue}{\href{https://edumind.onrender.com}{https://edumind.onrender.com}}
+% \par \textbf{Link deploy backend:} \textcolor{blue}{\href{https://edumind.onrender.com}{https://edumind.onrender.com}}
 
 \section{Các chức năng đã được thực hiện}
 
@@ -303,6 +268,15 @@ Module này cung cấp tổng quan hoạt động cho người dùng qua giao di
     \item Xem và thêm các hoạt động gần đây (tối đa 5 hoạt động) (Role: Sinh viên).
 \end{itemize}
 
+\subsection{Code Assistant (Thành viên đảm nhiệm: Phương Nam)}
+Module này hỗ trợ sinh viên trong việc lập trình và giải quyết các vấn đề liên quan đến mã nguồn.
+\begin{itemize}[label=--]
+    \item Gợi ý mã nguồn dựa trên yêu cầu của sinh viên (Role: Sinh viên).
+    \item Tạo bài kiểm tra lập trình dựa trên nội dung module (Role: Sinh viên).
+    \item Hỗ trợ kiểm tra mã nguồn và đưa ra các gợi ý sửa lỗi (Role: Sinh viên).
+    \item Hướng dẫn sinh viên trong việc giải quyết các vấn đề lập trình (Role: Sinh viên).
+    \item Chatbot hỗ trợ sinh viên trong việc lập trình và giải quyết các vấn đề liên quan đến mã nguồn (Role: Sinh viên).
+\end{itemize}
 \section{Giới thiệu chi tiết về các chức năng chính của hệ thống}
 Hệ thống học tập thông minh được thiết kế để hỗ trợ học sinh trong việc lập kế hoạch học tập và đánh giá tiến độ một cách hiệu quả. Với sự tích hợp của AI, hệ thống có khả năng phân tích dữ liệu học tập, tạo lộ trình cá nhân hóa và đưa ra các đánh giá chi tiết. Mục nội dung này sẽ tập trung vào các chức năng chính như sinh ra lộ trình học tập, đề xuất mục tiêu học tập, đánh giá kết quả học tập, tạo bài kiểm tra, và các tính năng bổ sung khác. \par 
 

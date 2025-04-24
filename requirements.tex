@@ -32,24 +32,22 @@ Các người dùng liên quan trong hệ thống:
 \subsection{Yêu cầu chức năng}
 \subsubsection{User Management}
 \begin{enumerate}
-    \item \textbf{Đăng ký và đăng nhập:} Người dùng có thể tạo tài khoản và đăng nhập bằng thông tin cá nhân hoặc tài khoản mạng xã hội.
-\item \textbf{Hồ sơ học tập:} Mỗi người dùng có một hồ sơ học tập, lưu trữ thông tin cá nhân, tiến độ học tập, và kết quả các bài kiểm tra/bài tập.
-\item \textbf{Quản lý lịch sử học tập:} Hệ thống lưu trữ và cho phép người dùng xem lại các bài học, bài tập đã hoàn thành và kết quả đạt được.
-\item \textbf{Cấu hình cá nhân:} Người dùng có thể cập nhật thông tin cá nhân, độ tuổi.
+    \item \textbf{Đăng ký và đăng nhập:} Hệ thống hỗ trợ ba loại vai trò chính: sinh viên, giảng viên và quản trị viên. Quản trị viên có quyền tạo tài khoản cho sinh viên, giảng viên hoặc quản trị viên khác, cập nhật theo từng khóa học với các thông tin cơ bản như email, họ tên, mã số sinh viên/mã số cán bộ, v.v. Sinh viên và giảng viên sử dụng email do trường đại học cung cấp để đăng ký mật khẩu. Người dùng cũng có thể đăng nhập thông qua tài khoản Google được liên kết với email của trường đại học (nếu có).
+    \item \textbf{Cấu hình cá nhân:} Người dùng có thể cập nhật thông tin cá nhân như avatar, ngày tháng năm sinh, v.v.
 \end{enumerate}
 \subsubsection{Learning Resource Recommendation System}
 \begin{enumerate}
-\item \textbf{Cá nhân hóa đề xuất học tập:} Hệ thống tự động đề xuất các tài nguyên học tập (khóa học, module, bài học, bài tập, project) cho mỗi người dùng dựa trên mục tiêu học tập, độ tuổi, trình độ học vấn, phong cách học tập, và hành vi học tập, lịch sử học tập, mức độ thông thạo của người học trên một khái niệm hoặc một đầu ra học tập cụ thể.
-\item \textbf{Lựa chọn tài nguyên học tập:} Hệ thống cho phép người dùng tự chọn các learning item dựa trên sở thích hoặc mục tiêu cá nhân, cung cấp sự linh hoạt trong việc tiếp cận nội dung học tập.
+\item \textbf{Cá nhân hóa đề xuất học tập:} Hệ thống tự động đề xuất các tài nguyên học tập (khóa học, module, bài học, bài tập) cho sinh viên dựa trên mục tiêu học tập, đầu ra môn học và nội dung môn học.
+\item \textbf{Lựa chọn tài nguyên học tập:} Hệ thống cho phép người dùng tự chọn cách rèn luyện kiến thức bằng cách học qua bài quiz hoặc code exercises hoặc chỉ đọc tài liệu dựa trên sở thích hoặc mục tiêu cá nhân, cung cấp sự linh hoạt trong việc tiếp cận nội dung học tập.
 \item \textbf{Theo dõi phản hồi người dùng:} Hệ thống ghi nhận phản hồi của người dùng về các tài nguyên học tập để cải thiện đề xuất và tối ưu hóa trải nghiệm người học.
 \end{enumerate}
 \subsubsection{Exercise Generator}
 \begin{enumerate}
     \item \textbf{Tạo bài tập theo mức độ:} Hệ thống tự động sinh ra các bài tập từ cơ bản đến nâng cao phù hợp với khả năng của người dùng.
-    \item \textbf{Tạo bài tập theo yêu cầu:} Người dùng có thể yêu cầu hệ thống tạo bài tập ở các cấp độ khác nhau hoặc nhập vào một câu hỏi lập trình cụ thể.
-\item \textbf{Tự động điều chỉnh bài tập}: Dựa trên tiến độ học tập, các bài tập sẽ được nâng cấp để phù hợp với mức độ phát triển của người dùng.
+    \item \textbf{Tạo bài tập theo yêu cầu:} Người dùng có thể yêu cầu hệ thống tạo bài tập ở các cấp độ khác nhau với số lượng câu hỏi không giới hạn.
+\item \textbf{Tự động điều chỉnh bài tập}: Dựa trên tiến độ học tập, các bài tập sẽ được nâng cấp để phù hợp với mức độ phát triển của người dùng hoặc yêu cầu người dùng học lại bài học hoặc xem lại bài học trước đó nếu vẫn chưa đủ chỉ tiêu vượt qua đầu ra bài học.
 \item \textbf{Phân tích kết quả bài tập:} Hệ thống đánh giá bài tập dựa trên thời gian giải, độ chính xác, và kết quả điểm số để điều chỉnh lộ trình học.
-\item \textbf{Tạo bộ test case tự động:} Hệ thống tự động tạo bộ test case phù hợp với yêu cầu của bài tập mà người dùng upload.
+\item \textbf{Tạo bộ test case tự động:} Hệ thống hỗ trợ cung cấp các gợi ý trong quá trình làm bài tập code để sinh viên đạt hiệu quả tốt nhất khi rèn luyện.
 \end{enumerate}
 \subsubsection{AI Tutor}
 \begin{enumerate}
@@ -58,10 +56,7 @@ Các người dùng liên quan trong hệ thống:
 \begin{itemize}
     \item \textbf{Hỗ trợ giải thích code:} Người dùng có thể yêu cầu gia sư AI giải thích code hoặc hướng dẫn cách giải quyết các bài tập lập trình.
     \item \textbf{Gợi ý hướng giải:} Khi gặp khó khăn, hệ thống sẽ đưa ra các gợi ý từ gia sư AI nhằm hỗ trợ người dùng hoàn thành bài tập.
-    \item \textbf{Đưa ra gợi ý:} Hệ thống có thể hỏi người dùng liệu họ có muốn thay đổi bài tập sang một bài dễ hơn với nội dung tương tự khi gặp vấn đề với bài hiện tại.
-    \item \textbf{Tối ưu hóa code:} Gia sư AI cung cấp gợi ý cách viết mã tối ưu hơn.
-    \item \textbf{Hỗ trợ sửa lỗi:} Gia sư AI cung cấp hỗ trợ debug khi người dùng gặp lỗi trong code.
-    \item \textbf{Đánh giá chất lượng code:} Gia sư AI cung cấp phản hồi kịp thời về chất lượng mã lệnh của người dùng.
+    \item \textbf{Tối ưu hóa code:} Gia sư AI cung cấp gợi ý cách viết mã tối ưu hoặc hướng dẫn cách làm cho sinh viên để tối ưu thời gian giải quyết các bài tập.
 \end{itemize}
 \end{enumerate}
 \subsubsection{Progress Tracking}
@@ -73,20 +68,20 @@ Các người dùng liên quan trong hệ thống:
 \end{enumerate}
 \subsubsection{Course Management}
 \begin{enumerate}
-    \item \textbf{Tạo khóa học/module:} Giảng viên có thể tạo và thiết kế các khóa học hoặc module học tập mới. Ứng với mỗi một khóa học, giảng viên sẽ phải cung cấp các thông tin về đầu ra học tập (learning outcome), về mô tả của khóa học. Ứng với mỗi khóa học sẽ bao gồm các modules/bài học/projects tương ứng.
+    \item \textbf{Tạo khóa học/module:} Giảng viên có thể tạo và tải lên các tài liệu cho các khóa học. Ứng với mỗi một khóa học, giảng viên sẽ phải cung cấp các thông tin về đầu ra học tập (learning outcome), về mô tả của khóa học. Ứng với mỗi khóa học sẽ bao gồm các modules/bài học tương ứng.
 \item \textbf{Quản lý nội dung:} Giảng viên có thể cập nhật, chỉnh sửa nội dung của khóa học cũng như tài nguyên học tập. Hệ thống cho phép tải lên các tài liệu học tập hoặc liên kết đến các tài nguyên bổ sung.
 \end{enumerate}
 \subsubsection{Admin Management}
 \begin{enumerate}
     \item \textbf{Quản lý người dùng:} 
     \begin{itemize}
-        \item Quản trị viên có thể xem danh sách người dùng, tìm kiếm, lọc, và sắp xếp theo các tiêu chí như tên, email, trạng thái tài khoản, và tiến độ học tập.
-        \item Quản trị viên có thể khóa/mở khóa tài khoản người dùng hoặc thay đổi quyền truy cập của người dùng (như chuyển từ người dùng bình thường sang giảng viên).
+        \item Quản trị viên có thể xem danh sách người dùng, tìm kiếm, lọc, và sắp xếp theo các tiêu chí như tên, email và trạng thái tài khoản.
+        \item Quản trị viên có thể khóa hoặc mở khóa tài khoản người dùng.
     \end{itemize}
 \item \textbf{Quản lý phản hồi:}
 \begin{itemize}
     \item Xem và xử lý các phản hồi, đánh giá của người dùng về khóa học, giảng viên, và hệ thống.
-    \item Gửi phản hồi cho người dùng về các vấn đề đã được xử lý.
+    \item Đánh dấu phản hồi đã giải quyết cho người dùng về các vấn đề đã được xử lý.
 \end{itemize}
 \end{enumerate}
 \subsection{Yêu cầu phi chức năng}
@@ -125,9 +120,9 @@ Các người dùng liên quan trong hệ thống:
         \item Thực thể:User
         \item Thuộc tính: ID, username, email,password, role (student, admin, teacher)
         \begin{itemize}
-            \item Student: Goal, Birthyear, Background.
-            \item Teacher: Organizaiton
-            \item Admin
+            \item Student: Goal, Birthyear, Background, Avatar, LearningPath, Email,..
+            \item Teacher: ID, Email, Name,..  
+            \item Admin: ID, Email, Name,..
         \end{itemize}
     \end{itemize}
     \item Course
