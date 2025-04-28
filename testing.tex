@@ -55,10 +55,10 @@ Mỗi kịch bản kiểm thử được tổ chức và theo dõi theo bảng s
 Các APIs được kiểm thử sẽ là các APIs có liên quan đến các chức năng chính của hệ thống như:
 \begin{itemize}
 	\item Sinh ra lộ trình học tập cho sinh viên
-	\item Gợi ý mục tiêu học tập cho sinh viên đối với một khóa học cụ thể
+	\item Theo dõi tiến độ học tập của sinh viên
 	\item Sinh ra bài tập quiz tự động cho sinh viên
-	\item Đánh giá kết quả học tập của sinh viên
-	\item Tái tạo nội dung bài học cho sinh viên
+	\item Sinh ra bài tập lập trình tự động cho sinh viên
+	\item Đánh giá tiến độ học tập của sinh viên
 \end{itemize}
 \subsection{Phân tích chi tiết các kịch bản kiểm thử}
 
@@ -172,15 +172,4 @@ Kết quả này chứng tỏ hệ thống hiện đã đạt độ ổn định
     \item Các API cơ bản như Welcome API, Activities, Courses List và Document API đều hoạt động ổn định.
     \item Các API liên quan đến AI như Generate Learning Path, Monitor Study Progress, Generate Student Goals và Regenerate Lesson Content cũng hoạt động chính xác theo thiết kế, mặc dù đây là những API có độ phức tạp cao hơn.
     \item API xử lý bài tập và kiểm tra (Quiz Detail, Submit Answer) cũng đạt hiệu suất 100\%, đảm bảo tính năng đánh giá học tập hoạt động chính xác.
-\end{itemize}
-
-\textbf{Giải thích các ký hiệu:}
-\begin{itemize}
-    \item \textbf{P (Tests passed)}: Số lượng test case đã vượt qua, nghĩa là kết quả thực tế khớp với kết quả mong đợi.
-    \item \textbf{F (Tests failed)}: Số lượng test case thất bại, nghĩa là kết quả thực tế không khớp với kết quả mong đợi.
-    \item \textbf{PE (Tests pending)}: Số lượng test case đang chờ xử lý, có thể do cần thêm thông tin hoặc điều kiện chưa sẵn sàng.
-    \item \textbf{\%P}: Tỷ lệ phần trăm test case đã vượt qua.
-    \item \textbf{\%F}: Tỷ lệ phần trăm test case thất bại.
-    \item \textbf{\%PE}: Tỷ lệ phần trăm test case đang chờ xử lý.
-    \item \textbf{\%Cover}: Tỷ lệ phần trăm test case đã được thực thi (bao phủ).
 \end{itemize}
