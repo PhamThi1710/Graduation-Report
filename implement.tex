@@ -134,23 +134,95 @@ Ví dụ: Controller xử lý:
 
 \section{Quá trình triển khai hệ thống}
 \subsection*{Triển khai hệ thống}
-
 \textbf{Frontend:}
-% Frontend của hệ thống được triển khai trên nền tảng \textbf{Vercel}, mang đến một môi trường ổn định, tối ưu cho việc triển khai các ứng dụng web. Vercel cung cấp khả năng tự động build và deploy mỗi khi có thay đổi trong mã nguồn, giúp quá trình cập nhật trở nên nhanh chóng và mượt mà. Nhờ vào quy trình này, việc triển khai và duy trì hệ thống frontend trở nên đơn giản và hiệu quả.
-
-% Vercel không chỉ đảm bảo hiệu suất cao mà còn hỗ trợ các tính năng tối ưu hóa tự động, giúp giảm thời gian tải trang và nâng cao trải nghiệm người dùng. Với khả năng mở rộng linh hoạt, hệ thống có thể dễ dàng đáp ứng với nhu cầu tăng trưởng trong tương lai.
-
-% \par \textbf{Link deploy frontend:} \textcolor{blue}{\href{https://codemate-fe-murex.vercel.app/}{https://codemate-fe-murex.vercel.app/}}
-
+Frontend của hệ thống được triển khai trên nền tảng \textbf{Vercel}, mang đến một môi trường ổn định, tối ưu cho việc triển khai các ứng dụng web. Vercel cung cấp khả năng tự động build và deploy mỗi khi có thay đổi trong mã nguồn, giúp quá trình cập nhật trở nên nhanh chóng và mượt mà. Nhờ vào quy trình này, việc triển khai và duy trì hệ thống frontend trở nên đơn giản và hiệu quả.
+Vercel không chỉ đảm bảo hiệu suất cao mà còn hỗ trợ các tính năng tối ưu hóa tự động, giúp giảm thời gian tải trang và nâng cao trải nghiệm người dùng. Với khả năng mở rộng linh hoạt, hệ thống có thể dễ dàng đáp ứng với nhu cầu tăng trưởng trong tương lai.
+\par \textbf{Link deploy frontend:} \textcolor{blue}{\href{https://codemate-fe-black.vercel.app/}{https://codemate-fe-black.vercel.app/}}
 \textbf{Backend:}
-% Hệ thống sử dụng nền tảng \textbf{Render} để triển khai backend. Render cung cấp một môi trường chạy ổn định, dễ mở rộng và bảo mật cao, giúp tối ưu hóa việc quản lý và triển khai ứng dụng. Với quy trình build và deploy tự động, việc cập nhật hệ thống trở nên mượt mà và hiệu quả, giảm thiểu các vấn đề phát sinh trong quá trình triển khai.
+Hệ thống sử dụng nền tảng \textbf{Render} để triển khai backend. Render cung cấp một môi trường chạy ổn định, dễ mở rộng và bảo mật cao, giúp tối ưu hóa việc quản lý và triển khai ứng dụng. Với quy trình build và deploy tự động, việc cập nhật hệ thống trở nên mượt mà và hiệu quả, giảm thiểu các vấn đề phát sinh trong quá trình triển khai.
+Để triển khai hệ thống, chúng tôi sử dụng công cụ \textbf{Poetry} để quản lý các gói phụ thuộc (dependencies) của Python. Điều này giúp đảm bảo rằng các thư viện và công cụ cần thiết luôn được cài đặt đúng phiên bản, đồng thời giảm thiểu các lỗi liên quan đến môi trường chạy.
+Hệ thống được cấu hình để tự động khởi chạy khi có yêu cầu, đảm bảo hiệu suất cao và khả năng mở rộng dễ dàng khi cần thiết. Ngoài ra, Render cũng hỗ trợ giám sát và quản lý môi trường ứng dụng, giúp dễ dàng phát hiện và xử lý các sự cố.
+\par \textbf{Link deploy backend:} \textcolor{blue}{\href{https://edumind-5qmn.onrender.com/}{https://edumind-5qmn.onrender.com/}}
+\textbf{Quy trình triển khai chi tiết:}
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.85\linewidth]{Images/Implement/DeploymentProcess.png}
+% \caption{Quy trình triển khai hệ thống}
+% \label{fig}
+% \end{figure}
+\begin{enumerate}
+\item \textbf{Chuẩn bị môi trường phát triển:}
+\begin{itemize}
+\item Thiết lập môi trường phát triển cục bộ với đầy đủ công cụ cần thiết như Node.js, npm, Python 3.10, và Poetry.
+\item Cài đặt các IDE và công cụ phát triển như Visual Studio Code, PyCharm, và Git.
+\item Thiết lập hệ thống kiểm soát phiên bản sử dụng GitHub để quản lý mã nguồn và hỗ trợ làm việc nhóm.
+\end{itemize}
+\item \textbf{Phát triển frontend:}
+\begin{itemize}
+    \item Sử dụng Vue 3 và Vuetify để xây dựng giao diện người dùng.
+    \item Triển khai các component UI theo thiết kế đã được phê duyệt.
+    \item Tích hợp các thư viện hỗ trợ như Axios cho việc gọi API, Pinia cho quản lý trạng thái.
+    \item Thực hiện tối ưu hóa hiệu suất và khả năng đáp ứng trên các thiết bị khác nhau.
+\end{itemize}
 
-% Để triển khai hệ thống, chúng tôi sử dụng công cụ \textbf{Poetry} để quản lý các gói phụ thuộc (dependencies) của Python. Điều này giúp đảm bảo rằng các thư viện và công cụ cần thiết luôn được cài đặt đúng phiên bản, đồng thời giảm thiểu các lỗi liên quan đến môi trường chạy.
+\item \textbf{Phát triển backend:}
+\begin{itemize}
+    \item Xây dựng API sử dụng FastAPI theo kiến trúc Repository-Provider-Controller.
+    \item Thiết lập kết nối và tương tác với cơ sở dữ liệu PostgreSQL.
+    \item Tích hợp các dịch vụ bên ngoài như OpenAI API, Google Authentication.
+    \item Phát triển các module xử lý nghiệp vụ chính như quản lý người dùng, quản lý khóa học, đề xuất học tập, và tạo bài tập.
+\end{itemize}
 
-% Hệ thống được cấu hình để tự động khởi chạy khi có yêu cầu, đảm bảo hiệu suất cao và khả năng mở rộng dễ dàng khi cần thiết. Ngoài ra, Render cũng hỗ trợ giám sát và quản lý môi trường ứng dụng, giúp dễ dàng phát hiện và xử lý các sự cố.
+\item \textbf{Kiểm thử hệ thống:}
+\begin{itemize}
+    \item Thực hiện kiểm thử đơn vị cho các thành phần riêng lẻ.
+    \item Kiểm thử tích hợp để đảm bảo các thành phần phối hợp tốt với nhau.
+    \item Kiểm thử chức năng để xác nhận các tính năng hoạt động đúng theo yêu cầu.
+    \item Kiểm thử hiệu suất để đánh giá khả năng đáp ứng và xử lý tải của hệ thống.
+\end{itemize}
 
-% \par \textbf{Link deploy backend:} \textcolor{blue}{\href{https://edumind.onrender.com}{https://edumind.onrender.com}}
+\item \textbf{Triển khai trên môi trường cloud:}
+\begin{itemize}
+    \item Thiết lập môi trường cloud trên Vercel cho frontend và Render cho backend.
+    \item Cấu hình các biến môi trường và thiết lập bảo mật.
+    \item Thiết lập quy trình CI/CD để tự động hóa việc build và deploy khi có thay đổi trong mã nguồn.
+    \item Cài đặt và cấu hình cơ sở dữ liệu PostgreSQL trên nền tảng đám mây.
+\end{itemize}
 
+\item \textbf{Giám sát và bảo trì:}
+\begin{itemize}
+    \item Thiết lập hệ thống giám sát để theo dõi hiệu suất và phát hiện sự cố.
+    \item Triển khai quy trình cập nhật và bảo trì định kỳ.
+    \item Phân tích dữ liệu sử dụng để cải thiện trải nghiệm người dùng và tối ưu hóa hiệu suất.
+    \item Xử lý các vấn đề và cải tiến hệ thống dựa trên phản hồi từ người dùng.
+\end{itemize}
+\end{enumerate}
+\textbf{Các công nghệ được sử dụng trong triển khai:}
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Lĩnh vực} & \textbf{Công nghệ} \\ \hline
+Frontend & Vue 3, Vuetify, Tailwind CSS, Pinia, Axios, Jest \\ \hline
+Backend & FastAPI, SQLAlchemy, Pydantic, LangChain, Alembic \\ \hline
+Cơ sở dữ liệu & PostgreSQL, Redis (cache) \\ \hline
+AI & OpenAI API (GPT-4o), Google Gemini API \\ \hline
+Triển khai & Vercel (Frontend), Render (Backend), GitHub Actions (CI/CD) \\ \hline
+Giám sát & Sentry, Prometheus, Grafana \\ \hline
+\end{tabularx}
+\caption{Các công nghệ sử dụng trong quá trình triển khai}
+\label{table}
+\end{table}
+% \textbf{Kết quả triển khai:}
+% Sau khi hoàn thành quá trình triển khai, hệ thống đã được đưa vào vận hành thử nghiệm với một nhóm người dùng ban đầu. Kết quả thu được rất khả quan, với thời gian phản hồi nhanh và trải nghiệm người dùng mượt mà. Hệ thống đã xử lý được hơn 500 yêu cầu đồng thời trong các đợt kiểm tra tải, đảm bảo khả năng phục vụ số lượng lớn người dùng trong tương lai.
+% Các tính năng chính như đề xuất lộ trình học tập, tạo bài tập tự động, và gia sư AI đều hoạt động tốt trong môi trường sản xuất, với thời gian phản hồi trung bình cho các yêu cầu AI dưới 5 giây, đáp ứng yêu cầu về hiệu suất đề ra.
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.85\linewidth]{Images/Implement/SystemPerformance.png}
+% \caption{Biểu đồ hiệu suất hệ thống sau khi triển khai}
+% \label{fig}
+% \end{figure}
+% Quá trình triển khai hệ thống đã diễn ra suôn sẻ, với các vấn đề phát sinh được xử lý kịp thời. Hệ thống hiện đang hoạt động ổn định và sẵn sàng cho việc mở rộng quy mô trong tương lai.
 % \section{Các chức năng đã được thực hiện}
 
 % Dưới đây là các chức năng đã được thực hiện trong hệ thống học tập trực tuyến thông minh. Các chức năng này được phân chia theo từng module và vai trò của người dùng trong hệ thống.
@@ -385,6 +457,17 @@ Kết quả là một JSON chứa thông tin chi tiết về lộ trình, ví d�
 }
 \end{lstlisting}
 
+Kết quả giao diện một lộ trình học tập cơ bản, ví dụ:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/UI_LLM/Learning_Path.png}
+    \caption{Lộ trình học tập cá nhân hóa dựa trên mục tiêu sinh viên}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/UI_LLM/Lesson_detail.png}
+    \caption{Chi tiết một bài học trong lộ trình}
+\end{figure}
 \section{Đề xuất mục tiêu học tập}
 Đây là tính năng mới được thêm vào để giúp học sinh xác định mục tiêu học tập phù hợp, sử dụng endpoint \texttt{/generate-student-goals/\{course\_id\}}. Các bước thực hiện:
 
@@ -457,6 +540,16 @@ Phần này sử dụng endpoint \texttt{/student/\{courseId\}/assessment} để
     \end{lstlisting}
 \end{itemize}
 
+Kết quả giao diện một báo cáo đánh giá học tập, ví dụ:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/UI_LLM/Assessment_1.png}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/UI_LLM/Assessment_2.png}
+    \caption{Báo cáo đánh giá học tập dựa trên phương pháp STAR}
+\end{figure}
 \subsection{Theo dõi và phân tích tiến độ học tập}
 Hệ thống cung cấp API \texttt{/progress\_tracking/student/recommend\_lessons/\{recommend\_lesson\_id\}/time\_spent} để cập nhật thời gian học tập và theo dõi tiến độ của học sinh:
 
@@ -478,6 +571,18 @@ def add_time_spent(existing_time_spent, new_time_spent_str):
 \end{lstlisting}
 \end{itemize}
 
+Kết quả giao diện một báo cáo theo dõi tiến độ học tập, ví dụ:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/UI_LLM/tracking_issues.png}
+    \caption{Báo cáo theo dõi những vấn đề trong quá trình học tập}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/UI_LLM/tracking_achivement.png}
+    \caption{Báo cáo theo dõi những thành tích trong quá trình học tập}
+\end{figure}
 \subsection{Đánh giá kết quả học tập (Monitor Study Progress)}
 Phần này sử dụng API để phân tích kết quả sau khi học sinh hoàn thành một bài học được đề xuất. Các bước:
 \begin{itemize}
@@ -557,6 +662,22 @@ Kết quả là một JSON chứa bài kiểm tra, ví dụ:
 }
 \end{lstlisting}
 
+Giao diện tạo một bài kiểm tra trắc nghiệm, ví dụ:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Images/UI_LLM/Gen_quiz.png}
+    \caption{Form tạo bài kiểm tra trắc nghiệm}
+\end{figure}
+
+Sinh viên có thể chọn độ khó của bài kiểm tra và số lượng câu hỏi cho mỗi độ khó. Sau khi tạo, bài kiểm tra sẽ được lưu vào cơ sở dữ liệu và có thể được truy cập từ giao diện người dùng.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Images/UI_LLM/Quiz_result.png}
+    \caption{Kết quả bài kiểm tra trắc nghiệm}
+\end{figure}
+
+Sau khi hoàn thành một bài kiểm tra, sinh viên có thể xem kết quả và nhận phản hồi từ hệ thống. Hệ thống sẽ phân tích những vấn đề sinh viên gặp phải, những phần sinh viên nắm chắc và cung cấp các khuyến nghị cho sinh viên dựa trên hiệu suất của họ trong bài kiểm tra.
 \section{Tái tạo nội dung bài học (Regenerate Lesson Content)}
 Chức năng này điều chỉnh nội dung bài học dựa trên các vấn đề học sinh gặp phải, sử dụng endpoint \texttt{/regenerate-lesson-content}. Các bước:
 \begin{itemize}

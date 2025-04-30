@@ -95,37 +95,87 @@ Người học có thể yêu cầu giải thích về mã nguồn để hiểu 
 \newpage
 \section{Database}
 \subsection{EER diagram}
+
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{Images/Anh/EER.png}
     \caption{Sơ đồ EER của hệ thống}
-    \label{fig:enter-label}
+    \label{fig}
 \end{figure}
+Sơ đồ EER (Enhanced Entity-Relationship) thể hiện cấu trúc dữ liệu của hệ thống học tập thông minh. Dưới đây là mô tả chi tiết các thực thể và mối quan hệ trong sơ đồ:
 \begin{enumerate}
+\item \textbf{User} là thực thể trung tâm của hệ thống, chứa thông tin người dùng như ID, Username, Email, Password, Type, và các thuộc tính liên quan đến xác thực (is\_email\_verified, verification\_code, password\_reset\_code). User được chuyên biệt hóa (specialization) thành ba loại: Teacher, Manager, và Student.
 
-    \item User có ba loại con: Teacher, Manager, và Student. Mỗi loại người dùng có các mối quan hệ khác nhau với các thực thể khác trong hệ thống:
-    \begin{itemize}
-        \item Student có các mối quan hệ sau:
-        \begin{itemize}
-            \item Include một hoặc nhiều Activity.
-            \item Send nhiều Feedback cho hệ thống.
-            \item Submit nhiều Exercise để thực hành.
-            \item Join nhiều Course để tham gia các khóa học.
-            \item Bookmark nhiều Lesson để lưu trữ các bài học quan trọng.
-        \end{itemize}
-        \item Teacher có thể Upload nhiều Course vào hệ thống để giảng dạy.
-        \item Manager có thể Manage nhiều Course trong hệ thống, tức là có quyền quản lý các khóa học.
-    \end{itemize}
-    \item Course bao gồm nhiều Lesson, và mỗi khóa học có thể Include nhiều bài học khác nhau. Mỗi học viên (Student) có thể tham gia một khóa học và cho mỗi khóa học, họ sẽ có một LearningPath riêng biệt. Mối quan hệ này thể hiện rằng mỗi học viên có một lộ trình học tập cho mỗi khóa học mà họ tham gia.
-    \item Lesson có thể Specialize thành Recommend Lesson, tức là các bài học có thể bao gồm các đề xuất học tập cho học viên. Mỗi bài học cũng có thể Include nhiều Module.
-    \item LearningPath của mỗi học viên sẽ Have nhiều Recommend Lesson. Các lộ trình học tập này sẽ dẫn dắt học viên thông qua các bài học được đề xuất trong suốt quá trình học.
-    \item Recommend Lesson có thể Include nhiều Module, tức là mỗi bài học được đề xuất có thể bao gồm nhiều mô-đun khác nhau để hỗ trợ học viên học tập một cách chi tiết hơn.
-    \item Module có thể Generate nhiều Quiz để đánh giá kết quả học tập của học viên. Mỗi mô-đun cũng có thể Generate một tài liệu (Document) duy nhất liên quan đến nội dung học.
-    \item Quiz chứa các câu hỏi và bài kiểm tra học viên, có thể bao gồm các phản hồi từ LLM Response, cung cấp thông tin về tên, độ khó, câu hỏi, câu trả lời, các lựa chọn, và hình ảnh liên quan đến bài kiểm tra.
-    \item Document có thể được tạo ra từ các mô-đun và cũng có phản hồi từ LLM Response, giúp cung cấp thêm tài liệu học tập cho học viên.
-    \item Activity bao gồm các hành động của người dùng trong hệ thống, và mỗi hoạt động có thể được Include bởi một hoặc nhiều User, đặc biệt là học viên.
-    \item Feedback là thông tin phản hồi từ học viên gửi đến hệ thống và có thể được Send từ nhiều User, đặc biệt là từ học viên để cải thiện chất lượng giảng dạy và học tập.
+\item \textbf{Student} kế thừa thuộc tính từ User và có các mối quan hệ quan trọng sau:
+\begin{itemize}
+    \item Include một hoặc nhiều Activity (hoạt động học tập).
+    \item Send nhiều Feedback để đánh giá và góp ý về hệ thống.
+    \item Join nhiều Course để tham gia các khóa học.
+    \item Have một LearningPath cho mỗi khóa học mà Student tham gia.
+\end{itemize}
+
+\item \textbf{Teacher} kế thừa từ User và có mối quan hệ teaches với Course, thể hiện vai trò giảng dạy trong các khóa học.
+
+\item \textbf{Manager} kế thừa từ User và có mối quan hệ Manage với Course, thể hiện vai trò quản lý các khóa học.
+
+\item \textbf{Course} là thực thể chứa thông tin về khóa học như ID, Name, Description, nSemester, Learning Outcomes, nCredits, và status. Course có các mối quan hệ:
+\begin{itemize}
+    \item Include nhiều Lesson (bài học).
+    \item Include nhiều Exercise (bài tập).
+    \item Được Join bởi nhiều Student.
+    \item Được teaches bởi Teacher.
+    \item Được Manage bởi Manager.
+\end{itemize}
+
+\item \textbf{Lesson} chứa thông tin về các bài học như ID, Name, Description, Lesson Outcomes. Lesson có thể được chuyên biệt hóa thành Recommend Lesson và có mối quan hệ:
+\begin{itemize}
+    \item Include nhiều Document (tài liệu).
+    \item Generate ExtractedText từ các tài liệu để phục vụ tìm kiếm và phân tích.
+\end{itemize}
+
+\item \textbf{Recommend Lesson} là dạng chuyên biệt của Lesson, chứa các thuộc tính bổ sung như Explain, Status, Order, Content, Progress, StartDate, endDate. Recommend Lesson có mối quan hệ:
+\begin{itemize}
+    \item Include nhiều Module (đơn vị học tập nhỏ).
+    \item Được Include trong LearningPath.
+\end{itemize}
+
+\item \textbf{LearningPath} đại diện cho lộ trình học tập cá nhân hóa của sinh viên, với các thuộc tính như ID, Objective, Progress, Version, Start Date và End Date. LearningPath có mối quan hệ:
+\begin{itemize}
+    \item Include nhiều Recommend Lesson.
+    \item Được Have bởi Student (mỗi Student có một LearningPath riêng cho mỗi Course).
+\end{itemize}
+
+\item \textbf{Module} là đơn vị học tập nhỏ nhất, chứa thông tin như ID, Title, Objective, Progress, Access, Document Content. Module có các mối quan hệ:
+\begin{itemize}
+    \item Generate Quiz để đánh giá kiến thức.
+    \item Generate Code (bài tập lập trình).
+\end{itemize}
+
+\item \textbf{Quiz} là bài kiểm tra kiến thức với các thuộc tính ID, Status, Score, MaxScore, Name, time\_limit, duration. Quiz có mối quan hệ:
+\begin{itemize}
+    \item Generate nhiều Question (câu hỏi).
+\end{itemize}
+
+\item \textbf{Question} chứa thông tin về câu hỏi trong bài kiểm tra như ID, type, question, options, answer, difficulty, explain, points, user\_choice.
+
+\item \textbf{Code} đại diện cho bài tập lập trình với các thuộc tính ID, Question, testcase, Submission, Result.
+
+\item \textbf{Document} chứa thông tin về tài liệu học tập như ID, name, type, description, url, status.
+
+\item \textbf{ExtractedText} chứa nội dung trích xuất từ Document với các thuộc tính ID, extracted\_content, progress\_status.
+
+\item \textbf{Activity} lưu trữ thông tin về hoạt động của Student với các thuộc tính Type, Description, Timestamp.
+
+\item \textbf{Feedback} chứa phản hồi của Student với các thuộc tính ID, Content, Time.
 \end{enumerate}
+Mối quan hệ trong sơ đồ được thể hiện rõ ràng với các kí hiệu biểu thị quan hệ một-nhiều (1-N) hoặc nhiều-nhiều (N-N). Ví dụ:
+\begin{itemize}
+\item Student — N — Join — N — Course: Mối quan hệ nhiều-nhiều, một Student có thể tham gia nhiều Course và một Course có thể có nhiều Student.
+\item Student — 1 — Have — N — LearningPath: Mối quan hệ một-nhiều, một Student có thể có nhiều LearningPath (mỗi khóa học một lộ trình).
+\item LearningPath — 1 — Include — N — Recommend Lesson: Mối quan hệ một-nhiều, một LearningPath bao gồm nhiều Recommend Lesson.
+\item Module — 1 — Generate — N — Quiz: Mối quan hệ một-nhiều, một Module có thể tạo ra nhiều Quiz.
+\end{itemize}
+Sơ đồ EER này cung cấp một cái nhìn tổng quan về cấu trúc dữ liệu của hệ thống, thể hiện rõ các thực thể chính, thuộc tính và mối quan hệ giữa chúng, tạo cơ sở vững chắc cho việc triển khai cơ sở dữ liệu hỗ trợ các chức năng của hệ thống học tập thông minh.
 \newpage
 \subsection{Lược đồ CSDL quan hệ ánh xạ}
 \begin{figure}[h!]
