@@ -138,11 +138,13 @@ Ví dụ: Controller xử lý:
 Frontend của hệ thống được triển khai trên nền tảng \textbf{Vercel}, mang đến một môi trường ổn định, tối ưu cho việc triển khai các ứng dụng web. Vercel cung cấp khả năng tự động build và deploy mỗi khi có thay đổi trong mã nguồn, giúp quá trình cập nhật trở nên nhanh chóng và mượt mà. Nhờ vào quy trình này, việc triển khai và duy trì hệ thống frontend trở nên đơn giản và hiệu quả.
 Vercel không chỉ đảm bảo hiệu suất cao mà còn hỗ trợ các tính năng tối ưu hóa tự động, giúp giảm thời gian tải trang và nâng cao trải nghiệm người dùng. Với khả năng mở rộng linh hoạt, hệ thống có thể dễ dàng đáp ứng với nhu cầu tăng trưởng trong tương lai.
 \par \textbf{Link deploy frontend:} \textcolor{blue}{\href{https://codemate-fe-black.vercel.app/}{https://codemate-fe-black.vercel.app/}}
+
 \textbf{Backend:}
 Hệ thống sử dụng nền tảng \textbf{Render} để triển khai backend. Render cung cấp một môi trường chạy ổn định, dễ mở rộng và bảo mật cao, giúp tối ưu hóa việc quản lý và triển khai ứng dụng. Với quy trình build và deploy tự động, việc cập nhật hệ thống trở nên mượt mà và hiệu quả, giảm thiểu các vấn đề phát sinh trong quá trình triển khai.
 Để triển khai hệ thống, chúng tôi sử dụng công cụ \textbf{Poetry} để quản lý các gói phụ thuộc (dependencies) của Python. Điều này giúp đảm bảo rằng các thư viện và công cụ cần thiết luôn được cài đặt đúng phiên bản, đồng thời giảm thiểu các lỗi liên quan đến môi trường chạy.
 Hệ thống được cấu hình để tự động khởi chạy khi có yêu cầu, đảm bảo hiệu suất cao và khả năng mở rộng dễ dàng khi cần thiết. Ngoài ra, Render cũng hỗ trợ giám sát và quản lý môi trường ứng dụng, giúp dễ dàng phát hiện và xử lý các sự cố.
 \par \textbf{Link deploy backend:} \textcolor{blue}{\href{https://edumind-5qmn.onrender.com/}{https://edumind-5qmn.onrender.com/}}
+
 \textbf{Quy trình triển khai chi tiết:}
 % \begin{figure}[H]
 % \centering
@@ -169,7 +171,7 @@ Hệ thống được cấu hình để tự động khởi chạy khi có yêu 
 \begin{itemize}
     \item Xây dựng API sử dụng FastAPI theo kiến trúc Repository-Provider-Controller.
     \item Thiết lập kết nối và tương tác với cơ sở dữ liệu PostgreSQL.
-    \item Tích hợp các dịch vụ bên ngoài như OpenAI API, Google Authentication.
+    \item Tích hợp các dịch vụ bên ngoài như Gemini API, Google Authentication.
     \item Phát triển các module xử lý nghiệp vụ chính như quản lý người dùng, quản lý khóa học, đề xuất học tập, và tạo bài tập.
 \end{itemize}
 
@@ -189,13 +191,13 @@ Hệ thống được cấu hình để tự động khởi chạy khi có yêu 
     \item Cài đặt và cấu hình cơ sở dữ liệu PostgreSQL trên nền tảng đám mây.
 \end{itemize}
 
-\item \textbf{Giám sát và bảo trì:}
-\begin{itemize}
-    \item Thiết lập hệ thống giám sát để theo dõi hiệu suất và phát hiện sự cố.
-    \item Triển khai quy trình cập nhật và bảo trì định kỳ.
-    \item Phân tích dữ liệu sử dụng để cải thiện trải nghiệm người dùng và tối ưu hóa hiệu suất.
-    \item Xử lý các vấn đề và cải tiến hệ thống dựa trên phản hồi từ người dùng.
-\end{itemize}
+% \item \textbf{Giám sát và bảo trì:}
+% \begin{itemize}
+%     \item Thiết lập hệ thống giám sát để theo dõi hiệu suất và phát hiện sự cố.
+%     \item Triển khai quy trình cập nhật và bảo trì định kỳ.
+%     \item Phân tích dữ liệu sử dụng để cải thiện trải nghiệm người dùng và tối ưu hóa hiệu suất.
+%     \item Xử lý các vấn đề và cải tiến hệ thống dựa trên phản hồi từ người dùng.
+% \end{itemize}
 \end{enumerate}
 \textbf{Các công nghệ được sử dụng trong triển khai:}
 \begin{table}[H]
@@ -208,7 +210,7 @@ Backend & FastAPI, SQLAlchemy, Pydantic, LangChain, Alembic \\ \hline
 Cơ sở dữ liệu & PostgreSQL, Redis (cache) \\ \hline
 AI & OpenAI API (GPT-4o), Google Gemini API \\ \hline
 Triển khai & Vercel (Frontend), Render (Backend), GitHub Actions (CI/CD) \\ \hline
-Giám sát & Sentry, Prometheus, Grafana \\ \hline
+% Giám sát & Sentry, Prometheus, Grafana \\ \hline
 \end{tabularx}
 \caption{Các công nghệ sử dụng trong quá trình triển khai}
 \label{table}
@@ -349,63 +351,63 @@ Giám sát & Sentry, Prometheus, Grafana \\ \hline
 %     \item Hướng dẫn sinh viên trong việc giải quyết các vấn đề lập trình (Role: Sinh viên).
 %     \item Chatbot hỗ trợ sinh viên trong việc lập trình và giải quyết các vấn đề liên quan đến mã nguồn (Role: Sinh viên).
 % \end{itemize}
-\section{Giới thiệu chi tiết về các chức năng chính của hệ thống}
-Hệ thống học tập thông minh được thiết kế để hỗ trợ học sinh trong việc lập kế hoạch học tập và đánh giá tiến độ một cách hiệu quả. Với sự tích hợp của AI, hệ thống có khả năng phân tích dữ liệu học tập, tạo lộ trình cá nhân hóa và đưa ra các đánh giá chi tiết. Mục nội dung này sẽ tập trung vào các chức năng chính như sinh ra lộ trình học tập, đề xuất mục tiêu học tập, đánh giá kết quả học tập, tạo bài kiểm tra, và các tính năng bổ sung khác. \par 
+% \section{Giới thiệu chi tiết về các chức năng chính của hệ thống}
+% Hệ thống học tập thông minh được thiết kế để hỗ trợ học sinh trong việc lập kế hoạch học tập và đánh giá tiến độ một cách hiệu quả. Với sự tích hợp của AI, hệ thống có khả năng phân tích dữ liệu học tập, tạo lộ trình cá nhân hóa và đưa ra các đánh giá chi tiết. Mục nội dung này sẽ tập trung vào các chức năng chính như sinh ra lộ trình học tập, đề xuất mục tiêu học tập, đánh giá kết quả học tập, tạo bài kiểm tra, và các tính năng bổ sung khác. \par 
 
-Sau đây là các nguyên tắc cơ bản trong việc thiết lập mục tiêu học tập và phương pháp đánh giá mà hệ thống áp dụng:
+% Sau đây là các nguyên tắc cơ bản trong việc thiết lập mục tiêu học tập và phương pháp đánh giá mà hệ thống áp dụng:
 
-\subsection{Nguyên tắc SMART trong việc thiết lập mục tiêu}
-Nguyên tắc SMART là một khung tiêu chuẩn được áp dụng rộng rãi trong việc thiết lập mục tiêu hiệu quả. Trong hệ thống của chúng tôi, mỗi mục tiêu học tập được đề xuất đều tuân theo năm tiêu chí của nguyên tắc SMART:
+% \subsection{Nguyên tắc SMART trong việc thiết lập mục tiêu}
+% Nguyên tắc SMART là một khung tiêu chuẩn được áp dụng rộng rãi trong việc thiết lập mục tiêu hiệu quả. Trong hệ thống của chúng tôi, mỗi mục tiêu học tập được đề xuất đều tuân theo năm tiêu chí của nguyên tắc SMART:
 
-\begin{itemize}
-    \item \textbf{Specific (Cụ thể)}: Mục tiêu phải rõ ràng và cụ thể, không mơ hồ. Ví dụ: ``Hiểu và áp dụng được các thuật toán sắp xếp'' thay vì ``Học về thuật toán''.
+% \begin{itemize}
+%     \item \textbf{Specific (Cụ thể)}: Mục tiêu phải rõ ràng và cụ thể, không mơ hồ. Ví dụ: ``Hiểu và áp dụng được các thuật toán sắp xếp'' thay vì ``Học về thuật toán''.
     
-    \item \textbf{Measurable (Đo lường được)}: Mục tiêu phải có thể đo lường được để đánh giá tiến độ. Ví dụ: ``Đạt điểm 8/10 trong bài kiểm tra về cấu trúc dữ liệu'' hoặc ``Hoàn thành 5 bài tập lập trình về đệ quy''.
+%     \item \textbf{Measurable (Đo lường được)}: Mục tiêu phải có thể đo lường được để đánh giá tiến độ. Ví dụ: ``Đạt điểm 8/10 trong bài kiểm tra về cấu trúc dữ liệu'' hoặc ``Hoàn thành 5 bài tập lập trình về đệ quy''.
     
-    \item \textbf{Achievable (Khả thi)}: Mục tiêu phải thực tế và có thể đạt được với các nguồn lực và thời gian hiện có. Mục tiêu quá tham vọng có thể dẫn đến nản chí.
+%     \item \textbf{Achievable (Khả thi)}: Mục tiêu phải thực tế và có thể đạt được với các nguồn lực và thời gian hiện có. Mục tiêu quá tham vọng có thể dẫn đến nản chí.
     
-    \item \textbf{Relevant (Liên quan)}: Mục tiêu phải phù hợp với nội dung khóa học và kết quả học tập mong đợi. Ví dụ, đặt mục tiêu học sâu về machine learning sẽ không phù hợp cho một khóa học cơ bản về Python.
+%     \item \textbf{Relevant (Liên quan)}: Mục tiêu phải phù hợp với nội dung khóa học và kết quả học tập mong đợi. Ví dụ, đặt mục tiêu học sâu về machine learning sẽ không phù hợp cho một khóa học cơ bản về Python.
     
-    \item \textbf{Time-bound (Giới hạn thời gian)}: Mục tiêu phải có thời hạn cụ thể để tạo động lực và tính cấp bách. Ví dụ: ``Hoàn thành trước kỳ thi giữa kỳ'' hoặc ``Trong vòng 3 tuần''.
-\end{itemize}
+%     \item \textbf{Time-bound (Giới hạn thời gian)}: Mục tiêu phải có thời hạn cụ thể để tạo động lực và tính cấp bách. Ví dụ: ``Hoàn thành trước kỳ thi giữa kỳ'' hoặc ``Trong vòng 3 tuần''.
+% \end{itemize}
 
-Trong API \texttt{/generate-student-goals}, AI sẽ tạo ra các mục tiêu học tập tuân thủ nguyên tắc SMART cho ba cấp độ học tập khác nhau: Struggling (khó khăn), Average (trung bình), và Advanced (nâng cao). Mỗi mục tiêu đều được giới hạn dưới 200 ký tự để đảm bảo tính súc tích và dễ nhớ.
+% Trong API \texttt{/generate-student-goals}, AI sẽ tạo ra các mục tiêu học tập tuân thủ nguyên tắc SMART cho ba cấp độ học tập khác nhau: Struggling (khó khăn), Average (trung bình), và Advanced (nâng cao). Mỗi mục tiêu đều được giới hạn dưới 200 ký tự để đảm bảo tính súc tích và dễ nhớ.
 
-\subsection{Phương pháp Rubric-Based Assessment}
-Rubric-Based Assessment (Đánh giá dựa trên Rubric) là phương pháp đánh giá sử dụng các tiêu chí cụ thể và mức độ đạt được cho mỗi tiêu chí. Phương pháp này mang lại nhiều lợi ích:
+% \subsection{Phương pháp Rubric-Based Assessment}
+% Rubric-Based Assessment (Đánh giá dựa trên Rubric) là phương pháp đánh giá sử dụng các tiêu chí cụ thể và mức độ đạt được cho mỗi tiêu chí. Phương pháp này mang lại nhiều lợi ích:
 
-\begin{itemize}
-    \item \textbf{Tính khách quan}: Đánh giá dựa trên các tiêu chí rõ ràng, giảm thiểu tính chủ quan.
-    \item \textbf{Tính nhất quán}: Đảm bảo các học sinh được đánh giá theo cùng một tiêu chuẩn.
-    \item \textbf{Tính minh bạch}: Học sinh hiểu rõ họ được đánh giá như thế nào và cần cải thiện điều gì.
-    \item \textbf{Phản hồi có cấu trúc}: Cung cấp phản hồi chi tiết theo từng tiêu chí.
-\end{itemize}
+% \begin{itemize}
+%     \item \textbf{Tính khách quan}: Đánh giá dựa trên các tiêu chí rõ ràng, giảm thiểu tính chủ quan.
+%     \item \textbf{Tính nhất quán}: Đảm bảo các học sinh được đánh giá theo cùng một tiêu chuẩn.
+%     \item \textbf{Tính minh bạch}: Học sinh hiểu rõ họ được đánh giá như thế nào và cần cải thiện điều gì.
+%     \item \textbf{Phản hồi có cấu trúc}: Cung cấp phản hồi chi tiết theo từng tiêu chí.
+% \end{itemize}
 
-Trong hệ thống của chúng tôi, Rubric được áp dụng để đánh giá học sinh theo ba tiêu chí chính:
-\begin{enumerate}
-    \item \textbf{Kiến thức lý thuyết (Theoretical Knowledge)}: Đánh giá mức độ hiểu biết về lý thuyết dựa trên tiến độ trong các bài học liên quan đến khái niệm lý thuyết.
+% Trong hệ thống của chúng tôi, Rubric được áp dụng để đánh giá học sinh theo ba tiêu chí chính:
+% \begin{enumerate}
+%     \item \textbf{Kiến thức lý thuyết (Theoretical Knowledge)}: Đánh giá mức độ hiểu biết về lý thuyết dựa trên tiến độ trong các bài học liên quan đến khái niệm lý thuyết.
     
-    \item \textbf{Kỹ năng thực hành (Coding Skills)}: Đánh giá kỹ năng lập trình dựa trên việc hoàn thành các bài tập mã hóa. Nếu khóa học không bao gồm lập trình, tiêu chí này sẽ được thay thế bằng một kỹ năng thực hành khác phù hợp.
+%     \item \textbf{Kỹ năng thực hành (Coding Skills)}: Đánh giá kỹ năng lập trình dựa trên việc hoàn thành các bài tập mã hóa. Nếu khóa học không bao gồm lập trình, tiêu chí này sẽ được thay thế bằng một kỹ năng thực hành khác phù hợp.
     
-    \item \textbf{Nỗ lực (Effort)}: Đánh giá sự cố gắng dựa trên thời gian học tập (time\_spent), số lượng bài học đã bắt đầu (status), và tiến độ tổng thể.
-\end{enumerate}
+%     \item \textbf{Nỗ lực (Effort)}: Đánh giá sự cố gắng dựa trên thời gian học tập (time\_spent), số lượng bài học đã bắt đầu (status), và tiến độ tổng thể.
+% \end{enumerate}
 
-Mỗi tiêu chí được đánh giá theo bốn mức độ: Excellent (Xuất sắc), Good (Tốt), Average (Trung bình), và Poor (Kém), với các miêu tả cụ thể cho mỗi mức độ.
+% Mỗi tiêu chí được đánh giá theo bốn mức độ: Excellent (Xuất sắc), Good (Tốt), Average (Trung bình), và Poor (Kém), với các miêu tả cụ thể cho mỗi mức độ.
 
-\subsection{Phương pháp đánh giá STAR}
-STAR là một phương pháp đánh giá cấu trúc được sử dụng rộng rãi trong giáo dục và phát triển nghề nghiệp. Trong hệ thống của chúng tôi, phương pháp STAR được áp dụng để đánh giá tiến độ học tập của học sinh một cách toàn diện. STAR bao gồm bốn thành phần:
+% \subsection{Phương pháp đánh giá STAR}
+% STAR là một phương pháp đánh giá cấu trúc được sử dụng rộng rãi trong giáo dục và phát triển nghề nghiệp. Trong hệ thống của chúng tôi, phương pháp STAR được áp dụng để đánh giá tiến độ học tập của học sinh một cách toàn diện. STAR bao gồm bốn thành phần:
 
-\begin{itemize}
-    \item \textbf{Situation (Tình huống)}: Mô tả bối cảnh học tập của học sinh, bao gồm tên, khóa học, và mối liên hệ với mục tiêu học tập.
+% \begin{itemize}
+%     \item \textbf{Situation (Tình huống)}: Mô tả bối cảnh học tập của học sinh, bao gồm tên, khóa học, và mối liên hệ với mục tiêu học tập.
     
-    \item \textbf{Task (Nhiệm vụ)}: Nêu rõ mục tiêu học tập của học sinh, nhấn mạnh tầm quan trọng của việc đạt được mục tiêu trước thời hạn (ví dụ: trước kỳ thi giữa kỳ).
+%     \item \textbf{Task (Nhiệm vụ)}: Nêu rõ mục tiêu học tập của học sinh, nhấn mạnh tầm quan trọng của việc đạt được mục tiêu trước thời hạn (ví dụ: trước kỳ thi giữa kỳ).
     
-    \item \textbf{Action (Hành động)}: Liệt kê chi tiết các hành động học sinh đã thực hiện cho mỗi tiêu chí đánh giá (Kiến thức lý thuyết, Kỹ năng thực hành, Nỗ lực), dựa trên dữ liệu bài học (progress, time\_spent, objectives).
+%     \item \textbf{Action (Hành động)}: Liệt kê chi tiết các hành động học sinh đã thực hiện cho mỗi tiêu chí đánh giá (Kiến thức lý thuyết, Kỹ năng thực hành, Nỗ lực), dựa trên dữ liệu bài học (progress, time\_spent, objectives).
     
-    \item \textbf{Result (Kết quả)}: Đánh giá tiến độ tổng thể so với mục tiêu, phân tích theo từng tiêu chí, với nhận xét rõ ràng (on track/needs effort/at risk) và tham chiếu đến ngày hiện tại.
-\end{itemize}
+%     \item \textbf{Result (Kết quả)}: Đánh giá tiến độ tổng thể so với mục tiêu, phân tích theo từng tiêu chí, với nhận xét rõ ràng (on track/needs effort/at risk) và tham chiếu đến ngày hiện tại.
+% \end{itemize}
 
-API \texttt{/student/\{courseId\}/assessment} sử dụng phương pháp STAR kết hợp với Rubric để tạo ra báo cáo đánh giá toàn diện cho học sinh, giúp họ hiểu rõ tiến độ học tập và những điểm cần cải thiện.
+% API \texttt{/student/\{courseId\}/assessment} sử dụng phương pháp STAR kết hợp với Rubric để tạo ra báo cáo đánh giá toàn diện cho học sinh, giúp họ hiểu rõ tiến độ học tập và những điểm cần cải thiện.
 
 \section{Sinh ra lộ trình học tập}
 Chức năng này chịu trách nhiệm tạo ra một lộ trình học tập cá nhân hóa dựa trên mục tiêu học tập của học sinh, nội dung khóa học và thời gian khả dụng. Quá trình được thực hiện qua ba giai đoạn chính:
@@ -678,11 +680,11 @@ Sinh viên có thể chọn độ khó của bài kiểm tra và số lượng c
 \end{figure}
 
 Sau khi hoàn thành một bài kiểm tra, sinh viên có thể xem kết quả và nhận phản hồi từ hệ thống. Hệ thống sẽ phân tích những vấn đề sinh viên gặp phải, những phần sinh viên nắm chắc và cung cấp các khuyến nghị cho sinh viên dựa trên hiệu suất của họ trong bài kiểm tra.
-\section{Tái tạo nội dung bài học (Regenerate Lesson Content)}
-Chức năng này điều chỉnh nội dung bài học dựa trên các vấn đề học sinh gặp phải, sử dụng endpoint \texttt{/regenerate-lesson-content}. Các bước:
+\section{Tạo bổ sung nội dung bài học (Regenerate Lesson Content)}
+Chức năng này tạo thêm nội dung bài học bổ sung dựa trên các vấn đề học sinh gặp phải, sử dụng endpoint \texttt{/generate-supplemental-content}. Các bước:
 \begin{itemize}
     \item \textbf{Phân tích vấn đề}: Dựa trên kết quả phân tích từ \texttt{monitor\_study\_progress}, hệ thống xác định các khía cạnh cần cải thiện (ví dụ: hiểu sai khái niệm, lỗi mã).
-    \item \textbf{Đánh giá tình huống}: Kiểm tra xem học sinh có cần xem lại bài học trước đó không (needs\_review\_prior) và thu thập thông tin liên quan nếu cần.
+    \item \textbf{Đánh giá tình huống}: Kiểm tra mức độ khó khăn sinh viên đang gặp phải và xác định liệu vấn đề có cần tham chiếu đến kiến thức từ các bài học trước đó không (needs\_review\_prior). Hệ thống thu thập thông tin liên quan từ các bài học trước nếu cần thiết để cung cấp bối cảnh đầy đủ.
     \item \textbf{Tạo nội dung mới}: AI sinh nội dung cập nhật với các mô-đun chi tiết, ví dụ mã nguồn:
     \begin{lstlisting}[language=Python]
 async def regenerate_lesson_content(
@@ -699,16 +701,12 @@ async def regenerate_lesson_content(
     """
     updated_content = chunking_manager.call_llm_api(prompt, ...)
     \end{lstlisting}
-    \item \textbf{Cập nhật dữ liệu}: Xóa mô-đun cũ, tạo mô-đun mới và đánh dấu trạng thái bài học là "new" với tiến độ 0%.
+    \item \textbf{Cập nhật dữ liệu}: Lưu các module bổ sung vào cơ sở dữ liệu và liên kết chúng với bài học hiện tại. Các module ban đầu vẫn được giữ nguyên, đảm bảo tính liên tục của lộ trình học tập.
 \end{itemize}
+
 Kết quả là một JSON chứa nội dung mới, ví dụ:
 \begin{lstlisting}[language=JSON]
 {
-    "recommended_content": "Updated content addressing recursion issues...",
-    "explain": "Explanation of how this content resolves the issues...",
-    "start_date": "2025-04-06",
-    "end_date": "2025-04-20",
-    "duration_notes": "Updated notes on timeline...",
     "modules": [
         {
             "title": "Recursion Basics Revisited",
@@ -718,7 +716,7 @@ Kết quả là một JSON chứa nội dung mới, ví dụ:
     ]
 }
 \end{lstlisting}
-
+Nội dung bổ sung được thiết kế để giải quyết các vấn đề cụ thể mà sinh viên đang gặp phải, đồng thời duy trì tính liên tục của lộ trình học tập. Các module bổ sung này tập trung vào việc làm rõ những khái niệm khó, cung cấp thêm ví dụ minh họa, và tạo cơ hội thực hành có hướng dẫn. Cách tiếp cận này giúp sinh viên vượt qua những khó khăn cụ thể mà không cần phải học lại toàn bộ nội dung
 \section{Kiến trúc tổng thể hệ thống}
 Hệ thống học tập trực tuyến thông minh được thiết kế theo mô hình Client – Server, với các thành phần chính bao gồm:
 
