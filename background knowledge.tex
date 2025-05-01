@@ -35,3 +35,58 @@
 Trước khi nói về thuật ngữ \emph{Đồ thị tri thức}, ta hãy nhìn sơ qua về thuật ngữ \emph{Đồ thị}. Ở đây, nghĩa của từ đồ thị được hiểu theo định nghĩa của nó ở trong \emph{Lý thuyết đồ thị (graph theory)} là một nhánh nghiên cứu của \emph{Toán rời rạc (Discrete mathematics)}: Một đồ thị (graph) là một cấu trúc toán học được sử dụng để mô tả mối quan hệ giữa các đối tượng (được gọi là đỉnh hoặc nút). Các đối tượng này được kết nối với nhau thông qua các cạnh (hay còn gọi là cung) biểu diễn mối quan hệ giữa chúng. Từ định nghĩa của đồ thị, Trong bài báo cáo này, nhóm xin đưa ra định nghĩa của \emph{Đồ thị tri thức (knowledge graph)}: là một dạng thể hiện có cấu trúc, cụ thể hơn là thể hiện bằng đồ thị, trong đó các đỉnh là các thực thể trong thế giới thực như: một đối tượng, một khái niệm, một sự kiện, và các cạnh là mối quan hệ giữa chúng\cite{ibm_knowledge_graph}.
 \subsection{Knowledge tracing}
 \emph{Knowledge tracing} là bài toán mô hình hóa kiến thức của học sinh theo thời gian để ta có thể dự đoán chính xác cách học sinh sẽ thực hiện trong các tương tác sau này \cite{10.5555/2969239.2969296}. Nhờ có \emph{Knowledge tracing}, giảng viên/người giảng dạy/hệ thống có thể kiểm tra được tiến độ học tập cũng như năng lực của mỗi học sinh \emph{một cách hiệu quả hơn} bằng cách theo dỡi tương tác của học viên với các học liệu trực tuyến (tài liệu, các câu hỏi, bài kiểm tra,...)\cite{10.1145/3569576}.\\
+
+\section{Các nguyên tắc cơ bản trong việc thiết lập mục tiêu học tập và phương pháp đánh giá}
+
+Hệ thống học tập thông minh được thiết kế để hỗ trợ học sinh trong việc lập kế hoạch học tập và đánh giá tiến độ một cách hiệu quả. Với sự tích hợp của AI, hệ thống có khả năng phân tích dữ liệu học tập, tạo lộ trình cá nhân hóa và đưa ra các đánh giá chi tiết. Mục nội dung này sẽ tập trung vào các chức năng chính như sinh ra lộ trình học tập, đề xuất mục tiêu học tập, đánh giá kết quả học tập, tạo bài kiểm tra, và các tính năng bổ sung khác. \par 
+
+Sau đây là các nguyên tắc cơ bản trong việc thiết lập mục tiêu học tập và phương pháp đánh giá mà hệ thống áp dụng:
+
+\subsection{Nguyên tắc SMART trong việc thiết lập mục tiêu}
+Nguyên tắc SMART là một khung tiêu chuẩn được áp dụng rộng rãi trong việc thiết lập mục tiêu hiệu quả. Trong hệ thống của chúng tôi, mỗi mục tiêu học tập được đề xuất đều tuân theo năm tiêu chí của nguyên tắc SMART:
+
+\begin{itemize}
+    \item \textbf{Specific (Cụ thể)}: Mục tiêu phải rõ ràng và cụ thể, không mơ hồ. Ví dụ: ``Hiểu và áp dụng được các thuật toán sắp xếp'' thay vì ``Học về thuật toán''.
+    
+    \item \textbf{Measurable (Đo lường được)}: Mục tiêu phải có thể đo lường được để đánh giá tiến độ. Ví dụ: ``Đạt điểm 8/10 trong bài kiểm tra về cấu trúc dữ liệu'' hoặc ``Hoàn thành 5 bài tập lập trình về đệ quy''.
+    
+    \item \textbf{Achievable (Khả thi)}: Mục tiêu phải thực tế và có thể đạt được với các nguồn lực và thời gian hiện có. Mục tiêu quá tham vọng có thể dẫn đến nản chí.
+    
+    \item \textbf{Relevant (Liên quan)}: Mục tiêu phải phù hợp với nội dung khóa học và kết quả học tập mong đợi. Ví dụ, đặt mục tiêu học sâu về machine learning sẽ không phù hợp cho một khóa học cơ bản về Python.
+    
+    \item \textbf{Time-bound (Giới hạn thời gian)}: Mục tiêu phải có thời hạn cụ thể để tạo động lực và tính cấp bách. Ví dụ: ``Hoàn thành trước kỳ thi giữa kỳ'' hoặc ``Trong vòng 3 tuần''.
+\end{itemize}
+
+\subsection{Phương pháp Rubric-Based Assessment}
+Rubric-Based Assessment (Đánh giá dựa trên Rubric) là phương pháp đánh giá sử dụng các tiêu chí cụ thể và mức độ đạt được cho mỗi tiêu chí. Phương pháp này mang lại nhiều lợi ích:
+
+\begin{itemize}
+    \item \textbf{Tính khách quan}: Đánh giá dựa trên các tiêu chí rõ ràng, giảm thiểu tính chủ quan.
+    \item \textbf{Tính nhất quán}: Đảm bảo các học sinh được đánh giá theo cùng một tiêu chuẩn.
+    \item \textbf{Tính minh bạch}: Học sinh hiểu rõ họ được đánh giá như thế nào và cần cải thiện điều gì.
+    \item \textbf{Phản hồi có cấu trúc}: Cung cấp phản hồi chi tiết theo từng tiêu chí.
+\end{itemize}
+
+Trong hệ thống của chúng tôi, Rubric được áp dụng để đánh giá học sinh theo ba tiêu chí chính:
+\begin{enumerate}
+    \item \textbf{Kiến thức lý thuyết (Theoretical Knowledge)}: Đánh giá mức độ hiểu biết về lý thuyết dựa trên tiến độ trong các bài học liên quan đến khái niệm lý thuyết.
+    
+    \item \textbf{Kỹ năng thực hành (Coding Skills)}: Đánh giá kỹ năng lập trình dựa trên việc hoàn thành các bài tập mã hóa. Nếu khóa học không bao gồm lập trình, tiêu chí này sẽ được thay thế bằng một kỹ năng thực hành khác phù hợp.
+    
+    \item \textbf{Nỗ lực (Effort)}: Đánh giá sự cố gắng dựa trên thời gian học tập (time\_spent), số lượng bài học đã bắt đầu (status), và tiến độ tổng thể.
+\end{enumerate}
+
+Mỗi tiêu chí được đánh giá theo bốn mức độ: Excellent (Xuất sắc), Good (Tốt), Average (Trung bình), và Poor (Kém), với các miêu tả cụ thể cho mỗi mức độ.
+
+\subsection{Phương pháp đánh giá STAR}
+STAR là một phương pháp đánh giá cấu trúc được sử dụng rộng rãi trong giáo dục và phát triển nghề nghiệp. Trong hệ thống của chúng tôi, phương pháp STAR được áp dụng để đánh giá tiến độ học tập của học sinh một cách toàn diện. STAR bao gồm bốn thành phần:
+
+\begin{itemize}
+    \item \textbf{Situation (Tình huống)}: Mô tả bối cảnh học tập của học sinh, bao gồm tên, khóa học, và mối liên hệ với mục tiêu học tập.
+    
+    \item \textbf{Task (Nhiệm vụ)}: Nêu rõ mục tiêu học tập của học sinh, nhấn mạnh tầm quan trọng của việc đạt được mục tiêu trước thời hạn (ví dụ: trước kỳ thi giữa kỳ).
+    
+    \item \textbf{Action (Hành động)}: Liệt kê chi tiết các hành động học sinh đã thực hiện cho mỗi tiêu chí đánh giá (Kiến thức lý thuyết, Kỹ năng thực hành, Nỗ lực), dựa trên dữ liệu bài học (progress, time\_spent, objectives).
+    
+    \item \textbf{Result (Kết quả)}: Đánh giá tiến độ tổng thể so với mục tiêu, phân tích theo từng tiêu chí, với nhận xét rõ ràng (on track/needs effort/at risk) và tham chiếu đến ngày hiện tại.
+\end{itemize}

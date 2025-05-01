@@ -26,7 +26,7 @@ Gợi ý mục tiêu học tập & \checkmark & Cung cấp các gợi ý mục t
 \hline
 Tạo module học tập động & \checkmark & Tự động tạo các module học tập có cấu trúc rõ ràng với mục tiêu, nội dung đọc và bài tập thực hành, đảm bảo tính liên quan và phù hợp với cấp độ của người học. \\
 \hline
-Tái tạo nội dung học tập & \checkmark & Phân tích các vấn đề học tập của sinh viên và tái tạo nội dung học tập phù hợp, tập trung vào các khía cạnh cần cải thiện. \\
+Tạo bổ sung nội dung học tập & \checkmark & Phân tích các vấn đề học tập của sinh viên và tạo bổ sung nội dung học tập phù hợp, tập trung vào các khía cạnh cần cải thiện. \\
 \hline
 Sinh tự động bài kiểm tra & \checkmark & Tạo các bài kiểm tra với nhiều mức độ khó, phân bố hợp lý giữa các loại câu hỏi (dễ, trung bình, khó) và đảm bảo bao phủ kiến thức. \\
 \hline
@@ -132,60 +132,60 @@ Phân tích kết quả học tập & \checkmark & Phân tích dữ liệu học
         \caption{Danh sách các tính năng chức năng đã hoàn thành (Phần 2)}
         \end{table}
         
-% \subsection{Các yêu cầu phi chức năng}
+\subsection{Các yêu cầu phi chức năng}
 
-% \begin{table}[H]
-%     \centering
-%     \begin{tabular}{|p{3cm}|p{1.5cm}|p{4.5cm}|p{7cm}|}
-%     \hline
-%     \textbf{Loại yêu cầu} & \textbf{Hoàn thành} & \textbf{Tiêu chí} & \textbf{Chi tiết triển khai} \\
-%     \hline
-%     \multirow{3}{}{Hiệu năng} & \checkmark & Thời gian phản hồi nhanh & Thời gian phản hồi cho các thao tác thông thường dưới 2 giây, đạt được thông qua tối ưu hóa database query và caching. \\
-%     \cline{2-4}
-%     & \checkmark & Hỗ trợ nhiều người dùng & Hệ thống hỗ trợ tối thiểu 1000 người dùng đồng thời mà không giảm hiệu năng, thông qua việc triển khai trên nền tảng cloud có khả năng mở rộng. \\
-%     \cline{2-4}
-%     & \checkmark & Thời gian phản hồi AI & Tối ưu hóa API calls tới các model LLM, giữ thời gian phản hồi AI dưới 8 giây cho các tác vụ phức tạp. \\
-%     \hline
-%     \multirow{2}{}{Khả năng mở rộng} & \checkmark & Kiến trúc microservices & Thiết kế hệ thống theo kiến trúc module, dễ dàng mở rộng và thêm tính năng mà không ảnh hưởng đến thành phần khác. \\
-%     \cline{2-4}
-%     & \checkmark & Triển khai trên cloud & Sử dụng các dịch vụ cloud có khả năng auto-scaling, đảm bảo hệ thống dễ dàng mở rộng theo nhu cầu sử dụng. \\
-%     \hline
-%     \multirow{3}{*}{Bảo mật} & \checkmark & Mã hóa dữ liệu & Mã hóa dữ liệu cá nhân và thông tin học tập bằng chuẩn AES-256 trong quá trình lưu trữ và truyền tải. \\
-%     \cline{2-4}
-%     & \checkmark & Xác thực đa yếu tố & Triển khai xác thực đa yếu tố cho các tài khoản quản trị và giảng viên, tăng cường bảo mật. \\
-%     \cline{2-4}
-%     & \checkmark & Phân quyền chi tiết & Hệ thống phân quyền chi tiết theo vai trò, đảm bảo người dùng chỉ truy cập được thông tin và chức năng phù hợp. \\
-%     \hline
-%     \end{tabular}
-%     \caption{Danh sách các yêu cầu phi chức năng đã đáp ứng (Phần 1)}
-%     \end{table}
-%     \begin{table}[H]
-%         \centering
-%         \begin{tabular}{|p{3cm}|p{1.5cm}|p{4.5cm}|p{7cm}|}
-%         \hline
-%         \textbf{Loại yêu cầu} & \textbf{Hoàn thành} & \textbf{Tiêu chí} & \textbf{Chi tiết triển khai} \\
-%         \hline
-%         \multirow{3}{}{Tính khả dụng} & \checkmark & Giao diện thân thiện & Thiết kế giao diện trực quan, dễ sử dụng với bố cục rõ ràng và màu sắc hợp lý. \\
-%         \cline{2-4}
-%         & \checkmark & Tính nhất quán & Đảm bảo tính nhất quán trong thiết kế và trải nghiệm người dùng trên toàn bộ hệ thống. \\
-%         \cline{2-4}
-%         & \checkmark & Thiết kế đáp ứng & Giao diện đáp ứng (responsive) trên nhiều thiết bị và kích thước màn hình khác nhau. \\
-%         \hline
-%         \multirow{2}{}{Tính tương thích} & \checkmark & Tương thích trình duyệt & Hỗ trợ các trình duyệt phổ biến (Chrome, Firefox, Safari, Edge) với trải nghiệm nhất quán. \\
-%         \cline{2-4}
-%         & \checkmark & Tương thích hệ điều hành & Hoạt động ổn định trên các hệ điều hành phổ biến (Windows, macOS, Linux) và thiết bị di động. \\
-%         \hline
-%         \multirow{2}{}{Khả năng bảo trì} & \checkmark & Mã nguồn có cấu trúc & Mã nguồn được tổ chức theo cấu trúc rõ ràng, dễ đọc và tuân thủ các tiêu chuẩn coding. \\
-%         \cline{2-4}
-%         & \checkmark & Tài liệu đầy đủ & Hệ thống có tài liệu kỹ thuật đầy đủ, bao gồm API documentation và hướng dẫn triển khai. \\
-%         \hline
-%         \multirow{2}{}{Độ tin cậy} & \checkmark & Tính ổn định cao & Hệ thống duy trì uptime trên 99.9\%, đảm bảo trải nghiệm người dùng liên tục. \\
-%         \cline{2-4}
-%         & \checkmark & Sao lưu tự động & Dữ liệu được sao lưu tự động theo lịch trình, đảm bảo khả năng phục hồi nhanh chóng. \\
-%         \hline
-%         \end{tabular}
-%         \caption{Danh sách các yêu cầu phi chức năng đã đáp ứng (Phần 2)}
-%         \end{table}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{3cm}|p{1.5cm}|p{4.5cm}|p{7cm}|}
+    \hline
+    \textbf{Loại yêu cầu} & \textbf{Hoàn thành} & \textbf{Tiêu chí} & \textbf{Chi tiết triển khai} \\
+    \hline
+    \multirow{3}{*}{Hiệu năng} & X & Thời gian phản hồi nhanh & Thời gian phản hồi cho các thao tác thông thường dưới 2 giây, đạt được thông qua tối ưu hóa database query và caching. \\
+    \cline{2-4}
+    & X & Hỗ trợ nhiều người dùng & Hệ thống hỗ trợ tối thiểu 1000 người dùng đồng thời mà không giảm hiệu năng, thông qua việc triển khai trên nền tảng cloud có khả năng mở rộng. \\
+    \cline{2-4}
+    & X & Thời gian phản hồi AI & Tối ưu hóa API calls tới các model LLM, giữ thời gian phản hồi AI dưới 8 giây cho các tác vụ phức tạp. \\
+    \hline
+    \multirow{2}{*}{Khả năng mở rộng} & \checkmark & Kiến trúc microservices & Thiết kế hệ thống theo kiến trúc module, dễ dàng mở rộng và thêm tính năng mà không ảnh hưởng đến thành phần khác. \\
+    \cline{2-4}
+    & \checkmark & Triển khai trên cloud & Sử dụng các dịch vụ cloud có khả năng auto-scaling, đảm bảo hệ thống dễ dàng mở rộng theo nhu cầu sử dụng. \\
+    \hline
+    \multirow{3}{*}{Bảo mật} & \checkmark & Mã hóa dữ liệu & Mã hóa dữ liệu cá nhân và thông tin học tập bằng chuẩn AES-256 trong quá trình lưu trữ và truyền tải. \\
+    \cline{2-4}
+    & \checkmark & Xác thực đa yếu tố & Triển khai xác thực đa yếu tố cho các tài khoản quản trị và giảng viên, tăng cường bảo mật. \\
+    \cline{2-4}
+    & \checkmark & Phân quyền chi tiết & Hệ thống phân quyền chi tiết theo vai trò, đảm bảo người dùng chỉ truy cập được thông tin và chức năng phù hợp. \\
+    \hline
+    \end{tabular}
+    \caption{Danh sách các yêu cầu phi chức năng đã đáp ứng (Phần 1)}
+    \end{table}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|p{3cm}|p{1.5cm}|p{4.5cm}|p{7cm}|}
+        \hline
+        \textbf{Loại yêu cầu} & \textbf{Hoàn thành} & \textbf{Tiêu chí} & \textbf{Chi tiết triển khai} \\
+        \hline
+        \multirow{3}{*}{Tính khả dụng} & \checkmark & Giao diện thân thiện & Thiết kế giao diện trực quan, dễ sử dụng với bố cục rõ ràng và màu sắc hợp lý. \\
+        \cline{2-4}
+        & \checkmark & Tính nhất quán & Đảm bảo tính nhất quán trong thiết kế và trải nghiệm người dùng trên toàn bộ hệ thống. \\
+        \cline{2-4}
+        & \checkmark & Thiết kế đáp ứng & Giao diện đáp ứng (responsive) trên nhiều thiết bị và kích thước màn hình khác nhau. \\
+        \hline
+        \multirow{2}{*}{Tính tương thích} & \checkmark & Tương thích trình duyệt & Hỗ trợ các trình duyệt phổ biến (Chrome, Firefox, Safari, Edge) với trải nghiệm nhất quán. \\
+        \cline{2-4}
+        & \checkmark & Tương thích hệ điều hành & Hoạt động ổn định trên các hệ điều hành phổ biến (Windows, macOS, Linux) và thiết bị di động. \\
+        \hline
+        \multirow{2}{*}{Khả năng bảo trì} & \checkmark & Mã nguồn có cấu trúc & Mã nguồn được tổ chức theo cấu trúc rõ ràng, dễ đọc và tuân thủ các tiêu chuẩn coding. \\
+        \cline{2-4}
+        & \checkmark & Tài liệu đầy đủ & Hệ thống có tài liệu kỹ thuật đầy đủ, bao gồm API documentation và hướng dẫn triển khai. \\
+        \hline
+        \multirow{2}{*}{Độ tin cậy} & \checkmark & Tính ổn định cao & Hệ thống duy trì uptime ổn định đảm bảo trải nghiệm người dùng liên tục. \\
+        \cline{2-4}
+        & \checkmark & Sao lưu tự động & Dữ liệu được sao lưu tự động theo lịch trình, đảm bảo khả năng phục hồi nhanh chóng. \\
+        \hline
+        \end{tabular}
+        \caption{Danh sách các yêu cầu phi chức năng đã đáp ứng (Phần 2)}
+        \end{table}
 % \section{Các vấn đề và khó khăn trong quá trình phát triển}
 
 % \section{Kết chương}
