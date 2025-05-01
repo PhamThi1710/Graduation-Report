@@ -1,141 +1,159 @@
-\section{Đánh giá hệ thống với các mô hình ngôn ngữ hiện có}
+\chapter{Đánh giá}
 
-Mục đích của cuộc thử nghiệm đó là đánh giá chất lượng của lời giải thích của từng mô hình ngôn ngữ hớn dành cho người học. Mô hình tiến hành thử nghiệm:
+\section{Đánh giá chất lượng đầu ra của lộ trình học đề xuất bởi LLM}
+
+\subsection{Phương án đánh giá}
+Trong bối cảnh đánh giá hệ thống sinh lộ trình học tập, có hai hướng tiếp cận để đánh giá \cite{zhang2020new}:
 \begin{itemize}
-    \item GPT 4o
-    \item GPT 4o Mini
-    \item Google Gemini Pro 1.5
+    \item \textbf{Online evaluation} là phương pháp sử dụng phản hồi thực tế từ người dùng hoặc chuyên gia để đánh giá chất lượng đầu ra. Phương pháp này có độ tin cậy cao và phản ánh đúng nhu cầu thực tế, tuy nhiên yêu cầu thời gian, chi phí lớn và khó mở rộng trong giai đoạn phát triển ban đầu.
+    \item \textbf{Offline evaluation} là phương pháp sử dụng mô hình hoặc thuật toán đánh giá tự động để đánh giá đầu ra mà không cần tương tác với người dùng, về dữ liệu, những dữ liệu cũ quan sát được trong quá khứ có thể được sử dụng cho Offline evaluation.
 \end{itemize}
-Dữ liệu đầu vào cho mỗi mô hình là một yêu cầu từ người dùng về việc cung cấp các tài nguyên học tập hữu ích cho việc phát triển kỹ năng. Dưới đây là kết quả trả về từ mỗi mô hình:
+Trong báo cáo này, nhóm lựa chọn phương pháp \textbf{offline evaluation kết hợp với GEval} – một framework đánh giá tự động sử dụng mô hình ngôn ngữ lớn (LLM) làm giám khảo (LLM-as-a-Judge)\cite{liu2023gevalnlgevaluationusing}. GEval cung cấp một framework linh hoạt để định nghĩa các tiêu chí đánh giá tuỳ chỉnh, kết hợp với chuỗi suy luận (Chain-of-Thought) để hướng dẫn mô hình đưa ra lập luận có cơ sở. GEval có những điểm phù hợp để được chọn làm metric cho  phần đánh giá này vì:
 \begin{itemize}
-    \item GPT 4o mini:
-    \begin{lstlisting}[breaklines=true]
-        GPT 4o mini:
-        Response body
-        {
-          "final_response": [
-            {
-              "id": "b0f66328-862d-4e4d-9f5a-2bdee93490b8",
-              "code": "COD001",
-              "description": "A classic beginner coding challenge.",
-              "explanation": "This coding challenge is a great starting point for you as it will help you practice fundamental programming skills. Engaging with such challenges will enhance your problem-solving abilities, which are essential for backend development."
-            },
-            {
-              "id": "d3f325a9-8103-4a7b-bb26-7de45b607f9c",
-              "code": "COD002",
-              "description": "A simple exercise to reverse a given string.",
-              "explanation": "This exercise will allow you to work on string manipulation, a critical skill in backend development. By mastering this concept, you will be better prepared to handle data processing tasks that are common in backend applications."
-            },
-            {
-              "id": "59427089-44c4-4916-8886-52a9f6f488b1",
-              "code": "CRS003",
-              "description": "A comprehensive introduction to web development.",
-              "explanation": "This course will provide you with a solid foundation in web development, covering essential concepts that are crucial for backend development. Understanding how the web works will empower you to create effective backend solutions."
-            },
-            {
-              "id": "1144a6d7-a357-4e4c-b4f5-315afde72a67",
-              "code": "PA001",
-              "description": "A project to build a calculator using Python.",
-              "explanation": "Working on this project will give you hands-on experience with Python, a popular backend language. It will help you apply your knowledge in a practical setting, enhancing your coding skills and preparing you for real-world backend tasks."
-            },
-            {
-              "id": "7a32d80f-5313-425f-9bf2-c271084384d8",
-              "code": "PA003",
-              "description": "A project to create and deploy a personal portfolio website.",
-              "explanation": "This project will not only allow you to practice your web development skills but also give you experience in deploying a web application. Understanding deployment is vital for backend developers, as it will help you manage and maintain applications effectively."
-            }
-          ]
-        }
-      \end{lstlisting}
-    \item GPT 4o
-    \begin{lstlisting}[breaklines=true]
-    {
-      GPT 4o:
-      Response body
-      "final_response": [
-        {
-          "id": "59427089-44c4-4916-8886-52a9f6f488b1",
-          "code": "CRS003",
-          "description": "A comprehensive introduction to web development.",
-          "explanation": "Since you're starting your journey towards backend development, having a solid understanding of web development is essential. This course will provide you with the foundational knowledge necessary to understand how web applications are structured, which is crucial before diving into backend specifics."
-        },
-        {
-          "id": "CRS001",
-          "code": "6e906d7e-8f93-4dd8-8890-fa4b42cfcc8c",
-          "description": "A beginner-friendly course to learn Python programming.",
-          "explanation": "Python is a popular language for backend development due to its simplicity and effectiveness. This course is perfect for you as it will introduce you to programming concepts using Python, which is often used for backend tasks such as server scripting and data management."
-        },
-        {
-          "id": "PA003",
-          "code": "7a32d80f-5313-425f-9bf2-c271084384d8",
-          "description": "A project to create and deploy a personal portfolio website.",
-          "explanation": "Engaging in a project like this will give you hands-on experience with web hosting and deployment, skills that are vital for a backend developer. You'll learn how to manage servers and deploy applications, which are key components of backend development."
-        },
-        {
-          "id": "LES002",
-          "code": "1bb2500f-4275-4672-9089-fd9b382809a6",
-          "description": "A lesson focused on understanding binary search.",
-          "explanation": "Understanding algorithms is a critical skill for backend development, especially for optimizing data retrieval processes. This lesson will help you grasp the concept of binary search, enhancing your problem-solving skills and efficiency in handling data."
-        },
-        {
-          "id": "PA001",
-          "code": "1144a6d7-a357-4e4c-b4f5-315afde72a67",
-          "description": "A project to build a calculator using Python.",
-          "explanation": "This project will reinforce your Python programming skills by applying them to a practical task. It will help you understand how to implement logic and functionality, which is essential for developing backend applications."
-        }
-      ]
-    }
-    \end{lstlisting}
-    \item Gemini Pro 1.5
-    \begin{lstlisting}[breaklines=true]
-    {
-      Gemini Pro 1.5:
-      Response body
-      "final_response": [
-        {
-          "id": "b0f66328-862d-4e4d-9f5a-2bdee93490b8",
-          "code": "COD001",
-          "description": "A classic beginner coding challenge.",
-          "explanation": "This coding challenge will help you build foundational programming skills.  It's a great way to start practicing problem-solving, a crucial skill for any programmer, especially in backend development where you'll constantly be tackling new challenges."
-        },
-        {
-          "id": "d3f325a9-8103-4a7b-bb26-7de45b607f9c",
-          "code": "COD002",
-          "description": "A simple exercise to reverse a given string.",
-          "explanation": "This exercise focuses on string manipulation, a core skill for backend development.  Practicing this will improve your ability to process and handle data effectively, a common task in backend applications."
-        },
-        {
-          "id": "CRS001",
-          "code": "CRS001",
-          "description": "A beginner-friendly course to learn Python programming.",
-          "explanation": "Since you're just starting, this course provides a foundational understanding of Python, a widely-used language for backend development.  Learning the basics will lay a solid groundwork for more advanced concepts and projects later on."
-        },
-        {
-          "id": "LES001",
-          "code": "LES001",
-          "description": "An in-depth lesson on Python lists.",
-          "explanation": "This lesson will build your proficiency in working with Python lists, a fundamental data structure.  Understanding list manipulation is essential for many backend programming tasks, improving your overall coding efficiency."
-        },
-        {
-          "id": "PA001",
-          "code": "PA001",
-          "description": "A project to build a calculator using Python.",
-          "explanation": "This project allows you to apply what you learn in a practical way. Building a calculator will solidify your understanding of fundamental programming concepts like user input, arithmetic operations, and function use within the context of a complete application."
-        }
-      ]
-    }
-    \end{lstlisting}
+    \item Không cần dữ liệu tham chiếu cố định (reference output).
+    \item Thực hiện đánh giá nhanh, lặp đi lặp lại và có thể tự động hóa được với nhiều tập dữ liệu khác nhau.
+    \item Dễ mở rộng cho nhiều tiêu chí khác nhau như chất lượng giải thích, tính logic, mức độ phù hợp mục tiêu,...
+    \item Có thể sử dụng với nhiều mô hình đánh giá khác nhau như: gpt-4o, gpt-4o-mini, llama-3.2,...
 \end{itemize}
-Đánh giá về lời giải thích các tài nguyên:
+
+\subsection{Xây dựng các metrics}
+Dựa trên metric GEval được đề cập ở trên, các metric sau được lựa chọn để đánh giá sơ bộ đầu ra của hệ thống:
 \begin{itemize}
-    \item GPT-4o-mini: Các lời giải thích cho mỗi tài nguyên đều rõ ràng, nhấn mạnh lợi ích mà người học sẽ nhận được, chẳng hạn như việc nâng cao kỹ năng giải quyết vấn đề hoặc làm quen với các công cụ phát triển backend. Tuy nhiên, các lời giải thích có phần chung chung và ít tập trung vào ứng dụng thực tế của các kỹ năng học được.
-    \item GPT-4o: Cung cấp những lời giải thích chi tiết hơn về lý do tại sao mỗi tài nguyên lại hữu ích cho người học, ví dụ như việc hiểu cách hoạt động của web và tầm quan trọng của các kiến thức về máy chủ và triển khai. Những lời giải thích này giúp người học hiểu rõ hơn về mục đích và ứng dụng của các tài nguyên trong việc phát triển kỹ năng backend.
-    \item Gemini Pro: Cũng cung cấp những lời giải thích chi tiết, nhưng có phần thiên về việc khuyến khích người học tham gia vào các bài học thực tế. Mô hình này đưa ra những lý do cụ thể như việc học cách xử lý chuỗi (COD002) hay hiểu cách danh sách hoạt động trong Python (LES001), từ đó giúp người học nâng cao kỹ năng giải quyết vấn đề và lập trình thực tế.
+    \item \textbf{Goal Alignment (Goal)}: Lộ trình có bám sát mục tiêu học tập không?
+    \item \textbf{Explanation Quality (Expl.)}: Chất lượng và độ rõ ràng của giải thích lý do trong từng bài học được đề xuất.
+    \item \textbf{Ordering Logic (Order)}: Trình tự các bài học có hợp lý và phát triển kiến thức tuyến tính không?
+    \item \textbf{Module Appropriateness (Mod. App.)}: Các module có phù hợp với nội dung bài học và mục tiêu không?
 \end{itemize}
-Về chất lượng và chi tiết giải thích:
+
+Metric GEval được sử dụng làm nền tảng để tự động hóa quá trình đánh giá, cụ thể:
 \begin{itemize}
-    \item GPT-4o-mini: Lời giải thích trong GPT-4o-mini thường ngắn gọn và tập trung vào lý do chung chung tại sao một tài nguyên lại hữu ích, nhưng thiếu sâu sắc về cách tài nguyên đó giúp người học phát triển các kỹ năng cụ thể.
-    \item GPT-4o: Các lời giải thích chi tiết hơn và cung cấp cái nhìn rõ ràng về các ứng dụng thực tế của từng tài nguyên. Chúng giúp người học nhận thức được lý do tại sao mỗi tài nguyên lại quan trọng trong hành trình học tập của họ.
-    \item Gemini Pro: Cung cấp các lời giải thích rõ ràng, tuy nhiên có xu hướng tập trung vào các kỹ năng cụ thể mà người học sẽ phát triển thông qua các bài học và dự án. Gemini Pro khuyến khích người học áp dụng ngay các kỹ năng vào thực tế thông qua các dự án và bài học.
+    \item Xây dựng tiêu chí đánh giá cho từng metrics, tương tự như việc xây dựng một rubrics để chấm điểm và các tiêu chí này phải càng cụ thể, giống như con người thực hiện việc đánh giá cũng cần rubrics.
+    \item Model đánh giá (evaluator) được yêu cầu cho điểm (score) và giải thích (reasoning).
+    \item Các trọng số được áp dụng cho từng metric để tính tổng điểm cuối cùng (final score).
 \end{itemize}
-\textbf{\textit{Kết luận:}} Tất cả ba mô hình GPT-4o-mini, GPT-4o và Gemini Pro đều cung cấp các tài nguyên học tập có giá trị, nhưng mức độ chi tiết và sự rõ ràng trong lời giải thích có sự khác biệt. GPT-4o là mô hình có giải thích chi tiết và nhấn mạnh đến tầm quan trọng của việc hiểu sâu về lý thuyết, trong khi Gemini Pro có xu hướng tập trung vào thực hành nhiều hơn. GPT-4o-mini, mặc dù cung cấp các tài nguyên tương tự, nhưng các lời giải thích có phần đơn giản và ít sâu sắc hơn.
+Chi tiết về các metrics được định nghĩa cho phần đánh giá, người đọc có thể xem chi tiết trong phần code ở \href{https://github.com/dpnam2112/codemate-backend/blob/main/tests/metrics.py}{đây}\footnote{\url{https://github.com/dpnam2112/codemate-backend/blob/main/tests/metrics.py}}.
+
+\subsection{Thiết kế quy trình đánh giá}
+Do hạn chế về tài nguyên cũng như một số ràng buộc từ các nhà cung cấp dịch vụ để sử dụng mô hình của OpenAI, Google,... nên hiện tại, nhóm chỉ có thể triển khai việc đánh giá với phương pháp này ở mức cơ bản và về mặt ý tưởng:
+\begin{itemize}
+    \item Mô hình sinh lộ trình: \emph{Gemini 2.0 Flash}.
+    \item Các mô hình đánh giá: \emph{gpt-4o-mini}, \emph{gpt-4.1-nano}, \emph{llama-3.3-70B}. Ta cần sử dụng các mô hình không cùng họ với mô hình sinh lộ trình do phương án LLM-as-a-judge có một nhược điểm: Nếu LLM được sử dụng như là người đánh giá cùng họ/có đặc tính tương đồng với mô hình được sử dụng để sinh ra output, thì việc thiên vị trong đánh giá có thể xảy ra do vấn đề \emph{Preference leakage}.
+    \item Dữ liệu đầu vào: Mục tiêu học tập cụ thể của học sinh cho từng khóa học. Người đọc có thể tham khảo thêm về dữ liệu được sử dụng để đánh giá ở \href{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/learning_path/learning_paths_20250429-1307.json}{đây}\footnote{\url{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/learning_path/learning_paths_20250429-1307.json}}.
+    \item Output: File CSV lưu kết quả điểm số và giải thích cho từng metric.
+    \item Khóa học được sử dụng để thực hiện đánh giá:
+    \begin{itemize}
+        \item Cấu trúc dữ liệu và giải thuật của Đại học Bách khoa thành phố Hồ Chí Minh.
+        \item Nhập môn Khoa học máy tính và lập trình bằng Python của MIT (MIT 6.0001)
+    \end{itemize}
+\end{itemize}
+
+\subsection{Kết quả đánh giá và nhận xét}
+
+Sau khi code để đánh giá, ta thu được các kết quả sau:
+
+Kết quả đánh giá (csv): \href{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/lp_csv/lp_csv_gpt_and_llama.csv}{Github}\footnote{\url{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/lp_csv/lp_csv_gpt_and_llama.csv}}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Expl.} & \textbf{Goal} & \textbf{Mod. App.} & \textbf{Order} \\
+\midrule
+gpt-4.1-nano & 0.883 & 0.867 & 0.900 & 0.817 \\
+gpt-4o-mini  & 0.917 & 0.883 & 0.950 & 0.767 \\
+LLaMA-3.1-70B & 0.945 & 0.964 & 0.945 & 0.891 \\
+\bottomrule
+\end{tabular}
+\caption{Điểm trung bình theo từng tiêu chí đánh giá: Goal, Explanation Quality, Module Appropriateness, và Ordering Logic}
+\label{tab:avg_scores_abbr}
+\end{table}
+
+\begin{figure}[H]
+\centering
+    \includegraphics[width=0.6\textwidth]{images/lp_eval_radar_chart.png}
+    \caption{Radar chart tổng hợp kết quả đánh giá lộ trình học đề xuất khi chạy đánh giá LLM-as-a-judge ứng với từng model}
+\end{figure}
+
+Dựa vào kết quả có được, sau đây là một số nhận xét sơ bộ:
+\begin{itemize}
+    \item Tiêu chí \textbf{Explanation Quality} đạt điểm trung bình cao nhất (0.917 theo gpt-4o-mini hay 0.883 theo gpt-4.1-nano), cho thấy phần lớn các bài học trong lộ trình đều có phần giải thích rõ ràng, dễ hiểu và phù hợp với nội dung.
+
+    \item Về tiêu chí \textbf{Module Appropriateness}, hệ thống cũng ghi nhận mức đánh giá tích cực (lên đến 0.95), cho thấy các module học tập được lựa chọn và tạo sinh phù hợp với từng bài học và mục tiêu tổng thể, không bị lệch pha hay dư thừa nội dung.
+
+    \item Tiêu chí \textbf{Goal Alignment} có điểm số ổn định (khoảng 0.88), phản ánh rằng lộ trình học tập nhìn chung bám sát mục tiêu đầu vào mà người học đã đặt ra.
+
+    \item Tuy nhiên, ở tiêu chí \textbf{Ordering Logic}, điểm số trung bình thấp hơn đáng kể (0.767 theo gpt-4o-mini, 0.817 theo gpt-4.1-nano). Điều này cho thấy vẫn còn tồn tại một số vấn đề về thứ tự sắp xếp các bài học – ví dụ như thiếu tính tuyến tính, sắp xếp không tối ưu về mặt xây dựng nền tảng kiến thức.
+\end{itemize}
+
+\section{Đánh giá testcases được sinh ra bởi hệ thống}
+\subsection{Phương pháp đánh giá}
+Trong bối cảnh đánh giá chất lượng test case được sinh tự động bởi LLM nói riêng cũng như chất lượng của một bộ testcases nói chung, có nhiều metrics khác nhau có thể được xem xét, bao gồm:
+\begin{itemize}
+    \item Tính đa dạng (Diversity) đo mức độ khác biệt giữa các test case trong một bộ dữ liệu.
+    \item Độ phủ (Coverage) đo xem test case có bao phủ đủ các nhánh logic, điều kiện biên, hoặc tập input không.
+    \item Mutation Score là tỉ lệ mutant (phiên bản lời giải bị chỉnh sửa nhỏ để cố tình tạo lỗi) bị phát hiện bởi test case. Chỉ số này phản ánh khả năng của test case trong việc phân biệt giữa lời giải đúng và lời giải sai — tức là đo mức độ “sắc bén” của test case trong kiểm thử.
+
+\end{itemize}
+
+Tuy nhiên, trong phạm vi đánh giá sơ bộ này, nhóm lựa chọn một metric đơn giản nhưng có giá trị thực tiễn là: \textbf{tỉ lệ test case chạy đúng (pass)} khi thực thi với một lời giải đã được kiểm chứng là chính xác với các lý do như sau:
+\begin{itemize}
+    \item Đây là bước kiểm tra cơ bản và thiết yếu, nếu test case không chạy được hoặc gây lỗi, các đánh giá khác sẽ không còn ý nghĩa.
+    \item Dễ triển khai và so sánh giữa các mô hình sinh test case khác nhau.
+    \item Phản ánh gián tiếp khả năng hiểu đề và sinh đầu vào hợp lệ của mô hình.
+\end{itemize}
+
+Phép đánh giá được thực hiện bằng cách chạy từng test case trên một lời giải mẫu được xác nhận là đúng, sử dụng môi trường thực thi tự động (Judge0). Các kết quả như “Pass”, “Fail”, “Runtime Error” được ghi nhận và tổng hợp theo từng mô hình LLM để phân tích định lượng.
+
+\subsection{Cài đặt}
+Sau đây là cấu hình cho phần đánh giá:
+\begin{itemize}
+    \item Các mô hình được sử dụng: \emph{gpt-4o-mini}, \emph{gpt-4.1-nano}, \emph{gemini-2.0-flash}.
+    \item Bài tập lập trình: 12 bài tập lập trình được lựa chọn ngẫu nhiên trên các trang: \url{leetcode.com}, \url{hackerrank.com},... và lời giải được kiểm chứng. Về dữ liệum, người đọc có thể xem chi tiết ở \href{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/leetcode_problems/leetcode.json}{đây}(\footnote{\url{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/leetcode_problems/leetcode.json}})
+    \item Sử dụng mỗi mô hình để tạo sinh testcases cho mỗi bài tập, trung bình với mỗi bài sẽ có từ 8 tới 14 testcases (Tùy thuộc vào mô hình cũng như giới hạn tính toán được áp đặt bởi nhà cung cấp dịch vụ để gọi mô hình: OpenAI, TogetherAI, Google VertexAI).
+
+\end{itemize}
+
+\subsection{Kết quả đánh giá và nhận xét}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{LLM Model} & \textbf{Total} & \textbf{Pass} & \textbf{Fail} & \textbf{Runtime Error} \\
+\midrule
+gpt-4o-mini            & 147 & 79.6\% & 19.0\% & 1.4\%  \\
+gpt-4.1-nano           & 125 & 84.8\% & 13.6\% & 1.6\%  \\
+gemini-2.0-flash-lite  & 161 & 77.0\% & 16.8\% & 6.2\% \\
+llama-3.3-70B-Instruct & 74  & 51.4\% & 31.1\% & 17.6\% \\
+\bottomrule
+\end{tabular}
+\caption{Tổng quan kết quả thực thi test case sinh bởi LLM}
+\vspace{0.5em}
+\noindent
+\textit{\textbf{Chú thích cột:}} 
+\textbf{Total} là tổng số test case được sinh ra và đánh giá. 
+\textbf{Pass} là tỉ lệ test case cho ra kết quả đúng khi chạy với lời giải chính xác. 
+\textbf{Fail} là test case chạy được nhưng cho kết quả sai. 
+\textbf{Runtime Error} là test case gây lỗi khi thực thi (ví dụ chia cho 0, lỗi kiểu dữ liệu,...).
+\end{table}
+
+\emph{Nhận xét: }
+
+Tổng quan kết quả đánh giá cho thấy các mô hình LLM có khả năng sinh test case ở mức khá, với tỷ lệ Pass trung bình từ 75\% trở lên đối với các mô hình của OpenAI và Gemini. Trong đó, mô hình \textbf{gpt-4.1-nano} đạt kết quả cao nhất với 84.8\% test case được đánh giá là đúng (Pass), cho thấy khả năng hiểu bài toán và sinh dữ liệu kiểm thử hợp lý. Mô hình \textbf{gpt-4o-mini} theo sau với tỷ lệ 79.6\%, tuy nhiên tỷ lệ test case sai (Fail) cao hơn, cho thấy chưa bao phủ đủ các trường hợp đặc biệt (edge cases).
+
+Đáng chú ý, mô hình \textbf{gemini-2.0-flash-lite} có số lượng Runtime Error cao hơn (6.2\%), phản ánh khả năng sinh input chưa ổn định hoặc dễ gây lỗi khi thực thi. Mô hình \textbf{llama-3.3-70B-Instruct} có kết quả thấp nhất với chỉ 51.4\% Pass và tỷ lệ Runtime Error lên đến 17.6\%, cho thấy khó khăn trong việc sinh ra các test case chính xác và phù hợp định dạng.
+
+Các nguyên nhân chính dẫn đến lỗi test case gồm:
+\begin{itemize}
+    \item \textbf{Hạn chế về khả năng xử lý số liệu:}: LLM không được thiết kế để thực hiện tính toán, dẫn đến việc sinh output sai hoặc không nhất quán.
+    \item \textbf{Sai định dạng input/output:} Một số testcase bị lỗi do định dạng không đúng với yêu cầu, ví dụ như thiếu dòng newline, thiếu ký tự phân cách hoặc kiểu dữ liệu không khớp.
+\end{itemize}
+\subsubsection{Hướng phát triển và cải thiện cho phần tạo sinh testcases}
+
+Kết quả đánh giá cho thấy các mô hình LLM hiện tại tuy có khả năng sinh test case hợp lệ ở mức khá, nhưng vẫn còn tồn tại một số nhược điểm như sai định dạng, thiếu bao phủ edge cases, và sinh ra dữ liệu không ổn định gây lỗi khi thực thi. Để khắc phục và cải thiện chất lượng đầu ra, một số hướng phát triển có thể được xem xét như sau:
+
+\begin{itemize}
+    \item Fine-tune mô hình: Việc huấn luyện lại mô hình (fine-tune) trên tập dữ liệu chứa các bài toán lập trình và test case đúng chuẩn có thể giúp mô hình học được cấu trúc và định dạng đầu ra mong muốn, từ đó giảm thiểu các lỗi định dạng hoặc logic phổ biến.
+
+    \item Tích hợp function calling: Việc sử dụng cơ chế function calling (ví dụ như OpenAI Tools API hoặc ReAct-style prompting) cho phép mô hình gọi các hàm kiểm tra định dạng, phân tích cú pháp hoặc validate input/output trong quá trình sinh test case. Điều này giúp phát hiện và loại bỏ các test case không hợp lệ ngay từ bước sinh.
+\end{itemize}
