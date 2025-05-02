@@ -11,6 +11,12 @@
 \usepackage[american]{babel}
 \usepackage{csquotes}
 \usepackage{fvextra}
+\DefineVerbatimEnvironment{promptblock}{Verbatim}{
+  breaklines=true,       % enables line wrapping
+  breaksymbolleft={},    % optional: no wrap symbol
+  fontsize=\small,       % smaller font to fit more
+  rulecolor=\color{gray} % optional: subtle border
+}
 \setlength{\parindent}{0pt} % No indentation
 \sloppy  % Allows more flexible line breaks
 \usepackage[style=apa, citestyle=numeric, backend=biber, sorting=none]{biblatex}
@@ -426,6 +432,7 @@
 \input{UI}
 \input{testing}
 \input{systemAnalysis}
+\input{llm_eval}
 \input{conclusion}
 % \input{systemAnalysis}
 \nocite{*}
