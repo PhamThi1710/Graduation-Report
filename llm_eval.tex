@@ -226,6 +226,94 @@ Dựa trên các yếu tố ảnh hưởng đến độ trễ nêu trên, một 
     \item Tối ưu prompt để tận dụng kỹ thuật prompt caching, từ đó tối ưu tốc độ suy luận của mô hình. Hầu hết các dịch vụ cung cấp LLM API cũng khuyến khích người sử dụng tối ưu câu prompt sao cho kỹ thuật prompt caching được tận dụng hiệu quả, từ đó tối ưu tốc độ và chi phí tính toán\cite{openaiPromptCaching}.
 \end{itemize}
 
+\section{Đánh giá latency của một số API không liên quan đến LLM}
+
+\subsection{Phạm vi và mục tiêu}
+
+Phần này nhằm đánh giá khả năng phản hồi của một số API nội bộ không sử dụng mô hình ngôn ngữ lớn (LLM). Mục tiêu là kiểm tra lại functional requirement về latency của các tính năng không liên quan tới AI/LLM. Các API được kiểm tra gồm:
+\begin{itemize}
+    \item \texttt{GET /activities}
+    \item \texttt{GET /course-lessons}
+    \item \texttt{GET /module-quizzes}
+    \item \texttt{GET /recent-courses}
+    \item \texttt{GET /users}
+    \item \texttt{POST /auth/login}
+\end{itemize}
+
+\subsection{Thiết lập thử nghiệm}
+
+\begin{itemize}
+    \item Công cụ sử dụng: Grafana K6.
+    \item Kịch bản: gửi request liên tục trong vòng 5 phút với các mức tải khác nhau:
+    \begin{itemize}
+        \item 3 Virtual Users (VU) — tải nhẹ.
+        \item 10 VUs — tải trung bình.
+        \item 50 VUs — tải cao.
+    \end{itemize}
+    \item Các API được thiết lập ngưỡng p(95) \textless~500ms (p(95) nghĩa là phân vị thứ 95)
+\end{itemize}
+
+\subsection{Kết quả đo lường}
+
+\begin{table}[H]
+\centering
+\caption{Thống kê độ trễ các API ở mức tải 3 VU (min / med / p95 / max)}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{API} & \textbf{Min} & \textbf{Med} & \textbf{p(95)} & \textbf{Max} \\
+\midrule
+\texttt{GET /activities}         & 754.85µs & 1.98ms   & 5.67ms   & 229.92ms \\
+\texttt{GET /course-lessons}     & 18.69ms  & 42.34ms  & 450.00ms & 518.23ms \\
+\texttt{GET /module-quizzes}     & 12.75ms  & 29.43ms  & 441.98ms & 505.93ms \\
+\texttt{GET /recent-courses}     & 6.84ms   & 16.27ms  & 233.63ms & 461.55ms \\
+\texttt{GET /users}              & 444.96µs & 1.27ms   & 7.04ms   & 431.62ms \\
+\texttt{POST /auth/login}        & 218.13ms & 234.91ms & 488.26ms & 685.3ms  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Thống kê độ trễ các API ở mức tải 10 VU (min / med / p95 / max)}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{API} & \textbf{Min} & \textbf{Med} & \textbf{p(95)} & \textbf{Max} \\
+\midrule
+\texttt{GET /activities}         & 1.57ms   & 6.4ms    & 218.16ms & 435.08ms \\
+\texttt{GET /course-lessons}     & 78.43ms  & 548.47ms & 1.14s    & 1.92s    \\
+\texttt{GET /module-quizzes}     & 42.98ms  & 354.83ms & 971.84ms & 1.77s    \\
+\texttt{GET /recent-courses}     & 42.51ms  & 285.15ms & 897.28ms & 1.39s    \\
+\texttt{GET /users}              & 998.24µs & 4.81ms   & 217.15ms & 432.32ms \\
+\texttt{POST /auth/login}        & 255.14ms & 504.59ms & 1.02s    & 2.33s    \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Thống kê độ trễ các API ở mức tải 50 VU (min / med / p95 / max)}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{API} & \textbf{Min} & \textbf{Med} & \textbf{p(95)} & \textbf{Max} \\
+\midrule
+\texttt{GET /activities}         & 4.61ms   & 19.67ms  & 234.05ms & 1.26s    \\
+\texttt{GET /course-lessons}     & 166.6ms  & 2.39s    & 5.68s    & 13.97s   \\
+\texttt{GET /module-quizzes}     & 71.37ms  & 1.91s    & 5.35s    & 10.27s   \\
+\texttt{GET /recent-courses}     & 151.5ms  & 1.78s    & 5.40s    & 11.37s   \\
+\texttt{GET /users}              & 5.23ms   & 18.22ms  & 428.54ms & 1.05s    \\
+\texttt{POST /auth/login}        & 373.25ms & 2.03s    & 6.50s    & 11.8s    \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textit{Chú thích:} \textbf{Min}, \textbf{Med}, \textbf{p(95)}, và \textbf{Max} lần lượt là độ trễ tối thiểu, trung vị, phân vị thứ 95 và tối đa trong suốt quá trình đo.
+
+\subsection{Đánh giá kết quả}
+
+Ở mức tải là 3VU cùng tương tác với hệ thống, tất cả các API đều đáp ứng tốt với thời gian phản hồi thấp và ổn định. Tuy nhiên, khi tăng lên 10 hoặc 50 VU, một số API bắt đầu vượt ngưỡng p(95), đặc biệt là các API truy xuất dữ liệu học liệu như \texttt{/course-lessons}, \texttt{/module-quizzes}, \texttt{/recent-courses}. 
+
+Tình trạng nghiêm trọng nhất ghi nhận ở mức 50 VU, khi độ trễ trung bình có thể lên tới hơn 5 giây. Endpoint \texttt{/auth/login} cũng bị ảnh hưởng với p(95) lên đến 6.5s, vượt xa ngưỡng chấp nhận là 2 giây.
+
 \section{Đánh giá giao diện người dùng (UI) bằng Lighthouse}
 
 Trong phần đánh giá này, một số trang chính của hệ thống đã được đánh giá bằng Lighthouse - một công cụ được phát triển bởi Google.  Lighthouse là công cụ mã nguồn mở do Google phát triển, dùng để đánh giá chất lượng của các trang web theo các tiêu chí như hiệu năng, khả năng truy cập, chuẩn SEO, và đặc biệt là trải nghiệm người dùng (UI/UX). Việc sử dụng Lighthouse giúp phát hiện sớm các vấn đề ảnh hưởng đến tốc độ tải trang, khả năng tương tác và khả năng tiếp cận của người dùng. Kết quả đánh giá được ghi lại dưới dạng file PDF/HTML. Các tiêu chí chính được đánh giá bao gồm:
