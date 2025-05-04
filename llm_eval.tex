@@ -8,7 +8,7 @@ Trong bối cảnh đánh giá hệ thống sinh lộ trình học tập, có ha
     \item \textbf{Online evaluation} là phương pháp sử dụng phản hồi thực tế từ người dùng hoặc chuyên gia để đánh giá chất lượng đầu ra. Phương pháp này có độ tin cậy cao và phản ánh đúng nhu cầu thực tế, tuy nhiên yêu cầu thời gian, chi phí lớn và khó mở rộng trong giai đoạn phát triển ban đầu.
     \item \textbf{Offline evaluation} là phương pháp sử dụng mô hình hoặc thuật toán đánh giá tự động để đánh giá đầu ra mà không cần tương tác với người dùng, về dữ liệu, những dữ liệu cũ quan sát được trong quá khứ có thể được sử dụng cho Offline evaluation.
 \end{itemize}
-Trong báo cáo này, nhóm lựa chọn phương pháp \textbf{offline evaluation kết hợp với GEval} – một framework đánh giá tự động sử dụng mô hình ngôn ngữ lớn (LLM) làm giám khảo (LLM-as-a-Judge)\cite{liu2023gevalnlgevaluationusing}. GEval cung cấp một framework linh hoạt để định nghĩa các tiêu chí đánh giá tuỳ chỉnh, kết hợp với chuỗi suy luận (Chain-of-Thought) để hướng dẫn mô hình đưa ra lập luận có cơ sở. GEval có những điểm phù hợp để được chọn làm metric cho  phần đánh giá này vì:
+Trong phần đánh giá này, nhóm lựa chọn phương pháp \textbf{offline evaluation kết hợp với GEval} – một framework đánh giá tự động sử dụng mô hình ngôn ngữ lớn (LLM) làm giám khảo (LLM-as-a-Judge)\cite{liu2023gevalnlgevaluationusing}. GEval cung cấp một framework linh hoạt để định nghĩa các tiêu chí đánh giá tuỳ chỉnh, kết hợp với chuỗi suy luận (Chain-of-Thought) để hướng dẫn mô hình đưa ra lập luận có cơ sở. GEval có những điểm phù hợp để được chọn làm metric cho  phần đánh giá này vì:
 \begin{itemize}
     \item Không cần dữ liệu tham chiếu cố định (reference output).
     \item Thực hiện đánh giá nhanh, lặp đi lặp lại và có thể tự động hóa được với nhiều tập dữ liệu khác nhau.
@@ -29,16 +29,15 @@ Metric GEval được sử dụng làm nền tảng để tự động hóa quá
 \begin{itemize}
     \item Xây dựng tiêu chí đánh giá cho từng metrics, tương tự như việc xây dựng một rubrics để chấm điểm và các tiêu chí này phải càng cụ thể, giống như con người thực hiện việc đánh giá cũng cần rubrics.
     \item Model đánh giá (evaluator) được yêu cầu cho điểm (score) và giải thích (reasoning).
-    \item Các trọng số được áp dụng cho từng metric để tính tổng điểm cuối cùng (final score).
 \end{itemize}
-Chi tiết về các metrics được định nghĩa cho phần đánh giá, người đọc có thể xem chi tiết trong phần code ở \href{https://github.com/dpnam2112/codemate-backend/blob/main/tests/metrics.py}{đây}\footnote{\url{https://github.com/dpnam2112/codemate-backend/blob/main/tests/metrics.py}}.
+Chi tiết về các metrics được định nghĩa cho phần đánh giá, người đọc có thể xem chi tiết ở đoạn code sau: \href{https://github.com/dpnam2112/codemate-backend/blob/main/tests/metrics.py}{Github}\footnote{Định nghĩa các metrics: \url{https://github.com/dpnam2112/codemate-backend/blob/main/tests/metrics.py}}.
 
 \subsection{Thiết kế quy trình đánh giá}
 Do hạn chế về tài nguyên cũng như một số ràng buộc từ các nhà cung cấp dịch vụ để sử dụng mô hình của OpenAI, Google,... nên hiện tại, nhóm chỉ có thể triển khai việc đánh giá với phương pháp này ở mức cơ bản và về mặt ý tưởng:
 \begin{itemize}
     \item Mô hình sinh lộ trình: \emph{Gemini 2.0 Flash}.
-    \item Các mô hình đánh giá: \emph{gpt-4o-mini}, \emph{gpt-4.1-nano}, \emph{llama-3.3-70B}. Ta cần sử dụng các mô hình không cùng họ với mô hình sinh lộ trình do phương án LLM-as-a-judge có một nhược điểm: Nếu LLM được sử dụng như là người đánh giá cùng họ/có đặc tính tương đồng với mô hình được sử dụng để sinh ra output, thì việc thiên vị trong đánh giá có thể xảy ra do vấn đề \emph{Preference leakage}.
-    \item Dữ liệu đầu vào: Mục tiêu học tập cụ thể của học sinh cho từng khóa học. Người đọc có thể tham khảo thêm về dữ liệu được sử dụng để đánh giá ở \href{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/learning_path/learning_paths_20250429-1307.json}{đây}\footnote{\url{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/learning_path/learning_paths_20250429-1307.json}}.
+    \item Các mô hình đánh giá: \emph{gpt-4o-mini}, \emph{gpt-4.1-nano}, \emph{llama-3.3-70B}. Ta cần sử dụng các mô hình không cùng họ với mô hình sinh lộ trình do phương án LLM-as-a-judge có một nhược điểm: Nếu LLM được sử dụng như là người đánh giá cùng họ/có đặc tính tương đồng với mô hình được sử dụng để sinh ra output, thì việc thiên vị trong đánh giá có thể xảy ra do vấn đề \emph{Preference leakage}\cite{li2025preferenceleakagecontaminationproblem}.
+    \item Dữ liệu đầu vào: Mục tiêu học tập cụ thể của học sinh cho từng khóa học. Người đọc có thể tham khảo thêm về dữ liệu được sử dụng để đánh giá ở đường link sau: \href{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/learning_path/learning_paths_20250429-1307.json}{Github}\footnote{Dữ liệu bài tập code và lời giải: \url{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/learning_path/learning_paths_20250429-1307.json}}.
     \item Output: File CSV lưu kết quả điểm số và giải thích cho từng metric.
     \item Khóa học được sử dụng để thực hiện đánh giá:
     \begin{itemize}
@@ -49,9 +48,9 @@ Do hạn chế về tài nguyên cũng như một số ràng buộc từ các nh
 
 \subsection{Kết quả đánh giá và nhận xét}
 
-Sau khi code để đánh giá, ta thu được các kết quả sau:
+Sau khi thực thi code để đánh giá, ta thu được các kết quả sau:
 
-Kết quả đánh giá (csv): \href{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/lp_csv/lp_csv_gpt_and_llama.csv}{Github}\footnote{\url{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/lp_csv/lp_csv_gpt_and_llama.csv}}
+Kết quả đánh giá (file csv): \href{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/lp_csv/lp_csv_gpt_and_llama.csv}{Github}\footnote{Dữ liệu kết quả đánh giá learning path: \url{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/lp_csv/lp_csv_gpt_and_llama.csv}}
 
 \begin{table}[h!]
 \centering
@@ -85,7 +84,7 @@ Dựa vào kết quả có được, sau đây là một số nhận xét sơ b�
     \item Tuy nhiên, ở tiêu chí \textbf{Ordering Logic}, điểm số trung bình thấp hơn đáng kể (0.767 theo gpt-4o-mini, 0.817 theo gpt-4.1-nano). Điều này cho thấy vẫn còn tồn tại một số vấn đề về thứ tự sắp xếp các bài học – ví dụ như thiếu tính tuyến tính, sắp xếp không tối ưu về mặt xây dựng nền tảng kiến thức.
 \end{itemize}
 
-\section{Đánh giá testcases được sinh ra bởi hệ thống}
+\section{Đánh giá testcases được sinh ra bởi tính năng tạo sinh bài tập code}
 \subsection{Phương pháp đánh giá}
 Trong bối cảnh đánh giá chất lượng test case được sinh tự động bởi LLM nói riêng cũng như chất lượng của một bộ testcases nói chung, có nhiều metrics khác nhau có thể được xem xét, bao gồm:
 \begin{itemize}
@@ -108,7 +107,7 @@ Phép đánh giá được thực hiện bằng cách chạy từng test case tr
 Sau đây là cấu hình cho phần đánh giá:
 \begin{itemize}
     \item Các mô hình được sử dụng: \emph{gpt-4o-mini}, \emph{gpt-4.1-nano}, \emph{gemini-2.0-flash}.
-    \item Bài tập lập trình: 12 bài tập lập trình được lựa chọn ngẫu nhiên trên các trang: \url{leetcode.com}, \url{hackerrank.com},... và lời giải được kiểm chứng. Về dữ liệum, người đọc có thể xem chi tiết ở \href{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/leetcode_problems/leetcode.json}{đây}(\footnote{\url{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/leetcode_problems/leetcode.json}})
+    \item Bài tập lập trình: 12 bài tập lập trình được lựa chọn ngẫu nhiên trên các trang: \url{leetcode.com}, \url{hackerrank.com},... và lời giải được kiểm chứng. Về dữ liệu, người đọc có thể xem chi tiết ở đường link: \href{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/leetcode_problems/leetcode.json}{Github}\footnote{Link dẫn tới dataset bài tập code và kết quả: \url{https://github.com/dpnam2112/codemate-backend/blob/main/evaluation/data/leetcode_problems/leetcode.json}}
     \item Sử dụng mỗi mô hình để tạo sinh testcases cho mỗi bài tập, trung bình với mỗi bài sẽ có từ 8 tới 14 testcases (Tùy thuộc vào mô hình cũng như giới hạn tính toán được áp đặt bởi nhà cung cấp dịch vụ để gọi mô hình: OpenAI, TogetherAI, Google VertexAI).
 
 \end{itemize}
@@ -139,7 +138,7 @@ llama-3.3-70B-Instruct & 74  & 51.4\% & 31.1\% & 17.6\% \\
 
 \emph{Nhận xét: }
 
-Tổng quan kết quả đánh giá cho thấy các mô hình LLM có khả năng sinh test case ở mức khá, với tỷ lệ Pass trung bình từ 75\% trở lên đối với các mô hình của OpenAI và Gemini. Trong đó, mô hình \textbf{gpt-4.1-nano} đạt kết quả cao nhất với 84.8\% test case được đánh giá là đúng (Pass), cho thấy khả năng hiểu bài toán và sinh dữ liệu kiểm thử hợp lý. Mô hình \textbf{gpt-4o-mini} theo sau với tỷ lệ 79.6\%, tuy nhiên tỷ lệ test case sai (Fail) cao hơn, cho thấy chưa bao phủ đủ các trường hợp đặc biệt (edge cases).
+Tổng quan kết quả đánh giá cho thấy các mô hình LLM có khả năng sinh test case ở mức khá, với tỷ lệ Pass trung bình từ 75\% trở lên đối với các mô hình của OpenAI và Gemini. Trong đó, mô hình \textbf{gpt-4.1-nano} đạt kết quả cao nhất với 84.8\% test case được đánh giá là đúng (Pass), cho thấy khả năng hiểu bài toán và sinh dữ liệu kiểm thử hợp lý. Mô hình \textbf{gpt-4o-mini} theo sau với tỷ lệ 79.6\%, tuy nhiên tỷ lệ test case sai (Fail) cao hơn.
 
 Đáng chú ý, mô hình \textbf{gemini-2.0-flash-lite} có số lượng Runtime Error cao hơn (6.2\%), phản ánh khả năng sinh input chưa ổn định hoặc dễ gây lỗi khi thực thi. Mô hình \textbf{llama-3.3-70B-Instruct} có kết quả thấp nhất với chỉ 51.4\% Pass và tỷ lệ Runtime Error lên đến 17.6\%, cho thấy khó khăn trong việc sinh ra các test case chính xác và phù hợp định dạng.
 
@@ -148,7 +147,7 @@ Các nguyên nhân chính dẫn đến lỗi test case gồm:
     \item \textbf{Hạn chế về khả năng xử lý số liệu:}: LLM không được thiết kế để thực hiện tính toán, dẫn đến việc sinh output sai hoặc không nhất quán.
     \item \textbf{Sai định dạng input/output:} Một số testcase bị lỗi do định dạng không đúng với yêu cầu, ví dụ như thiếu dòng newline, thiếu ký tự phân cách hoặc kiểu dữ liệu không khớp.
 \end{itemize}
-\subsubsection{Hướng phát triển và cải thiện cho phần tạo sinh testcases}
+\subsection{Hướng phát triển và cải thiện cho phần tạo sinh testcases}
 
 Kết quả đánh giá cho thấy các mô hình LLM hiện tại tuy có khả năng sinh test case hợp lệ ở mức khá, nhưng vẫn còn tồn tại một số nhược điểm như sai định dạng, thiếu bao phủ edge cases, và sinh ra dữ liệu không ổn định gây lỗi khi thực thi. Để khắc phục và cải thiện chất lượng đầu ra, một số hướng phát triển có thể được xem xét như sau:
 
@@ -157,3 +156,122 @@ Kết quả đánh giá cho thấy các mô hình LLM hiện tại tuy có khả
 
     \item Tích hợp function calling: Việc sử dụng cơ chế function calling (ví dụ như OpenAI Tools API hoặc ReAct-style prompting) cho phép mô hình gọi các hàm kiểm tra định dạng, phân tích cú pháp hoặc validate input/output trong quá trình sinh test case. Điều này giúp phát hiện và loại bỏ các test case không hợp lệ ngay từ bước sinh.
 \end{itemize}
+
+\section{Đánh giá độ trễ trung bình (Latency) của các tính năng sử dụng LLM}
+
+\subsection{Phạm vi đánh giá}
+
+Mục tiêu của phần này là đánh giá \textbf{thời gian phản hồi trung bình} (average latency) của một số tính năng cốt lõi trong hệ thống có sử dụng mô hình ngôn ngữ lớn (LLM). Các tính năng được đưa vào đánh giá bao gồm:
+
+\begin{itemize}
+    \item \textbf{Sinh lộ trình học tập} (Learning Path Generation – L.P. Gen.): đo thời gian cần thiết để sinh ra một lộ trình học tập hoàn chỉnh dựa trên mục tiêu đầu vào của người học.
+    \item \textbf{Sinh câu hỏi trắc nghiệm} (Quiz Generation – Quiz Gen.): đo thời gian tạo một bộ câu hỏi khi người dùng yêu cầu.
+    \item \textbf{Trợ lý lập trình} (Coding Assistant): đo thời gian phản hồi từ mô hình khi người dùng đặt một câu hỏi trong phần trợ lý lập trình.
+    \item \textbf{Sinh bài tập lập trình} (Coding Exercise Generation – Coding Ex. Gen.): đo thời gian sinh một bài tập lập trình mới dựa trên mô tả bài học.
+\end{itemize}
+
+\subsection{Phương pháp đánh giá}
+
+Quy trình đo lường độ trễ được tiến hành theo các bước sau:
+
+\begin{itemize}
+    \item Làm nóng hệ thống (warm-up): Trước khi đo, hệ thống được khởi động trước một số request để tránh ảnh hưởng của các yếu tố như cache chưa khởi tạo, kết nối cơ sở dữ liệu chưa ổn định, hoặc mô hình LLM chưa được load vào bộ nhớ.
+    
+    \item Sau đó, một script tự động được viết để mô phỏng hành vi người dùng thông qua việc gửi request đến từng endpoint tương ứng với các tính năng nêu trên. Ở phần này, ta có thể sử dụng Grafana K6 (một công cụ cho load testing) hoặc một Python script đơn giản để mô phỏng quá trình gọi API. 
+
+    \item Thu thập và tính toán latency: Với mỗi tính năng, request được gửi liên tục trong vòng 5 phút với tốc độ cố định (có giới hạn RPM (Request per minute) để tránh bị throttling từ phía nhà cung cấp LLM như OpenAI hay Google VertexAI). Kết quả được ghi lại, sau đó tính trung bình thời gian phản hồi (average latency).
+\end{itemize}
+
+\subsection{Kết quả đo lường}
+
+Kết quả độ trễ trung bình (đơn vị: giây) cho từng tính năng như sau:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l r}
+\toprule
+\textbf{Tính năng} & \textbf{Latency trung bình (s)} \\
+\midrule
+Sinh lộ trình học tập (L.P. Gen.) & 110.21 \\
+Sinh câu hỏi trắc nghiệm (Quiz Gen.) & 34.97 \\
+Sinh bài tập lập trình (Coding Ex. Gen.) & 13.43 \\
+Trợ lý lập trình (Coding Assistant) & 3.08 \\
+\bottomrule
+\end{tabular}
+\caption{Thời gian phản hồi trung bình của một số tính năng sử dụng LLM}
+\end{table}
+
+\subsection{Đánh giá kết quả}
+Đa số các tính năng liên quan đến LLM đều có thời gian phản hồi khá cao, đặc biệt là các tác vụ sinh lộ trình học tập hoặc tạo bộ câu hỏi. Nguyên nhân chủ yếu đến từ bản chất của mô hình ngôn ngữ lớn và cách tích hợp hệ thống, bao gồm:
+
+\begin{itemize}
+    \item Giới hạn tốc độ của dịch vụ cung cấp mô hình. Một số endpoint sử dụng các API từ bên thứ ba như OpenAI hoặc Google VertexAI, vốn áp dụng cơ chế rate limiting, làm tăng độ trễ trong một số thời điểm.
+
+    \item Trong một số trường hợp, hệ thống backend thực hiện xử lý đồng bộ toàn bộ pipeline từ lúc nhận yêu cầu đến khi sinh xong toàn bộ phản hồi, không sử dụng các kỹ thuật như streaming hay async partial responses, làm tăng thời gian chờ của người dùng.
+
+    \item Trong phạm vi đánh giá này, các mô hình ngôn ngữ được sử dụng là mô hình gốc (foundation model, chưa fine-tune). Việc sử dụng mô hình chưa được tinh chỉnh có thể làm tăng thời gian phản hồi do mô hình cần "suy luận tổng quát" mà không được tối ưu hoá cho từng tác vụ cụ thể. Điều này không chỉ ảnh hưởng đến chất lượng đầu ra mà còn làm tăng chi phí tính toán trong mỗi lần gọi.
+\end{itemize}
+
+\subsection{Phương án cải thiện}
+
+Dựa trên các yếu tố ảnh hưởng đến độ trễ nêu trên, một số hướng cải thiện thời gian phản hồi có thể được cân nhắc như sau:
+
+\begin{itemize}
+    \item Xem xét tách pipeline xử lý thành các giai đoạn bất đồng bộ (asynchronous stages) và sau đó xử lý các bước này đồng thời, việc này cần refactor lại code một cách kỹ lưỡng và cẩn thận, do việc xử lý nhiều tác vụ đồng thời sẽ dễ gây nên các tình trạng như \emph{race condition} - Một vấn đề phổ biến trong concurrent programming/parallel computing.
+
+    \item Trong dài hạn, có thể \emph{huấn luyện} hoặc \emph{tinh chỉnh (fine-tune)} mô hình trên các tác vụ cụ thể để rút ngắn thời gian suy luận do mô hình đã học được cấu trúc đầu ra mong muốn. Việc fine-tune mô hình sẽ giúp cải thiện chất lượng output cũng như giảm chi phí tính toán.
+
+    \item Sử dụng distilled model (Mô hình đã được chưng cất, nhẹ hơn foundation model) với các tác vụ không yêu cầu chất lượng đầu ra cao tuyệt đối, như Mistral 7B, Claude Instant, v.v.
+
+    \item Tối ưu prompt để tận dụng kỹ thuật prompt caching, từ đó tối ưu tốc độ suy luận của mô hình. Hầu hết các dịch vụ cung cấp LLM API cũng khuyến khích người sử dụng tối ưu câu prompt sao cho kỹ thuật prompt caching được tận dụng hiệu quả, từ đó tối ưu tốc độ và chi phí tính toán\cite{openaiPromptCaching}.
+\end{itemize}
+
+\section{Đánh giá giao diện người dùng (UI) bằng Lighthouse}
+
+Trong phần đánh giá này, một số trang chính của hệ thống đã được đánh giá bằng Lighthouse - một công cụ được phát triển bởi Google.  Lighthouse là công cụ mã nguồn mở do Google phát triển, dùng để đánh giá chất lượng của các trang web theo các tiêu chí như hiệu năng, khả năng truy cập, chuẩn SEO, và đặc biệt là trải nghiệm người dùng (UI/UX). Việc sử dụng Lighthouse giúp phát hiện sớm các vấn đề ảnh hưởng đến tốc độ tải trang, khả năng tương tác và khả năng tiếp cận của người dùng. Kết quả đánh giá được ghi lại dưới dạng file PDF/HTML. Các tiêu chí chính được đánh giá bao gồm:
+
+\begin{itemize}
+    \item \textbf{Performance (Hiệu năng)}: Đo thời gian tải trang, khả năng phản hồi và tốc độ tương tác.
+    \item \textbf{Accessibility (Khả năng tiếp cận)}: Kiểm tra mức độ thân thiện với người dùng có nhu cầu đặc biệt (đọc màn hình, màu sắc).
+    \item \textbf{Best Practices}: Kiểm tra việc tuân thủ các thực hành tốt về bảo mật và hiệu suất.
+    \item \textbf{SEO}: Đánh giá khả năng hiển thị của trang trên công cụ tìm kiếm.
+    \item \textbf{Progressive Web App (PWA)}: Kiểm tra khả năng hoạt động như ứng dụng di động (nếu áp dụng).
+\end{itemize}
+
+Các chỉ số như \textit{First Contentful Paint}, \textit{Time to Interactive}, và \textit{Cumulative Layout Shift} được sử dụng để đánh giá trải nghiệm người dùng. Những trang đạt điểm cao (>90) cho thấy hệ thống đã tối ưu tốt UI/UX, trong khi các trang có điểm thấp cần được xem xét cải thiện.
+
+Chi tiết về kết quả đánh giá, người đọc có thể xem ở đường link sau: \href{https://github.com/dpnam2112/codemate-lighthouse-eval}{Github}\footnote{Link: \url{https://github.com/dpnam2112/codemate-lighthouse-eval}}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.45\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{images/lighthouse_lp_page_eval.png}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{images/lighthouse_course_page_eval.png}
+\end{minipage}
+
+\vspace{1em}
+
+\begin{minipage}{0.45\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{images/lighthouse_module_page_eval.png}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{images/lighthouse_quiz_page_eval.png}
+\end{minipage}
+
+\vspace{1em}
+
+\begin{minipage}{0.45\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{images/lighthouse_code_ex_page_eval.png}
+\end{minipage}
+
+\caption{Kết quả đánh giá một số trang bằng Lighthouse}
+\end{figure}
