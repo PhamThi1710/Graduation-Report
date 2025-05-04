@@ -54,6 +54,7 @@ Kết quả đánh giá (file csv): \href{https://github.com/dpnam2112/codemate-
 
 \begin{table}[h!]
 \centering
+\caption{Điểm trung bình theo từng tiêu chí đánh giá: Goal, Explanation Quality, Module Appropriateness, và Ordering Logic}
 \begin{tabular}{lcccc}
 \toprule
 \textbf{Model} & \textbf{Expl.} & \textbf{Goal} & \textbf{Mod. App.} & \textbf{Order} \\
@@ -63,7 +64,7 @@ gpt-4o-mini  & 0.917 & 0.883 & 0.950 & 0.767 \\
 LLaMA-3.1-70B & 0.945 & 0.964 & 0.945 & 0.891 \\
 \bottomrule
 \end{tabular}
-\caption{Điểm trung bình theo từng tiêu chí đánh giá: Goal, Explanation Quality, Module Appropriateness, và Ordering Logic}
+
 \label{tab:avg_scores_abbr}
 \end{table}
 
@@ -116,6 +117,7 @@ Sau đây là cấu hình cho phần đánh giá:
 
 \begin{table}[H]
 \centering
+\caption{Tổng quan kết quả thực thi test case sinh bởi LLM}
 \begin{tabular}{lrrrr}
 \toprule
 \textbf{LLM Model} & \textbf{Total} & \textbf{Pass} & \textbf{Fail} & \textbf{Runtime Error} \\
@@ -126,7 +128,7 @@ gemini-2.0-flash-lite  & 161 & 77.0\% & 16.8\% & 6.2\% \\
 llama-3.3-70B-Instruct & 74  & 51.4\% & 31.1\% & 17.6\% \\
 \bottomrule
 \end{tabular}
-\caption{Tổng quan kết quả thực thi test case sinh bởi LLM}
+
 \vspace{0.5em}
 \noindent
 \textit{\textbf{Chú thích cột:}} 
@@ -188,6 +190,8 @@ Kết quả độ trễ trung bình (đơn vị: giây) cho từng tính năng n
 
 \begin{table}[H]
 \centering
+\caption{Thời gian phản hồi trung bình của một số tính năng sử dụng LLM}
+\label{table:llm_response_time}
 \begin{tabular}{l r}
 \toprule
 \textbf{Tính năng} & \textbf{Latency trung bình (s)} \\
@@ -198,7 +202,7 @@ Sinh bài tập lập trình (Coding Ex. Gen.) & 13.43 \\
 Trợ lý lập trình (Coding Assistant) & 3.08 \\
 \bottomrule
 \end{tabular}
-\caption{Thời gian phản hồi trung bình của một số tính năng sử dụng LLM}
+
 \end{table}
 
 \subsection{Đánh giá kết quả}

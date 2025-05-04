@@ -1,25 +1,44 @@
 \chapter{Hiện thực}
 
-\section{Hiện thực hệ thống}
-Hệ thống học tập được triển khai nhằm hỗ trợ sinh viên và giảng viên trong việc tổ chức và quản lý việc học tập hiệu quả hơn. Với sự hỗ trợ của Mô hình Ngôn ngữ Lớn (LLMs), hệ thống có thể tự động tạo ra các bài học đề xuất dựa trên mục tiêu học tập của sinh viên và nội dung được cung cấp bởi giảng viên.
+\section{Kiến trúc Frontend}
 
-Hệ thống được thiết kế với kiến trúc phân tách rõ ràng giữa frontend và backend, sử dụng các công nghệ hiện đại để đảm bảo tính linh hoạt, dễ mở rộng và bảo trì.
+Frontend được xây dựng bằng VueJS, tích hợp Vuetify và Tailwind CSS để cung cấp giao diện người dùng trực quan, hiện đại và dễ sử dụng.
 
-\textbf{Frontend} 
-
-Frontend được xây dựng bằng VueJS, tích hợp Vuetify và Tailwind CSS để cung cấp giao diện người dùng trực quan, hiện đại và dễ sử dụng. Các chức năng chính bao gồm:
-
-\begin{itemize}
-    \item Quản lý dashboard của sinh viên
-    \item Hiển thị danh sách khóa học, chi tiết khóa học
-    \item Gửi phản hồi và nhập mục tiêu học tập
-\end{itemize}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{Images/Implement/frontendStructure.png}
-    \caption{Cấu trúc Frontend}
-\end{figure}
+\begin{verbatim}
+    CODEMATE-FE [WSL: UBUNTU]
+    |-- .vite
+    |-- dist
+    |-- node_modules
+    |-- public
+    |-- src
+    |   |-- assets
+    |   |-- common
+    |   |   |-- api.service.ts
+    |   |   |-- config.ts
+    |   |-- components
+    |   |-- composables
+    |   |-- constants
+    |   |-- layouts
+    |   |-- modals
+    |   |-- pages
+    |   |-- plugins
+    |   |-- router
+    |   |-- services
+    |   |-- stores
+    |   |-- types
+    |   |-- utils
+    |   |-- App.vue
+    |   |-- auto-imports.d.ts
+    |   |-- components.d.ts
+    |   |-- global.css
+    |   |-- main.ts
+    |   |-- typed-router.d.ts
+    |   |-- vite-env.d.ts
+    |-- .browserslistrc
+    |-- .editorconfig
+    |-- .env
+    |-- .eslintrc-auto-import.json
+    \end{verbatim}
 
 \subsection*{Hệ thống thiết kế (Design System)}
 
@@ -56,25 +75,53 @@ Bảng màu được thiết kế để mang lại sự nhất quán và dễ nh
 
 Hệ thống này được tích hợp với Tailwind CSS, giúp tự động hóa việc áp dụng các quy tắc thiết kế (design tokens) vào mã nguồn. Điều này làm giảm thiểu lỗi thiết kế, đồng thời đảm bảo giao diện nhất quán trong toàn bộ ứng dụng.
 
-
-\textbf{Backend}
+\section{Kiến trúc Backend}
 
 Backend được phát triển với FastAPI, kết hợp với PostgreSQL để lưu trữ dữ liệu. Kiến trúc hệ thống được tổ chức theo các thành phần chính:
+
 \begin{itemize}
     \item Repository
     \item Provider
     \item Controller
+    \item Schemas
+    \item Models
+    \item API
 \end{itemize}
-
-Mỗi thành phần đảm nhiệm một vai trò cụ thể, giúp hệ thống trở nên dễ hiểu, có tính tổ chức cao và dễ bảo trì.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{Images/Implement/backendStructure.png}
-    \caption{Cấu trúc Backend}
-\end{figure}
-
-\section{Kiến trúc Backend}
+\newpage
+\begin{verbatim}
+    EDUMIND [WSL: UBUNTU]
+    |-- alembic
+    |   |-- script.py.mako
+    |-- core
+    |-- data
+    |-- docker
+    |-- docs
+    |-- dumps
+    |-- machine
+    |   |-- __pycache__
+    |   |-- api
+    |   |-- controllers
+    |   |-- models
+    |   |-- providers
+    |   |-- repositories
+    |   |-- schemas
+    |   |-- services
+    |   |-- server.py
+    |-- migrations
+    |-- static
+    |-- tasks
+    |-- templates
+    |-- utils
+    |-- .env
+    |-- .gitignore
+    |-- .python-version
+    |-- alembic.ini
+    |-- main.py
+    |-- Makefile
+    |-- poetry.lock
+    |-- pyproject.toml
+    |-- README.md
+    \end{verbatim}
 
 \textbf{1. Repository} 
 
@@ -134,15 +181,15 @@ Ví dụ: Controller xử lý:
 
 \section{Quá trình triển khai hệ thống}
 \subsection*{Triển khai hệ thống}
-\textbf{Frontend:}
-Frontend của hệ thống được triển khai trên nền tảng \textbf{Vercel}, mang đến một môi trường ổn định, tối ưu cho việc triển khai các ứng dụng web. Vercel cung cấp khả năng tự động build và deploy mỗi khi có thay đổi trong mã nguồn, giúp quá trình cập nhật trở nên nhanh chóng và mượt mà. Nhờ vào quy trình này, việc triển khai và duy trì hệ thống frontend trở nên đơn giản và hiệu quả.
-Vercel không chỉ đảm bảo hiệu suất cao mà còn hỗ trợ các tính năng tối ưu hóa tự động, giúp giảm thời gian tải trang và nâng cao trải nghiệm người dùng. Với khả năng mở rộng linh hoạt, hệ thống có thể dễ dàng đáp ứng với nhu cầu tăng trưởng trong tương lai.
-\par \textbf{Link deploy frontend:} \textcolor{blue}{\href{https://codemate-fe-black.vercel.app/}{https://codemate-fe-black.vercel.app/}}
 
-\textbf{Backend:}
-Hệ thống sử dụng nền tảng \textbf{Render} để triển khai backend. Render cung cấp một môi trường chạy ổn định, dễ mở rộng và bảo mật cao, giúp tối ưu hóa việc quản lý và triển khai ứng dụng. Với quy trình build và deploy tự động, việc cập nhật hệ thống trở nên mượt mà và hiệu quả, giảm thiểu các vấn đề phát sinh trong quá trình triển khai.
-Để triển khai hệ thống, chúng tôi sử dụng công cụ \textbf{Poetry} để quản lý các gói phụ thuộc (dependencies) của Python. Điều này giúp đảm bảo rằng các thư viện và công cụ cần thiết luôn được cài đặt đúng phiên bản, đồng thời giảm thiểu các lỗi liên quan đến môi trường chạy.
-Hệ thống được cấu hình để tự động khởi chạy khi có yêu cầu, đảm bảo hiệu suất cao và khả năng mở rộng dễ dàng khi cần thiết. Ngoài ra, Render cũng hỗ trợ giám sát và quản lý môi trường ứng dụng, giúp dễ dàng phát hiện và xử lý các sự cố.
+Hệ thống được triển khai hoàn toàn trên nền tảng Render, áp dụng cho cả thành phần frontend và backend. Việc sử dụng một nền tảng duy nhất cho toàn bộ hệ thống giúp đơn giản hóa quy trình CI/CD, quản lý tài nguyên tập trung và tối ưu hóa hiệu suất giao tiếp giữa các thành phần.
+
+\textbf{Frontend:} Ứng dụng Vue.js được triển khai dưới dạng dịch vụ tĩnh (Static Site) trên Render với cấu hình tự động xây dựng và triển khai khi mã nguồn được cập nhật.
+
+\par \textbf{Link deploy frontend:} \textcolor{blue}{\href{https://codemate-fe-n5h9.onrender.com/}{https://codemate-fe-n5h9.onrender.com/}}
+
+\textbf{Backend:} API FastAPI được triển khai dưới dạng dịch vụ web (Web Service) trên Render, với Docker làm công nghệ đóng gói để đảm bảo tính nhất quán môi trường. Hệ thống sử dụng Poetry để quản lý các phụ thuộc Python, đảm bảo môi trường phát triển và triển khai đồng nhất.
+
 \par \textbf{Link deploy backend:} \textcolor{blue}{\href{https://edumind-5qmn.onrender.com/}{https://edumind-5qmn.onrender.com/}}
 
 \textbf{Quy trình triển khai chi tiết:}
@@ -185,7 +232,7 @@ Hệ thống được cấu hình để tự động khởi chạy khi có yêu 
 
 \item \textbf{Triển khai trên môi trường cloud:}
 \begin{itemize}
-    \item Thiết lập môi trường cloud trên Vercel cho frontend và Render cho backend.
+    \item Thiết lập môi trường cloud trên Render cho frontend và backend.
     \item Cấu hình các biến môi trường và thiết lập bảo mật.
     \item Thiết lập quy trình CI/CD để tự động hóa việc build và deploy khi có thay đổi trong mã nguồn.
     \item Cài đặt và cấu hình cơ sở dữ liệu PostgreSQL trên nền tảng đám mây.
@@ -202,17 +249,18 @@ Hệ thống được cấu hình để tự động khởi chạy khi có yêu 
 \textbf{Các công nghệ được sử dụng trong triển khai:}
 \begin{table}[H]
 \centering
+\caption{Các công nghệ sử dụng trong quá trình triển khai}
 \begin{tabularx}{\textwidth}{|l|X|}
 \hline
 \textbf{Lĩnh vực} & \textbf{Công nghệ} \\ \hline
-Frontend & Vue 3, Vuetify, Tailwind CSS, Pinia, Axios, Jest \\ \hline
+Frontend & Vue 3, Vuetify, Tailwind CSS, Pinia, Axios \\ \hline
 Backend & FastAPI, SQLAlchemy, Pydantic, LangChain, Alembic \\ \hline
 Cơ sở dữ liệu & PostgreSQL, Redis (cache) \\ \hline
 AI & OpenAI API (GPT-4o), Google Gemini API \\ \hline
-Triển khai & Vercel (Frontend), Render (Backend), GitHub Actions (CI/CD) \\ \hline
+Triển khai & Render (Frontend, Backend), GitHub Actions (CI/CD) \\ \hline
 % Giám sát & Sentry, Prometheus, Grafana \\ \hline
 \end{tabularx}
-\caption{Các công nghệ sử dụng trong quá trình triển khai}
+
 \label{table}
 \end{table}
 % \textbf{Kết quả triển khai:}
@@ -874,64 +922,64 @@ Backend sẽ định nghĩa prompt phù hợp và gửi yêu cầu tới LLM đ�
 \subsection{Hệ thống lưu trữ tài liệu:}
 Các tài liệu PDF, slide bài giảng được lưu ở AWS S3 thư mục local server.
 
-\section{Sơ đồ cơ sở dữ liệu}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.6\linewidth]{images/ERD.png}
-    \caption{Sơ đồ cơ sở dữ liệu của hệ thống}
-    \label{fig:enter-label}
-\end{figure}
+% \section{Sơ đồ cơ sở dữ liệu}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.6\linewidth]{images/ERD.png}
+%     \caption{Sơ đồ cơ sở dữ liệu của hệ thống}
+%     \label{fig:enter-label}
+% \end{figure}
 
-\subsection{Tổng quan cấu trúc cơ sở dữ liệu}
-Hệ thống được xây dựng trên nhiều bảng chính, chia thành các nhóm chức năng như sau:
+% \subsection{Tổng quan cấu trúc cơ sở dữ liệu}
+% Hệ thống được xây dựng trên nhiều bảng chính, chia thành các nhóm chức năng như sau:
 
-\subsubsection{Nhóm người dùng (User Management)}
-\begin{itemize}
-    \item \textbf{professors}, \textbf{student}, \textbf{admins}: chứa thông tin cơ bản của người dùng theo 3 role như username, email, password,...
-    \item \textbf{user\_login}\: bảng mở rộng lưu thông tin đăng nhập người dùng.
-\end{itemize}
+% \subsubsection{Nhóm người dùng (User Management)}
+% \begin{itemize}
+%     \item \textbf{professors}, \textbf{student}, \textbf{admins}: chứa thông tin cơ bản của người dùng theo 3 role như username, email, password,...
+%     \item \textbf{user\_login}\: bảng mở rộng lưu thông tin đăng nhập người dùng.
+% \end{itemize}
 
-\subsubsection{Nhóm khóa học và tài liệu (Course Management)}
-\begin{itemize}
-    \item \textbf{courses}, \textbf{student\_courses}, \textbf{extracted\_text}: quản lý thông tin khóa học, tham gia khóa học và tài liệu học tập liên quan do giảng viên đăng tải.
-    \item \textbf{lessons}, \textbf{documents}, \textbf{modules}: quản lý bài học và các nội dung bài học liên quan.
-    \item \textbf{learning\_paths}, \textbf{recommend\_lessons}, \textbf{recommend\_documents}: quản lý các bài kiểm tra, bài tập và câu hỏi liên quan đến khóa học.
-\end{itemize}
+% \subsubsection{Nhóm khóa học và tài liệu (Course Management)}
+% \begin{itemize}
+%     \item \textbf{courses}, \textbf{student\_courses}, \textbf{extracted\_text}: quản lý thông tin khóa học, tham gia khóa học và tài liệu học tập liên quan do giảng viên đăng tải.
+%     \item \textbf{lessons}, \textbf{documents}, \textbf{modules}: quản lý bài học và các nội dung bài học liên quan.
+%     \item \textbf{learning\_paths}, \textbf{recommend\_lessons}, \textbf{recommend\_documents}: quản lý các bài kiểm tra, bài tập và câu hỏi liên quan đến khóa học.
+% \end{itemize}
 
-\subsubsection{Nhóm câu hỏi và bài kiểm tra (Assessment)}
-\begin{itemize}
-    \item \textbf{recommend\_quizzes}, \textbf{exercises}: chứa thông tin về các câu hỏi, loại câu hỏi, câu trả lời và kết quả bài kiểm tra của sinh viên trong các bài quiz được sinh ra theo từng bài học đề xuất.
-\end{itemize}
+% \subsubsection{Nhóm câu hỏi và bài kiểm tra (Assessment)}
+% \begin{itemize}
+%     \item \textbf{recommend\_quizzes}, \textbf{exercises}: chứa thông tin về các câu hỏi, loại câu hỏi, câu trả lời và kết quả bài kiểm tra của sinh viên trong các bài quiz được sinh ra theo từng bài học đề xuất.
+% \end{itemize}
 
-\subsubsection{Nhóm tương tác và phản hồi (Interaction)}
-\begin{itemize}
-    \item  \textbf{feedbacks}, \textbf{activities}: quản lý tương tác giữa sinh viên và giảng viên, người dùng và hệ thống, và các hoạt động của người dùng.
-\end{itemize}
+% \subsubsection{Nhóm tương tác và phản hồi (Interaction)}
+% \begin{itemize}
+%     \item  \textbf{feedbacks}, \textbf{activities}: quản lý tương tác giữa sinh viên và giảng viên, người dùng và hệ thống, và các hoạt động của người dùng.
+% \end{itemize}
 
-\subsubsection{Nhóm bài tập Code Exercises}
-\begin{itemize}
-    \item \textbf{conversations}, \textbf{messages}, \textbf{coding\_conversations}: ghi nhận nhật ký hoạt động, cài đặt hệ thống và quản lý phiên làm việc.
-\end{itemize}
+% \subsubsection{Nhóm bài tập Code Exercises}
+% \begin{itemize}
+%     \item \textbf{conversations}, \textbf{messages}, \textbf{coding\_conversations}: ghi nhận nhật ký hoạt động, cài đặt hệ thống và quản lý phiên làm việc.
+% \end{itemize}
 
-\subsection{Mối quan hệ giữa các bảng}
-Các bảng trong hệ thống có mối quan hệ nhiều-nhiều và một-nhiều, với các khóa ngoại được thể hiện rõ trong sơ đồ:
-\begin{itemize}
-    \item Một người dùng có thể tham gia nhiều khóa học thông qua bảng \texttt{student\_courses}.
-    \item Một khóa học có thể có nhiều bài học, bài kiểm tra và tài liệu.
-    \item Bài kiểm tra có thể bao gồm nhiều câu hỏi và mỗi câu hỏi có nhiều đáp án.
-    \item Người dùng có thể đưa ra phản hồi và nhận thông báo từ hệ thống.
-    \item Một sinh viên đối với một khóa học có thể có nhiều lộ trình học khác nhau. 
-    \item Một lộ trình học có thể có nhiều bài học và tài liệu khác nhau.
-    \item Một bài học có thể có nhiều module nhỏ và nội dung khác nhau.
-    \item Một module có thể có nhiều bài quiz hoặc code exercises khác nhau (do sinh viên tùy chọn sinh ra)
-\end{itemize}
+% \subsection{Mối quan hệ giữa các bảng}
+% Các bảng trong hệ thống có mối quan hệ nhiều-nhiều và một-nhiều, với các khóa ngoại được thể hiện rõ trong sơ đồ:
+% \begin{itemize}
+%     \item Một người dùng có thể tham gia nhiều khóa học thông qua bảng \texttt{student\_courses}.
+%     \item Một khóa học có thể có nhiều bài học, bài kiểm tra và tài liệu.
+%     \item Bài kiểm tra có thể bao gồm nhiều câu hỏi và mỗi câu hỏi có nhiều đáp án.
+%     \item Người dùng có thể đưa ra phản hồi và nhận thông báo từ hệ thống.
+%     \item Một sinh viên đối với một khóa học có thể có nhiều lộ trình học khác nhau. 
+%     \item Một lộ trình học có thể có nhiều bài học và tài liệu khác nhau.
+%     \item Một bài học có thể có nhiều module nhỏ và nội dung khác nhau.
+%     \item Một module có thể có nhiều bài quiz hoặc code exercises khác nhau (do sinh viên tùy chọn sinh ra)
+% \end{itemize}
 
-\subsection{Kết luận}
-Sơ đồ ERD này cung cấp một cái nhìn toàn diện về kiến trúc cơ sở dữ liệu của hệ thống. Cấu trúc được tổ chức hợp lý, cho phép dễ dàng mở rộng và tích hợp thêm các chức năng mới như AI hỗ trợ học tập, phân tích dữ liệu học viên, và hơn thế nữa.
+% \subsection{Kết luận}
+% Sơ đồ ERD này cung cấp một cái nhìn toàn diện về kiến trúc cơ sở dữ liệu của hệ thống. Cấu trúc được tổ chức hợp lý, cho phép dễ dàng mở rộng và tích hợp thêm các chức năng mới như AI hỗ trợ học tập, phân tích dữ liệu học viên, và hơn thế nữa.
 
-\section{Kết luận}
-Hệ thống học tập trực tuyến thông minh đã được phát triển với mục tiêu mang lại trải nghiệm học tập cá nhân hóa, hiệu quả và linh hoạt cho sinh viên ngành công nghệ thông tin và những người có nhu cầu học lập trình. Thông qua việc tích hợp các mô hình ngôn ngữ lớn (LLM) và các tính năng tiên tiến như gia sư AI, hệ thống tạo bài tập tự động, và lộ trình học tập cá nhân hóa, hệ thống không chỉ hỗ trợ người học trong việc tiếp thu kiến thức mà còn giúp họ phát triển kỹ năng lập trình một cách thực tế và sâu sắc.
+% \section{Kết luận}
+% Hệ thống học tập trực tuyến thông minh đã được phát triển với mục tiêu mang lại trải nghiệm học tập cá nhân hóa, hiệu quả và linh hoạt cho sinh viên ngành công nghệ thông tin và những người có nhu cầu học lập trình. Thông qua việc tích hợp các mô hình ngôn ngữ lớn (LLM) và các tính năng tiên tiến như gia sư AI, hệ thống tạo bài tập tự động, và lộ trình học tập cá nhân hóa, hệ thống không chỉ hỗ trợ người học trong việc tiếp thu kiến thức mà còn giúp họ phát triển kỹ năng lập trình một cách thực tế và sâu sắc.
 
-Các module đã được triển khai, bao gồm quản lý tài khoản, khóa học, bài học, bài tập, lộ trình học tập, tiến độ học tập, phản hồi, người dùng, nhật ký đăng nhập và dashboard, đáp ứng đầy đủ các yêu cầu chức năng và phi chức năng được đề ra. Những tính năng này cho phép sinh viên, giảng viên và quản trị viên tương tác một cách hiệu quả, đồng thời đảm bảo tính bảo mật, khả năng mở rộng và hiệu năng cao của hệ thống.
+% Các module đã được triển khai, bao gồm quản lý tài khoản, khóa học, bài học, bài tập, lộ trình học tập, tiến độ học tập, phản hồi, người dùng, nhật ký đăng nhập và dashboard, đáp ứng đầy đủ các yêu cầu chức năng và phi chức năng được đề ra. Những tính năng này cho phép sinh viên, giảng viên và quản trị viên tương tác một cách hiệu quả, đồng thời đảm bảo tính bảo mật, khả năng mở rộng và hiệu năng cao của hệ thống.
 
-Trong tương lai, hệ thống có thể được cải tiến thêm bằng cách tích hợp các công nghệ mới, mở rộng các tính năng hỗ trợ đa ngôn ngữ, hoặc tối ưu hóa thuật toán đề xuất để nâng cao độ chính xác và phù hợp của các tài nguyên học tập. Với nền tảng vững chắc đã được xây dựng, hệ thống hứa hẹn sẽ tiếp tục là một công cụ hữu ích, đóng góp tích cực vào quá trình học tập và giảng dạy trong lĩnh vực công nghệ thông tin.
+% Trong tương lai, hệ thống có thể được cải tiến thêm bằng cách tích hợp các công nghệ mới, mở rộng các tính năng hỗ trợ đa ngôn ngữ, hoặc tối ưu hóa thuật toán đề xuất để nâng cao độ chính xác và phù hợp của các tài nguyên học tập. Với nền tảng vững chắc đã được xây dựng, hệ thống hứa hẹn sẽ tiếp tục là một công cụ hữu ích, đóng góp tích cực vào quá trình học tập và giảng dạy trong lĩnh vực công nghệ thông tin.
