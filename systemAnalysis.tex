@@ -144,25 +144,26 @@ Phân tích kết quả học tập & \checkmark & Phân tích dữ liệu học
     \hline
     \textbf{Loại yêu cầu} & \textbf{Hoàn thành} & \textbf{Tiêu chí} & \textbf{Chi tiết triển khai} \\
     \hline
-    \multirow{3}{*}{Hiệu năng} & X & Thời gian phản hồi nhanh & Thời gian phản hồi cho các thao tác thông thường dưới 2 giây. \\
+    \multirow{3}{*}{Hiệu năng} & Đạt một phần \footnotemark& Thời gian phản hồi nhanh & Thời gian phản hồi cho các thao tác thông thường dưới 2 giây. \\
     \cline{2-4}
     & Chưa đánh giá & Hỗ trợ nhiều người dùng & Hệ thống hỗ trợ tối thiểu 1000 người dùng đồng thời mà không giảm hiệu năng. \\
     \cline{2-4}
-    & X \footnotemark& Thời gian phản hồi AI & Tối ưu hóa API calls tới các model LLM, giữ thời gian phản hồi AI dưới 8 giây cho các tác vụ phức tạp. \\
+    & X \footnotemark& Thời gian phản hồi AI & API calls tới các model LLM, giữ thời gian phản hồi AI dưới 8 giây cho các tác vụ phức tạp. \\
     \hline
     \multirow{2}{*}{Khả năng mở rộng} & \checkmark & Kiến trúc microservices & Thiết kế hệ thống theo kiến trúc module, dễ dàng mở rộng và thêm tính năng mà không ảnh hưởng đến thành phần khác. \\
     \cline{2-4}
     & \checkmark & Triển khai trên cloud & Sử dụng các dịch vụ cloud có khả năng auto-scaling. \\
     \hline
-    \multirow{3}{*}{Bảo mật} & \checkmark & Mã hóa dữ liệu & Mã hóa dữ liệu cá nhân và thông tin học tập bằng chuẩn AES-256 trong quá trình lưu trữ và truyền tải. \\
+    \multirow{3}{*}{Bảo mật} & \checkmark & Mã hóa dữ liệu & Mã hóa dữ liệu cá nhân và thông tin học tập trong quá trình lưu trữ và truyền tải. \\
     \cline{2-4}
-    & \checkmark & Xác thực đa yếu tố & Triển khai xác thực đa yếu tố cho các tài khoản quản trị và giảng viên, tăng cường bảo mật. \\
+    & \checkmark & Xác thực đa yếu tố & Triển khai xác thực đa yếu tố cho các tài khoản sinh viên, quản trị và giảng viên. \\
     \cline{2-4}
-    & \checkmark & Phân quyền chi tiết & Hệ thống phân quyền chi tiết theo vai trò Student, Professor, Admin. \\
+    & \checkmark & Phân quyền chi tiết & Hệ thống phân quyền chi tiết theo vai trò Sinh viên, Giảng viên, Quản trị viên. \\
     \hline
     \end{tabular}
 
     \end{table}
+    \footnotetext{Chi tiết về thời gian phản hồi trung bình của các thao tác thông thường trong Bảng \ref{table:api_response_time}.}
     \footnotetext{Chi tiết về thời gian phản hồi trung bình của các tính năng sử dụng LLM được trình bày trong Bảng \ref{table:llm_response_time}.}
     \begin{table}[H]
         \centering
