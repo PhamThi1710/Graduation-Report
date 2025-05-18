@@ -1,26 +1,28 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
-[0] Config.pm:310> INFO - Logfile is 'main.blg'
-[155] biber:340> INFO - === Fri May  2, 2025, 12:53:20
-[204] Biber.pm:419> INFO - Reading 'main.bcf'
-[320] Biber.pm:976> INFO - Using all citekeys in bib section 0
-[350] Biber.pm:4419> INFO - Processing section 0
-[370] Biber.pm:4610> INFO - Looking for bibtex file 'refs.bib' for section 0
-[383] bibtex.pm:1713> INFO - LaTeX decoding ...
-[436] bibtex.pm:1519> INFO - Found BibTeX data source 'refs.bib'
-[914] Biber.pm:4610> INFO - Looking for bibtex file 'newrefs.bib' for section 0
-[923] bibtex.pm:1713> INFO - LaTeX decoding ...
-[929] bibtex.pm:1519> INFO - Found BibTeX data source 'newrefs.bib'
-[1009] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1009] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1010] Biber.pm:4239> INFO - Sorting list 'none/apasortcite//global/global' of type 'entry' with template 'none' and locale 'en-US'
-[1010] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
-[1062] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1063] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1063] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
-[1064] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
-[1094] bbl.pm:660> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[1187] bbl.pm:763> INFO - Output to main.bbl
-[1189] Biber.pm:131> WARN - legacy month field 'feb' in entry '10.1145/3569576' is not an integer - this will probably not sort properly.
-[1189] Biber.pm:131> WARN - Duplicate entry key: 'liu2023gevalnlgevaluationusing' in file 'newrefs.bib', skipping ...
-[1190] Biber.pm:131> WARN - Duplicate entry key: 'zhang2020new' in file 'newrefs.bib', skipping ...
-[1190] Biber.pm:133> INFO - WARNINGS: 3
+[1] Config.pm:310> INFO - Logfile is 'main.blg'
+[100] biber:340> INFO - === Mon May  5, 2025, 00:07:54
+[132] Biber.pm:419> INFO - Reading 'main.bcf'
+[239] Biber.pm:976> INFO - Using all citekeys in bib section 0
+[265] Biber.pm:4419> INFO - Processing section 0
+[286] Biber.pm:4610> INFO - Looking for bibtex file 'refs.bib' for section 0
+[296] bibtex.pm:1713> INFO - LaTeX decoding ...
+[323] bibtex.pm:1519> INFO - Found BibTeX data source 'refs.bib'
+[634] Biber.pm:4610> INFO - Looking for bibtex file 'newrefs.bib' for section 0
+[643] bibtex.pm:1713> INFO - LaTeX decoding ...
+[652] bibtex.pm:1519> INFO - Found BibTeX data source 'newrefs.bib'
+[733] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[734] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[734] Biber.pm:4239> INFO - Sorting list 'none/apasortcite//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[735] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[804] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[805] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[805] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[806] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[836] bbl.pm:660> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[942] bbl.pm:763> INFO - Output to main.bbl
+[943] Biber.pm:131> WARN - legacy month field 'feb' in entry '10.1145/3569576' is not an integer - this will probably not sort properly.
+[943] Biber.pm:131> WARN - Duplicate entry key: 'liu2023gevalnlgevaluationusing' in file 'newrefs.bib', skipping ...
+[944] Biber.pm:131> WARN - Duplicate entry key: 'zhang2020new' in file 'newrefs.bib', skipping ...
+[944] Biber.pm:131> WARN - Duplicate entry key: 'li2025preferenceleakagecontaminationproblem' in file 'newrefs.bib', skipping ...
+[945] Biber.pm:131> WARN - Duplicate entry key: 'openaiPromptCaching' in file 'newrefs.bib', skipping ...
+[945] Biber.pm:133> INFO - WARNINGS: 5
