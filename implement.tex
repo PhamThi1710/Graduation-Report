@@ -3,6 +3,7 @@
 \section{Kiến trúc Frontend}
 
 Frontend được xây dựng bằng VueJS, tích hợp Vuetify và Tailwind CSS để cung cấp giao diện người dùng trực quan, hiện đại và dễ sử dụng.
+Link github: \href{https://github.com/TruogAnh-28/codemate-FE}{https://github.com/TruogAnh-28/codemate-FE}
 
 \begin{verbatim}
     CODEMATE-FE [WSL: UBUNTU]
@@ -40,6 +41,43 @@ Frontend được xây dựng bằng VueJS, tích hợp Vuetify và Tailwind CSS
     |-- .eslintrc-auto-import.json
     \end{verbatim}
 
+\subsection*{Công nghệ và Tính năng Chính}
+
+Hệ thống frontend được xây dựng dựa trên một tập hợp các công nghệ tiên tiến, đảm bảo tính nhất quán và hiệu quả trong quá trình phát triển và triển khai. Các thành phần chính bao gồm:
+
+\begin{itemize}
+    \item \textbf{Vue 3 và Vuetify 3}: Sử dụng \href{https://vuejs.org/}{Vue 3} làm framework chính, kết hợp với \href{https://vuetifyjs.com/}{Vuetify 3} để xây dựng giao diện người dùng phản hồi nhanh, trực quan và hiện đại. Vuetify cung cấp một thư viện thành phần giao diện phong phú, được tối ưu hóa cho các ứng dụng Vue.
+    \item \textbf{Quản lý trạng thái với Pinia}: \href{https://pinia.vuejs.org/}{Pinia} được tích hợp để quản lý trạng thái ứng dụng một cách trực quan và mô-đun hóa, giúp đơn giản hóa việc quản lý dữ liệu phức tạp trong ứng dụng.
+    \item \textbf{Định tuyến và bố cục}: Sử dụng \href{https://router.vuejs.org/}{Vue Router} để quản lý điều hướng trong ứng dụng Single Page Application (SPA). Ngoài ra, \href{https://github.com/JohnCampionJr/vite-plugin-vue-layouts}{vite-plugin-vue-layouts} được sử dụng để tổ chức các tệp bố cục Vue, đảm bảo tính nhất quán trong cấu trúc giao diện.
+    \item \textbf{Công cụ phát triển hiện đại}: Dự án sử dụng \href{https://vitejs.dev/}{Vite} để cung cấp trải nghiệm phát triển nhanh với thời gian khởi động lạnh ngắn và tính năng Hot Module Replacement (HMR). \href{https://www.typescriptlang.org/}{TypeScript} được tích hợp để kiểm tra kiểu tĩnh, kết hợp với \href{https://eslint.vuejs.org/}{ESLint Plugin Vue} để đảm bảo chất lượng mã nguồn.
+    \item \textbf{Tự động hóa nhập thành phần}: \href{https://github.com/antfu/unplugin-vue-components}{unplugin-vue-components} được sử dụng để tự động nhập các thành phần Vue khi cần, giúp giảm thiểu công việc thủ công và tăng hiệu quả phát triển.
+    \item \textbf{Kiểm tra kiểu mạnh mẽ}: \href{https://github.com/johnsoncodehk/volar/tree/master/packages/vue-tsc}{vue-tsc} được sử dụng để kiểm tra kiểu cho các thành phần Vue, đảm bảo tính mạnh mẽ và đáng tin cậy của mã nguồn.
+\end{itemize}
+
+\subsection*{Cấu hình và Cài đặt}
+
+Quá trình cài đặt và cấu hình được thực hiện thông qua các trình quản lý gói phổ biến, đảm bảo tính linh hoạt và tương thích với các môi trường phát triển khác nhau. Các lệnh cài đặt bao gồm:
+
+\begin{table}[H]
+\centering
+\caption{Các lệnh cài đặt phụ thuộc}
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Trình quản lý gói} & \textbf{Lệnh cài đặt} \\ \hline
+Yarn & \texttt{yarn install} \\ \hline
+NPM & \texttt{npm install} \\ \hline
+PNPM & \texttt{pnpm install} \\ \hline
+Bun & \texttt{bun install} \\ \hline
+\end{tabularx}
+\end{table}
+
+Sau khi cài đặt, môi trường phát triển được thiết lập để hỗ trợ phát triển Vuetify với các tính năng như hot-reload và kiểm tra kiểu tĩnh. Để khởi động máy chủ phát triển, sử dụng lệnh:
+
+\begin{verbatim}
+yarn dev
+\end{verbatim}
+
+Máy chủ sẽ chạy tại \href{http://localhost:3000}{http://localhost:3000}, cung cấp khả năng tái tải nóng (hot-reload) để tăng tốc quá trình phát triển.
 \subsection*{Hệ thống thiết kế (Design System)}
 
 Hệ thống thiết kế được triển khai với mục tiêu cung cấp một giao diện người dùng nhất quán, dễ sử dụng và dễ mở rộng. Hệ thống này bao gồm các thành phần chính sau:
@@ -78,6 +116,26 @@ Hệ thống này được tích hợp với Tailwind CSS, giúp tự động h�
 \section{Kiến trúc Backend}
 
 Backend được phát triển với FastAPI, kết hợp với PostgreSQL để lưu trữ dữ liệu. Kiến trúc hệ thống được tổ chức theo các thành phần chính:
+\subsection*{Công nghệ và Tính năng Chính}
+
+Backend được phát triển dựa trên Python 3.11+ và framework FastAPI, kết hợp với các công nghệ hỗ trợ để cung cấp một hệ thống mạnh mẽ và hiệu quả. Các thành phần chính bao gồm:
+
+\begin{itemize}
+    \item \textbf{FastAPI}: Framework chính cho việc xây dựng API, cung cấp hiệu suất cao nhờ lập trình bất đồng bộ và hỗ trợ tài liệu API tự động qua Swagger UI và ReDoc. \href{https://fastapi.tiangolo.com/}{FastAPI}.
+    \item \textbf{PostgreSQL và SQLAlchemy}: Cơ sở dữ liệu quan hệ PostgreSQL được sử dụng để lưu trữ dữ liệu, với \href{https://www.sqlalchemy.org/}{SQLAlchemy} làm ORM để quản lý mô hình dữ liệu và tương tác với cơ sở dữ liệu.
+    \item \textbf{Alembic}: Công cụ quản lý di cư cơ sở dữ liệu, cho phép cập nhật cấu trúc cơ sở dữ liệu một cách tự động và nhất quán. \href{https://alembic.sqlalchemy.org/}{Alembic}.
+    \item \textbf{Redis}: Được sử dụng làm bộ đệm (cache) và message broker cho các tác vụ nền, hỗ trợ bởi \href{https://dramatiq.io/}{Dramatiq} để xử lý các tác vụ bất đồng bộ.
+    \item \textbf{Pydantic}: Sử dụng để xác thực dữ liệu và quản lý cài đặt, đảm bảo tính chính xác và an toàn của dữ liệu đầu vào. \href{https://pydantic-docs.helpmanual.io/}{Pydantic}.
+    \item \textbf{Tích hợp bên ngoài}:
+    \begin{itemize}
+        \item \textbf{Judge0}: Tích hợp để đánh giá mã nguồn trong các bài tập lập trình, sử dụng API RapidAPI. \href{https://judge0.com/}{Judge0}.
+        \item \textbf{AWS S3}: Lưu trữ tệp tin (ví dụ: tài liệu khóa học, bài tập) thông qua \href{https://boto3.amazonaws.com/v1/documentation/api/latest/index.html}{Boto3}.
+        \item \textbf{AI Models}: Tích hợp với Google Gemini API và OpenAI API để cung cấp các tính năng AI như đề xuất học tập và tạo bài tập tự động. \href{https://ai.google.dev/}{Google GenAI}, \href{https://openai.com/}{OpenAI}.
+        \item \textbf{Email}: Sử dụng \href{https://github.com/sabuhish/fastapi-mail}{fastapi-mail} để gửi email thông báo, chẳng hạn như xác nhận đăng ký hoặc thông báo tiến độ.
+    \end{itemize}
+    \item \textbf{Xác thực}: Sử dụng JWT (JSON Web Tokens) để xác thực người dùng, với thời gian hết hạn riêng biệt cho access token (30 phút) và refresh token (7 ngày).
+    \item \textbf{Containerization}: \href{https://www.docker.com/}{Docker} và \href{https://docs.docker.com/compose/}{Docker Compose} được sử dụng để đóng gói và triển khai ứng dụng, đảm bảo tính nhất quán giữa các môi trường.
+\end{itemize}
 
 \begin{itemize}
     \item Repository
@@ -178,6 +236,113 @@ Ví dụ: Controller xử lý:
     \item Truy xuất danh sách khóa học và chi tiết khóa học
     \item Nhận mục tiêu học tập từ sinh viên và gửi đến Provider để xử lý
 \end{itemize}
+\subsection*{Thiết lập Môi trường}
+
+Để thiết lập môi trường phát triển, cần tạo tệp `.env` trong thư mục gốc của dự án, dựa trên mẫu sau:
+
+\begin{verbatim}
+# Cài đặt cốt lõi
+ENV=development
+DEBUG=True
+APP_HOST=localhost
+APP_PORT=8080
+LOG_LEVEL=DEBUG
+
+# Cài đặt cơ sở dữ liệu
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=your_strong_password
+POSTGRES_DB=codemate
+SQLALCHEMY_POSTGRES_URI=postgresql+asyncpg://postgres:your_strong_password@127.0.0.1:5433/codemate
+SQLALCHEMY_ECHO=False
+
+# Cài đặt Redis
+REDIS_URL=redis://127.0.0.1:6379/0
+
+# Cài đặt dịch vụ bên ngoài
+RAPIDAPI_KEY=your_actual_rapidapi_key_for_judge0
+AWS3_ACCESS_KEY_ID=your_aws_access_key_id
+AWS3_SECRET_ACCESS_KEY=your_aws_secret_access_key
+AWS3_REGION=ap-southeast-2
+AWS3_BUCKET_NAME=specialized-project
+GOOGLE_GENAI_API_KEY=your_google_genai_api_key
+OPENAI_API_KEY=your_openai_api_key
+
+# Cài đặt email
+MAIL_USERNAME=your_email@gmail.com
+MAIL_PASSWORD=your_app_password
+MAIL_FROM=your_email@gmail.com
+MAIL_PORT=587
+MAIL_SERVER=smtp.gmail.com
+MAIL_STARTTLS=True
+MAIL_SSL_TLS=False
+USE_CREDENTIALS=True
+
+# Cài đặt JWT
+SECRET_KEY=your_strong_random_jwt_secret_key
+REFRESH_SECRET_KEY=your_strong_random_jwt_refresh_secret_key
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+REFRESH_TOKEN_EXPIRE_DAYS=7
+\end{verbatim}
+
+Tệp `.env` chứa các thông tin nhạy cảm và cần được thêm vào `.gitignore` để tránh commit lên kho mã nguồn.
+
+\subsection*{Triển khai với Docker}
+
+Dự án sử dụng Docker và Docker Compose để triển khai ứng dụng, cơ sở dữ liệu PostgreSQL, và Redis. Quy trình triển khai bao gồm:
+
+\begin{enumerate}
+    \item \textbf{Khởi động dịch vụ}:
+    \begin{verbatim}
+docker compose up --build
+    \end{verbatim}
+    Lệnh này xây dựng và khởi động các dịch vụ, bao gồm ứng dụng FastAPI, PostgreSQL, và Redis.
+
+    \item \textbf{Áp dụng di cư cơ sở dữ liệu}:
+    \begin{verbatim}
+docker compose exec web poetry run alembic upgrade head
+    \end{verbatim}
+    Lệnh này tạo các bảng cơ sở dữ liệu cần thiết.
+
+    \item \textbf{Truy cập ứng dụng}:
+    \begin{itemize}
+        \item API: \href{http://localhost:8080}{http://localhost:8080}
+        \item Tài liệu API (Swagger UI): \href{http://localhost:8080/api/docs}{http://localhost:8080/api/docs}
+        \item Tài liệu API (ReDoc): \href{http://localhost:8080/api/redoc}{http://localhost:8080/api/redoc}
+    \end{itemize}
+
+    \item \textbf{Dừng dịch vụ}:
+    \begin{verbatim}
+docker compose down
+    \end{verbatim}
+    Để xóa cả dữ liệu cơ sở dữ liệu và Redis:
+    \begin{verbatim}
+docker compose down -v
+    \end{verbatim}
+\end{enumerate}
+
+\subsection*{Quản lý Di cư Cơ sở dữ liệu}
+
+Di cư cơ sở dữ liệu được quản lý bằng Alembic. Các lệnh chính bao gồm:
+
+\begin{itemize}
+    \item \textbf{Áp dụng di cư}:
+    \begin{verbatim}
+docker compose exec web poetry run alembic upgrade head
+    \end{verbatim}
+    \item \textbf{Tạo di cư mới}:
+    \begin{verbatim}
+docker compose exec web poetry run alembic revision -m "mô_tả_di_cư"
+    \end{verbatim}
+    \item \textbf{Xem lịch sử di cư}:
+    \begin{verbatim}
+docker compose exec web poetry run alembic history
+    \end{verbatim}
+\end{itemize}
+
+\subsection*{Tác vụ Nền}
+
+Các tác vụ nền được xử lý bởi Dramatiq, chạy trong container riêng thông qua Docker Compose. Các tác vụ được định nghĩa trong thư mục \texttt{tasks/}, hỗ trợ các chức năng như gửi email, xử lý dữ liệu, hoặc tích hợp với dịch vụ bên ngoài.
 
 \section{Quá trình triển khai hệ thống}
 \subsection*{Triển khai hệ thống}
@@ -186,11 +351,11 @@ Hệ thống được triển khai hoàn toàn trên nền tảng Render, áp d�
 
 \textbf{Frontend:} Ứng dụng Vue.js được triển khai dưới dạng dịch vụ tĩnh (Static Site) trên Render với cấu hình tự động xây dựng và triển khai khi mã nguồn được cập nhật.
 
-\par \textbf{Link deploy frontend:} \textcolor{blue}{\href{https://codemate-fe-n5h9.onrender.com/}{https://codemate-fe-n5h9.onrender.com/}}
+\par \textbf{Link deploy frontend:} \textcolor{blue}{\href{https://codemate-fe-black.vercel.app/}{https://codemate-fe-black.vercel.app/}}
 
 \textbf{Backend:} API FastAPI được triển khai dưới dạng dịch vụ web (Web Service) trên Render, với Docker làm công nghệ đóng gói để đảm bảo tính nhất quán môi trường. Hệ thống sử dụng Poetry để quản lý các phụ thuộc Python, đảm bảo môi trường phát triển và triển khai đồng nhất.
 
-\par \textbf{Link deploy backend:} \textcolor{blue}{\href{https://edumind-5qmn.onrender.com/}{https://edumind-5qmn.onrender.com/}}
+\par \textbf{Link deploy backend:} \textcolor{blue}{\href{https://edumind-bngu.onrender.com/}{https://edumind-bngu.onrender.com/}}
 
 \textbf{Quy trình triển khai chi tiết:}
 % \begin{figure}[H]

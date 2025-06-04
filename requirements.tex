@@ -113,17 +113,27 @@ Các người dùng liên quan trong hệ thống:
 \end{itemize}
 \newpage
 \subsection{Yêu cầu dữ liệu}
-\subsubsection{Các thực thể và thuộc tính dữ liệu}
+% \subsubsection{Các thực thể và thuộc tính dữ liệu}
 \begin{enumerate}
     \item User
     \begin{itemize}
         \item Thực thể:User
         \item Thuộc tính: ID, username, email,password, role (student, admin, teacher)
-        \begin{itemize}
-            \item Student: Goal, Birthyear, Background, Avatar, LearningPath, Email,..
-            \item Teacher: ID, Email, Name,..  
-            \item Admin: ID, Email, Name,..
-        \end{itemize}
+    \end{itemize}
+    \item Student
+    \begin{itemize}
+        \item Thực thể: Student
+        \item Thuộc tính: ID, Goal, Birthyear, Background, Avatar, LearningPath, Email.
+    \end{itemize}
+    \item Teacher
+    \begin{itemize}
+        \item Thực thể: Teacher
+        \item Thuộc tính: ID, Email, Name, Avatar.
+    \end{itemize}
+    \item Manager
+    \begin{itemize}
+        \item Thực thể: Manager
+        \item Thuộc tính: ID, Email, Name, Avatar.
     \end{itemize}
     \item Course
     \begin{itemize}
@@ -176,68 +186,68 @@ Các người dùng liên quan trong hệ thống:
         \item Thuộc tính: ID, Content, Time.
     \end{itemize}
 \end{enumerate}
-\subsubsection{Mối quan hệ dữ liệu}
-\begin{itemize}
-    \item User:
-    \begin{itemize}
-        \item Specializes: Teacher, Manager, Student
-        \item Mối quan hệ với các thực thể:
-        \begin{itemize}
-            \item Student:  
-            \begin{itemize}
-                \item Include: 1-N Activity
-                \item Send: 1-N Feedback
-                \item Submission: N-N Exercise
-                \item Join: N-N Course
-                \item Bookmark: N-N Lesson
-            \end{itemize}
-            \item Teacher:  
-            \begin{itemize}
-                \item Upload: 1-N Course
-            \end{itemize}
-            \item Manager:  
-            \begin{itemize}
-                \item Manage: N-N Course
-            \end{itemize}
-        \end{itemize}
-    \end{itemize}
+% \subsubsection{Mối quan hệ dữ liệu}
+% \begin{itemize}
+%     \item User:
+%     \begin{itemize}
+%         \item Specializes: Teacher, Manager, Student
+%         \item Mối quan hệ với các thực thể:
+%         \begin{itemize}
+%             \item Student:  
+%             \begin{itemize}
+%                 \item Include: 1-N Activity
+%                 \item Send: 1-N Feedback
+%                 \item Submission: N-N Exercise
+%                 \item Join: N-N Course
+%                 \item Bookmark: N-N Lesson
+%             \end{itemize}
+%             \item Teacher:  
+%             \begin{itemize}
+%                 \item Upload: 1-N Course
+%             \end{itemize}
+%             \item Manager:  
+%             \begin{itemize}
+%                 \item Manage: N-N Course
+%             \end{itemize}
+%         \end{itemize}
+%     \end{itemize}
 
-    \item Course:
-    \begin{itemize}
-        \item Include: 1-N Lesson
-        \item 1 Student - 1 Course: 1 LearningPath
-        \item Mối quan hệ với các thực thể:
-        \begin{itemize}
-            \item Include: 1-N Lesson
-            \item 1 Student 1 Course Have 1 LearningPath: Mối quan hệ giữa Student và Course, mỗi học viên chỉ có một LearningPath cho mỗi khóa học.
-        \end{itemize}
-    \end{itemize}
+%     \item Course:
+%     \begin{itemize}
+%         \item Include: 1-N Lesson
+%         \item 1 Student - 1 Course: 1 LearningPath
+%         \item Mối quan hệ với các thực thể:
+%         \begin{itemize}
+%             \item Include: 1-N Lesson
+%             \item 1 Student 1 Course Have 1 LearningPath: Mối quan hệ giữa Student và Course, mỗi học viên chỉ có một LearningPath cho mỗi khóa học.
+%         \end{itemize}
+%     \end{itemize}
 
-    \item Lesson:
-    \begin{itemize}
-        \item Specializes: Recommend Lesson
-        \item Mối quan hệ với các thực thể:
-        \begin{itemize}
-            \item Include: 1-N Module
-        \end{itemize}
-    \end{itemize}
+%     \item Lesson:
+%     \begin{itemize}
+%         \item Specializes: Recommend Lesson
+%         \item Mối quan hệ với các thực thể:
+%         \begin{itemize}
+%             \item Include: 1-N Module
+%         \end{itemize}
+%     \end{itemize}
 
-    \item LearningPath:
-    \begin{itemize}
-        \item Have: 1-N Recommend Lesson
-    \end{itemize}
+%     \item LearningPath:
+%     \begin{itemize}
+%         \item Have: 1-N Recommend Lesson
+%     \end{itemize}
 
-    \item Recommend Lesson:
-    \begin{itemize}
-        \item Include: 1-N Module
-    \end{itemize}
+%     \item Recommend Lesson:
+%     \begin{itemize}
+%         \item Include: 1-N Module
+%     \end{itemize}
 
-    \item Module:
-    \begin{itemize}
-        \item Generate: 1-N Quiz
-        \item Generate: 1-1 Document
-    \end{itemize}
-\end{itemize}
+%     \item Module:
+%     \begin{itemize}
+%         \item Generate: 1-N Quiz
+%         \item Generate: 1-1 Document
+%     \end{itemize}
+% \end{itemize}
 
 \section{Kết luận}
 Chương 4 đã trình bày chi tiết về hệ thống đề xuất trong môi trường học tập trực tuyến thông minh. Hệ thống cung cấp các công cụ mạnh mẽ giúp người học có trải nghiệm học tập hiệu quả và tối ưu. Các tính năng như tạo bài tập tự động, theo dõi tiến độ học tập, và hỗ trợ từ gia sư AI giúp người học nâng cao khả năng lập trình và tiếp cận kiến thức một cách linh hoạt, hiệu quả.
